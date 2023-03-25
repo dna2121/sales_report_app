@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:sales_report_app/app/modules/auth/controllers/signin_controller.dart';
 
-class SigninView extends GetView {
+class SigninView extends GetView<SigninController> {
   const SigninView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
