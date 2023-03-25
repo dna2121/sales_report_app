@@ -1,9 +1,11 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class SigninController extends GetxController {
-  //TODO: Implement SigninController
+  final loginFormKey = GlobalKey<FormState>();
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
 
-  final count = 0.obs;
   @override
   void onInit() {
     super.onInit();
@@ -16,8 +18,16 @@ class SigninController extends GetxController {
 
   @override
   void onClose() {
+    emailController.dispose();
+    passwordController.dispose();
     super.onClose();
   }
 
-  void increment() => count.value++;
+  String? validator(String? value) {
+    return null;
+  }
+
+  void signin() {
+    if (loginFormKey.currentState!.validate()) {}
+  }
 }
