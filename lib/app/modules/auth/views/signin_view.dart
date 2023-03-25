@@ -13,6 +13,7 @@ class SigninView extends GetView<SigninController> {
         centerTitle: true,
       ),
       body: Form(
+        key: controller.loginFormKey,
         child: Padding(
           padding: const EdgeInsets.all(17),
           child: Column(
@@ -25,7 +26,7 @@ class SigninView extends GetView<SigninController> {
               TextFormField(
                 decoration: InputDecoration(labelText: "Password"),
                 validator: controller.validator,
-                controller: controller.emailController,
+                controller: controller.passwordController,
               ),
               SizedBox(
                 height: 37,
