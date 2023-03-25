@@ -2,6 +2,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 
+import '../../../routes/app_pages.dart';
+
 class AuthController extends GetxController {
   static AuthController instance = Get.find();
 
@@ -13,6 +15,17 @@ class AuthController extends GetxController {
   void onInit() {
     super.onInit();
     firebaseUser = Rx<User?>(firebaseAuth.currentUser);
+    firebaseUser.bindStream(firebaseAuth.userChanges());
+    ever(firebaseUser, _setInitialScreen);
+  }
+
+  _setInitialScreen(User? user) async {
+    await Future.delayed(const Duration(seconds: 3));
+    if (user == null) {
+      Get.offAllNamed(Routes.SIGNIN);
+    } else {
+      Get.offAllNamed(Routes.HOME);
+    }
   }
 
   @override
@@ -27,7 +40,7 @@ class AuthController extends GetxController {
 
   void signIn(String email, String password) async {
     try {
-      var userCredential = await firebaseAuth.signInWithEmailAndPassword(
+      await firebaseAuth.signInWithEmailAndPassword(
           email: email, password: password);
 
       Get.showSnackbar(const GetSnackBar(
