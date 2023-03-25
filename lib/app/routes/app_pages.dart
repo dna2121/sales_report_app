@@ -27,6 +27,7 @@ class AppPages {
     GetPage(
       name: _Paths.SIGNIN,
       page: () => const SigninView(),
+      binding: AuthBinding(),
     ),
   ];
 }
