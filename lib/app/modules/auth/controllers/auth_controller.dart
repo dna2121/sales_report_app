@@ -1,17 +1,12 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 
 class AuthController extends GetxController {
-  static AuthController instance = Get.find();
+  //TODO: Implement AuthController
 
-  final firebaseAuth = FirebaseAuth.instance;
-
-  late Rx<User?> firebaseUser;
-
+  final count = 0.obs;
   @override
   void onInit() {
     super.onInit();
-    firebaseUser = Rx<User?>(firebaseAuth.currentUser);
   }
 
   @override
@@ -23,4 +18,6 @@ class AuthController extends GetxController {
   void onClose() {
     super.onClose();
   }
+
+  void increment() => count.value++;
 }
