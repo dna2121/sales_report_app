@@ -1,9 +1,14 @@
 import 'package:get/get.dart';
 
-class HomeController extends GetxController {
-  //TODO: Implement HomeController
+import '../../auth/controllers/auth_controller.dart';
 
-  final count = 0.obs;
+class HomeController extends GetxController {
+  final AuthController authController = Get.find();
+
+  void signOut() {
+    authController.signOut();
+  }
+
   @override
   void onInit() {
     super.onInit();
@@ -18,6 +23,4 @@ class HomeController extends GetxController {
   void onClose() {
     super.onClose();
   }
-
-  void increment() => count.value++;
 }

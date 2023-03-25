@@ -10,8 +10,16 @@ class HomeView extends GetView<HomeController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('HomeView'),
+        title: const Text('Home'),
         centerTitle: true,
+        actions: [
+          IconButton(
+            onPressed: () {
+              controller.signOut();
+            },
+            icon: Icon(Icons.logout_outlined),
+          )
+        ],
       ),
       body: const Center(
         child: Text(
