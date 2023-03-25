@@ -5,7 +5,6 @@ import 'package:sales_report_app/app/modules/auth/controllers/signin_controller.
 import 'package:sales_report_app/app/modules/auth/controllers/signout_controller.dart';
 import 'package:sales_report_app/app/modules/auth/controllers/signup_controller.dart';
 
-import '../controllers/auth_controller.dart';
 
 class AuthBinding extends Bindings {
   @override
@@ -22,8 +21,8 @@ class AuthBinding extends Bindings {
     Get.lazyPut<SigninController>(
       () => SigninController(),
     );
-    Get.lazyPut<AuthController>(
-      () => AuthController(),
-    );
+    // Get.lazyPut<AuthController>(
+    //   () => AuthController(),
+    // );
   }
 }
