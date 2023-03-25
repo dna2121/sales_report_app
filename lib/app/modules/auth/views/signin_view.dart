@@ -8,16 +8,34 @@ class SigninView extends GetView<SigninController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('SigninView'),
-        centerTitle: true,
-      ),
-      body: const Center(
-        child: Text(
-          'SigninView is working',
-          style: TextStyle(fontSize: 20),
+        appBar: AppBar(
+          title: const Text('Login'),
+          centerTitle: true,
         ),
-      ),
-    );
+        body: Form(
+          child: Padding(
+            padding: const EdgeInsets.all(17),
+            child: Column(
+              children: [
+                TextFormField(
+                  decoration: InputDecoration(labelText: "Email"),
+                ),
+                TextFormField(
+                  decoration: InputDecoration(labelText: "Password"),
+                ),
+                SizedBox(
+                  height: 37,
+                ),
+                SizedBox(
+                  width: double.infinity,
+                  child: ElevatedButton(
+                    onPressed: () {},
+                    child: Text("Login"),
+                  ),
+                )
+              ],
+            ),
+          ),
+        ));
   }
 }
