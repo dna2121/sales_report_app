@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:sales_report_app/app/modules/auth/views/signup_view.dart';
 
 import '../modules/auth/bindings/auth_binding.dart';
 import '../modules/auth/views/auth_view.dart';
@@ -35,6 +36,11 @@ class AppPages {
       name: _Paths.SPLASH,
       page: () => const SplashView(),
       binding: SplashBinding(),
+    ),
+    GetPage(
+      name: _Paths.SIGNUP,
+      page: () => const SignupView(),
+      binding: AuthBinding(),
     ),
   ];
 }

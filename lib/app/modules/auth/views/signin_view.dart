@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:sales_report_app/app/routes/app_pages.dart';
 import '../controllers/signin_controller.dart';
 
 class SigninView extends GetView<SigninController> {
@@ -39,7 +40,20 @@ class SigninView extends GetView<SigninController> {
                   },
                   child: Text("Login"),
                 ),
-              )
+              ),
+              SizedBox(height: 17),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text("Don't have an account?"),
+                  TextButton(
+                    onPressed: () {
+                      Get.toNamed(Routes.SIGNUP);
+                    },
+                    child: Text("Sign up here."),
+                  )
+                ],
+              ),
             ],
           ),
         ),

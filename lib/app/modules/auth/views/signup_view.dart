@@ -9,13 +9,36 @@ class SignupView extends GetView<SignupController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('SignupView'),
+        title: const Text('Sign Up'),
         centerTitle: true,
       ),
-      body: const Center(
-        child: Text(
-          'SignupView is working',
-          style: TextStyle(fontSize: 20),
+      body: Form(
+        // key: controller.loginFormKey,
+        child: Padding(
+          padding: const EdgeInsets.all(17),
+          child: Column(
+            children: [
+              TextFormField(
+                decoration: InputDecoration(labelText: "Name"),
+              ),
+              TextFormField(
+                decoration: InputDecoration(labelText: "Email"),
+              ),
+              TextFormField(
+                decoration: InputDecoration(labelText: "Password"),
+              ),
+              SizedBox(
+                height: 37,
+              ),
+              SizedBox(
+                width: double.infinity,
+                child: ElevatedButton(
+                  onPressed: () {},
+                  child: Text("Sign up"),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
