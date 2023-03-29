@@ -58,4 +58,21 @@ class AuthController extends GetxController {
   void signOut() {
     firebaseAuth.signOut();
   }
+
+  void signUp(String email, String password) async {
+    try {
+      await firebaseAuth.createUserWithEmailAndPassword(
+          email: email, password: password);
+
+      Get.showSnackbar(const GetSnackBar(
+        title: 'Success',
+        message: 'Sign up success',
+        duration: Duration(seconds: 3),
+      ));
+    } catch (e) {
+      if (kDebugMode) {
+        print(e);
+      }
+    }
+  }
 }

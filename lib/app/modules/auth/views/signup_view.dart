@@ -13,19 +13,20 @@ class SignupView extends GetView<SignupController> {
         centerTitle: true,
       ),
       body: Form(
-        // key: controller.loginFormKey,
+        key: controller.signupFormKey,
         child: Padding(
           padding: const EdgeInsets.all(17),
           child: Column(
             children: [
               TextFormField(
-                decoration: InputDecoration(labelText: "Name"),
-              ),
-              TextFormField(
                 decoration: InputDecoration(labelText: "Email"),
+                controller: controller.emailController,
+                validator: controller.validator,
               ),
               TextFormField(
                 decoration: InputDecoration(labelText: "Password"),
+                controller: controller.passwordController,
+                validator: controller.validator,
               ),
               SizedBox(
                 height: 37,
@@ -33,7 +34,9 @@ class SignupView extends GetView<SignupController> {
               SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    controller.signUp();
+                  },
                   child: Text("Sign up"),
                 ),
               ),

@@ -1,9 +1,14 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class SignupController extends GetxController {
-  //TODO: Implement SignupController
+import 'auth_controller.dart';
 
-  final count = 0.obs;
+class SignupController extends GetxController {
+  final signupFormKey = GlobalKey<FormState>();
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
+  final AuthController authController = Get.find();
+
   @override
   void onInit() {
     super.onInit();
@@ -16,8 +21,22 @@ class SignupController extends GetxController {
 
   @override
   void onClose() {
+    emailController.dispose();
+    passwordController.dispose();
+
     super.onClose();
   }
 
-  void increment() => count.value++;
+  String? validator(String? value) {
+    return null;
+  }
+
+  void signUp() {
+    if (signupFormKey.currentState!.validate()) {
+      String email = emailController.text;
+      String password = passwordController.text;
+
+      authController.signUp(email, password);
+    }
+  }
 }
