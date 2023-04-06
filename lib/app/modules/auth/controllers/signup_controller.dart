@@ -8,7 +8,7 @@ class SignupController extends GetxController {
   final nameController = TextEditingController();
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
-  final AuthController authController = Get.find();
+  // final AuthController authController = Get.find();
 
   @override
   void onInit() {
@@ -38,7 +38,8 @@ class SignupController extends GetxController {
       String email = emailController.text;
       String password = passwordController.text;
 
-      authController.signUp(email, password, name);
+      // authController.signUp(email, password, name);
+      AuthController.instance.signUp(email, password, name);
     }
   }
 }

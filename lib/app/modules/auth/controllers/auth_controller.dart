@@ -26,6 +26,7 @@ class AuthController extends GetxController {
 
   _setInitialScreen(User? user) async {
     await Future.delayed(const Duration(seconds: 2));
+    //nobody has logged in yet, == null
     if (user == null) {
       Get.offAllNamed(Routes.SIGNIN);
     } else {
