@@ -1,6 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
+import 'package:sales_report_app/app/data/models/user_profile.dart';
+import 'package:sales_report_app/app/data/repositories/user_repositories.dart';
 
 import '../../../routes/app_pages.dart';
 
@@ -8,8 +10,11 @@ class AuthController extends GetxController {
   static AuthController instance = Get.find();
 
   final firebaseAuth = FirebaseAuth.instance;
+  final userRepo = UserRepository.instance;
 
   late Rx<User?> firebaseUser;
+  late Rx<UserProfile?> userProfile;
+  String? userId;
 
   @override
   void onInit() {
@@ -20,7 +25,7 @@ class AuthController extends GetxController {
   }
 
   _setInitialScreen(User? user) async {
-    await Future.delayed(const Duration(seconds: 3));
+    await Future.delayed(const Duration(seconds: 2));
     if (user == null) {
       Get.offAllNamed(Routes.SIGNIN);
     } else {
@@ -59,15 +64,19 @@ class AuthController extends GetxController {
     firebaseAuth.signOut();
   }
 
-  void signUp(String email, String password) async {
+  void signUp(String email, String password, String name) async {
     try {
       await firebaseAuth.createUserWithEmailAndPassword(
           email: email, password: password);
 
+      var newUser = firebaseAuth.currentUser; //untuk dapat uid account
+
+      userRepo.addUser(UserProfile(
+          id: newUser!.uid, email: email, name: name, role: ['user']));
+
       Get.showSnackbar(const GetSnackBar(
         title: 'Success',
         message: 'Sign up success',
-        duration: Duration(seconds: 3),
       ));
     } catch (e) {
       if (kDebugMode) {

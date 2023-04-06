@@ -5,6 +5,7 @@ import 'auth_controller.dart';
 
 class SignupController extends GetxController {
   final signupFormKey = GlobalKey<FormState>();
+  final nameController = TextEditingController();
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
   final AuthController authController = Get.find();
@@ -23,7 +24,7 @@ class SignupController extends GetxController {
   void onClose() {
     emailController.dispose();
     passwordController.dispose();
-
+    nameController.dispose();
     super.onClose();
   }
 
@@ -33,10 +34,11 @@ class SignupController extends GetxController {
 
   void signUp() {
     if (signupFormKey.currentState!.validate()) {
+      String name = nameController.text;
       String email = emailController.text;
       String password = passwordController.text;
 
-      authController.signUp(email, password);
+      authController.signUp(email, password, name);
     }
   }
 }

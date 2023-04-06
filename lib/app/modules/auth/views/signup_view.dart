@@ -19,6 +19,11 @@ class SignupView extends GetView<SignupController> {
           child: Column(
             children: [
               TextFormField(
+                decoration: InputDecoration(labelText: "Name"),
+                controller: controller.nameController,
+                validator: controller.validator,
+              ),
+              TextFormField(
                 decoration: InputDecoration(labelText: "Email"),
                 controller: controller.emailController,
                 validator: controller.validator,
