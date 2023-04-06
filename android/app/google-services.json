@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "244691395214",
+    "project_id": "sales-report-app-cb6ca",
+    "storage_bucket": "sales-report-app-cb6ca.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:244691395214:android:d5a243fe7c6c34248a5fdf",
+        "android_client_info": {
+          "package_name": "com.dna.sales_report_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "244691395214-ri0fu72eqarni1j2j2ucrf4dici10024.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAakiL0HqTvz40IPp4LBredaC88Rm6WfIQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "244691395214-ri0fu72eqarni1j2j2ucrf4dici10024.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
