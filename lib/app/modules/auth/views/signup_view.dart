@@ -12,40 +12,52 @@ class SignupView extends GetView<SignupController> {
         title: const Text('Sign Up'),
         centerTitle: true,
       ),
-      body: Form(
-        key: controller.signupFormKey,
-        child: Padding(
-          padding: const EdgeInsets.all(17),
-          child: Column(
-            children: [
-              TextFormField(
-                decoration: InputDecoration(labelText: "Name"),
-                controller: controller.nameController,
-                validator: controller.validator,
-              ),
-              TextFormField(
-                decoration: InputDecoration(labelText: "Email"),
-                controller: controller.emailController,
-                validator: controller.validator,
-              ),
-              TextFormField(
-                decoration: InputDecoration(labelText: "Password"),
-                controller: controller.passwordController,
-                validator: controller.validator,
-              ),
-              SizedBox(
-                height: 37,
-              ),
-              SizedBox(
-                width: double.infinity,
-                child: ElevatedButton(
-                  onPressed: () {
-                    controller.signUp();
-                  },
-                  child: Text("Sign up"),
+      body: SingleChildScrollView(
+        child: Form(
+          key: controller.signupFormKey,
+          child: Padding(
+            padding: const EdgeInsets.all(17),
+            child: Column(
+              children: [
+                TextFormField(
+                  decoration: InputDecoration(labelText: "Name"),
+                  controller: controller.nameController,
+                  validator: controller.validator,
                 ),
-              ),
-            ],
+                TextFormField(
+                  decoration: InputDecoration(labelText: "Email"),
+                  controller: controller.emailController,
+                  validator: controller.validator,
+                ),
+                TextFormField(
+                  decoration: InputDecoration(labelText: "Phone Number"),
+                  controller: controller.phoneNumberController,
+                  validator: controller.validator,
+                ),
+                TextFormField(
+                  decoration: InputDecoration(labelText: "Address"),
+                  controller: controller.addressController,
+                  validator: controller.validator,
+                ),
+                TextFormField(
+                  decoration: InputDecoration(labelText: "Password"),
+                  controller: controller.passwordController,
+                  validator: controller.validator,
+                ),
+                SizedBox(
+                  height: 37,
+                ),
+                SizedBox(
+                  width: double.infinity,
+                  child: ElevatedButton(
+                    onPressed: () {
+                      controller.signUp();
+                    },
+                    child: Text("Sign up"),
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),

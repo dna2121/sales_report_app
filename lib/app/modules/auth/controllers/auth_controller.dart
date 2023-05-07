@@ -65,7 +65,8 @@ class AuthController extends GetxController {
     firebaseAuth.signOut();
   }
 
-  void signUp(String email, String password, String name) async {
+  void signUp(String email, String password, String name, String phoneNumber,
+      String address) async {
     try {
       await firebaseAuth.createUserWithEmailAndPassword(
           email: email, password: password);
@@ -73,11 +74,17 @@ class AuthController extends GetxController {
       var newUser = firebaseAuth.currentUser; //untuk dapat uid account
 
       userRepo.addUser(UserProfile(
-          id: newUser!.uid, email: email, name: name, role: ['user']));
+          id: newUser!.uid,
+          email: email,
+          name: name,
+          role: ['user'],
+          phoneNumber: phoneNumber,
+          address: address));
 
       Get.showSnackbar(const GetSnackBar(
         title: 'Success',
         message: 'Sign up success',
+        duration: Duration(seconds: 2),
       ));
     } catch (e) {
       if (kDebugMode) {

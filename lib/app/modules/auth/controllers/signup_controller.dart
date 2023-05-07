@@ -8,6 +8,8 @@ class SignupController extends GetxController {
   final nameController = TextEditingController();
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
+  final phoneNumberController = TextEditingController();
+  final addressController = TextEditingController();
   // final AuthController authController = Get.find();
 
   @override
@@ -25,6 +27,8 @@ class SignupController extends GetxController {
     emailController.dispose();
     passwordController.dispose();
     nameController.dispose();
+    phoneNumberController.dispose();
+    addressController.dispose();
     super.onClose();
   }
 
@@ -37,9 +41,12 @@ class SignupController extends GetxController {
       String name = nameController.text;
       String email = emailController.text;
       String password = passwordController.text;
+      String phoneNumber = phoneNumberController.text;
+      String address = addressController.text;
 
       // authController.signUp(email, password, name);
-      AuthController.instance.signUp(email, password, name);
+      AuthController.instance
+          .signUp(email, password, name, phoneNumber, address);
     }
   }
 }
