@@ -73,8 +73,10 @@ class AuthController extends GetxController {
 
       var newUser = firebaseAuth.currentUser; //untuk dapat uid account
 
+      newUser!.updateDisplayName(name);
+
       userRepo.addUser(UserProfile(
-          id: newUser!.uid,
+          id: newUser.uid,
           email: email,
           name: name,
           role: ['user'],

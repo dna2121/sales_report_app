@@ -1,9 +1,11 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../auth/controllers/auth_controller.dart';
 
 class HomeController extends GetxController {
   final AuthController authController = Get.find();
+  final carsController = TextEditingController();
 
   void signOut() {
     authController.signOut();
@@ -21,6 +23,7 @@ class HomeController extends GetxController {
 
   @override
   void onClose() {
+    carsController.dispose();
     super.onClose();
   }
 }
