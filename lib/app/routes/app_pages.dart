@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:sales_report_app/app/modules/auth/views/signup_view.dart';
+import 'package:sales_report_app/app/modules/transaction/views/transaction_view.dart';
 
 import '../modules/auth/bindings/auth_binding.dart';
 import '../modules/auth/views/auth_view.dart';
@@ -10,6 +11,7 @@ import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
 import '../modules/splash/bindings/splash_binding.dart';
 import '../modules/splash/views/splash_view.dart';
+import '../modules/transaction/bindings/transaction_binding.dart';
 
 part 'app_routes.dart';
 
@@ -48,6 +50,11 @@ class AppPages {
       name: _Paths.CARS,
       page: () => CarsView(),
       binding: CarsBinding(),
+    ),
+    GetPage(
+      name: _Paths.TRANSACTION,
+      page: () => TransactionView(),
+      binding: TransactionBinding(),
     ),
   ];
 }
