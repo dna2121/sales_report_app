@@ -29,11 +29,15 @@ class CarsView extends GetView<CarsController> {
         padding: const EdgeInsets.all(17),
         child: Column(
           children: [
-            Text(''),
-            TextFormField(
-              decoration: InputDecoration(labelText: "Enter a new car number"),
-              controller: controller.carsController,
-              // validator: controller.validator,
+            Form(
+              key: controller.carsFormKey,
+              child: TextFormField(
+                decoration: InputDecoration(
+                  labelText: "Enter a new car number",
+                ),
+                controller: controller.carsController,
+                validator: controller.validator,
+              ),
             ),
             SizedBox(
               height: 37,
@@ -42,7 +46,9 @@ class CarsView extends GetView<CarsController> {
               width: double.infinity,
               child: ElevatedButton(
                 onPressed: () {
-                  controller.addNewCar();
+                  controller.name.isNotEmpty
+                      ? controller.addNewCar()
+                      : controller.textEmpty;
                 },
                 child: Text("Add"),
               ),

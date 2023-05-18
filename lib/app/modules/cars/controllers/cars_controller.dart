@@ -6,9 +6,12 @@ import '../../../data/repositories/user_repositories.dart';
 import '../../auth/controllers/auth_controller.dart';
 
 class CarsController extends GetxController {
+  final carsFormKey = GlobalKey<FormState>();
   final AuthController authController = Get.find();
   final userRepo = UserRepository.instance;
   final carsController = TextEditingController();
+
+  String name = '';
 
   void signOut() {
     authController.signOut();
@@ -30,19 +33,38 @@ class CarsController extends GetxController {
     super.onClose();
   }
 
-  void addNewCar() {
-    String carNumber = carsController.text;
+  String? validator(String? value) {
+    return null;
+  }
 
-    userRepo.addCars(carNumber);
-
+  String? get textEmpty {
     Get.defaultDialog(
-      title: 'Success',
+      title: 'Failed',
+      middleText: "Text cannot be empty",
       onConfirm: () {
-        carsController.clear();
         Get.back(); //close dialog
       },
       textConfirm: 'Okay',
     );
+    return null;
+  }
+
+  void addNewCar() {
+    if (carsFormKey.currentState!.validate()) {
+      String carNumber = carsController.text;
+
+      userRepo.addCars(carNumber);
+
+      Get.defaultDialog(
+        title: 'Success',
+        middleText: "Data added.",
+        onConfirm: () {
+          carsController.clear();
+          Get.back(); //close dialog
+        },
+        textConfirm: 'Okay',
+      );
+    }
   }
 
   Stream<QuerySnapshot<Object?>> getCars() {
