@@ -20,6 +20,6 @@ class UserRepository {
     await userCollection
         .doc('${AuthController.instance.firebaseAuth.currentUser!.uid}')
         .collection("Cars")
-        .add({"carNumber": carNumber});
+        .add({"carNumber": carNumber, "timestamps": Timestamp.now()});
   }
 }

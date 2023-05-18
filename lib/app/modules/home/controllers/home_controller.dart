@@ -51,6 +51,7 @@ class HomeController extends GetxController {
     return userCollection
         .doc('${AuthController.instance.firebaseAuth.currentUser!.uid}')
         .collection("Cars")
+        .orderBy("timestamps", descending: true)
         .snapshots();
   }
 }
