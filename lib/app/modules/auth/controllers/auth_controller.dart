@@ -26,6 +26,7 @@ class AuthController extends GetxController {
 
   _setInitialScreen(User? user) async {
     await Future.delayed(const Duration(seconds: 2));
+    //nobody has logged in yet, == null
     if (user == null) {
       Get.offAllNamed(Routes.SIGNIN);
     } else {
@@ -64,19 +65,28 @@ class AuthController extends GetxController {
     firebaseAuth.signOut();
   }
 
-  void signUp(String email, String password, String name) async {
+  void signUp(String email, String password, String name, String phoneNumber,
+      String address) async {
     try {
       await firebaseAuth.createUserWithEmailAndPassword(
           email: email, password: password);
 
       var newUser = firebaseAuth.currentUser; //untuk dapat uid account
 
+      newUser!.updateDisplayName(name);
+
       userRepo.addUser(UserProfile(
-          id: newUser!.uid, email: email, name: name, role: ['user']));
+          id: newUser.uid,
+          email: email,
+          name: name,
+          role: ['user'],
+          phoneNumber: phoneNumber,
+          address: address));
 
       Get.showSnackbar(const GetSnackBar(
         title: 'Success',
         message: 'Sign up success',
+        duration: Duration(seconds: 2),
       ));
     } catch (e) {
       if (kDebugMode) {
