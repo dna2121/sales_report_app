@@ -29,7 +29,6 @@ class CarsController extends GetxController {
 
   @override
   void onClose() {
-    carsController.dispose();
     super.onClose();
   }
 

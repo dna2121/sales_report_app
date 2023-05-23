@@ -29,31 +29,59 @@ class CarsView extends GetView<CarsController> {
         padding: const EdgeInsets.all(17),
         child: Column(
           children: [
-            Form(
-              key: controller.carsFormKey,
-              child: TextFormField(
-                decoration: InputDecoration(
-                  labelText: "Enter a new car number",
+            Row(
+              children: [
+                Expanded(
+                  child: TextFormField(
+                    decoration: InputDecoration(
+                      labelText: "Search",
+                    ),
+                  ),
                 ),
-                controller: controller.carsController,
-                validator: controller.validator,
-              ),
+                IconButton(
+                  onPressed: () {
+                    Get.bottomSheet(
+                      backgroundColor: Colors.white,
+                      Container(
+                        height: 250,
+                        child: Padding(
+                          padding: const EdgeInsets.all(17),
+                          child: Column(
+                            children: [
+                              Text("Add New Car Number"),
+                              Form(
+                                key: controller.carsFormKey,
+                                child: TextFormField(
+                                  decoration:
+                                      InputDecoration(labelText: "Car Number"),
+                                  controller: controller.carsController,
+                                  validator: controller.validator,
+                                ),
+                              ),
+                              SizedBox(
+                                height: 27,
+                              ),
+                              SizedBox(
+                                width: double.infinity,
+                                child: ElevatedButton(
+                                  onPressed: () {
+                                    controller.carsController.text.isEmpty
+                                        ? controller.textEmpty
+                                        : controller.addNewCar();
+                                  },
+                                  child: Text("Save"),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    );
+                  },
+                  icon: Icon(Icons.add),
+                ),
+              ],
             ),
-            SizedBox(
-              height: 37,
-            ),
-            SizedBox(
-              width: double.infinity,
-              child: ElevatedButton(
-                onPressed: () {
-                  controller.name.isNotEmpty
-                      ? controller.addNewCar()
-                      : controller.textEmpty;
-                },
-                child: Text("Add"),
-              ),
-            ),
-            SizedBox(height: 10),
             Expanded(
               child: StreamBuilder(
                   stream: controller.getCars(),
