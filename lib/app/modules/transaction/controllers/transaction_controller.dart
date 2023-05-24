@@ -1,23 +1,25 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 
+import '../../auth/controllers/auth_controller.dart';
+
 class TransactionController extends GetxController {
-  //TODO: Implement TransactionController
+  CollectionReference userCollection =
+      FirebaseFirestore.instance.collection('Users');
 
-  final count = 0.obs;
-  @override
-  void onInit() {
-    super.onInit();
+  Stream<QuerySnapshot<Object?>> getTx() {
+    CollectionReference txCollection =
+        FirebaseFirestore.instance.collection('Transaction');
+
+    return txCollection.snapshots();
   }
 
-  @override
-  void onReady() {
-    super.onReady();
-  }
+  Stream<DocumentSnapshot<Object?>> getRole() {
+    CollectionReference userCollection =
+        FirebaseFirestore.instance.collection('Users');
 
-  @override
-  void onClose() {
-    super.onClose();
+    return userCollection
+        .doc('${AuthController.instance.firebaseAuth.currentUser!.uid}')
+        .snapshots();
   }
-
-  void increment() => count.value++;
 }
