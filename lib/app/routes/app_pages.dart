@@ -1,10 +1,11 @@
 import 'package:get/get.dart';
-import 'package:sales_report_app/app/modules/auth/views/signup_view.dart';
-import 'package:sales_report_app/app/modules/transaction/views/transaction_view.dart';
 
+import '../modules/admin/bindings/admin_binding.dart';
+import '../modules/admin/views/admin_view.dart';
 import '../modules/auth/bindings/auth_binding.dart';
 import '../modules/auth/views/auth_view.dart';
 import '../modules/auth/views/signin_view.dart';
+import '../modules/auth/views/signup_view.dart';
 import '../modules/cars/bindings/cars_binding.dart';
 import '../modules/cars/views/cars_view.dart';
 import '../modules/home/bindings/home_binding.dart';
@@ -12,6 +13,7 @@ import '../modules/home/views/home_view.dart';
 import '../modules/splash/bindings/splash_binding.dart';
 import '../modules/splash/views/splash_view.dart';
 import '../modules/transaction/bindings/transaction_binding.dart';
+import '../modules/transaction/views/transaction_view.dart';
 
 part 'app_routes.dart';
 
@@ -55,6 +57,11 @@ class AppPages {
       name: _Paths.TRANSACTION,
       page: () => TransactionView(),
       binding: TransactionBinding(),
+    ),
+    GetPage(
+      name: _Paths.ADMIN,
+      page: () => const AdminView(),
+      binding: AdminBinding(),
     ),
   ];
 }
