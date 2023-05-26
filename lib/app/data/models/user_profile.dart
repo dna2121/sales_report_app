@@ -5,14 +5,14 @@ import 'package:flutter/foundation.dart';
 class UserProfile {
   String id;
   String? name;
-  String email;
+  String? email;
   List<String> role;
   String? phoneNumber;
   String? address;
   UserProfile({
     required this.id,
     this.name,
-    required this.email,
+    this.email,
     required this.role,
     this.phoneNumber,
     this.address,
