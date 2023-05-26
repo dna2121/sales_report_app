@@ -2,6 +2,7 @@ import 'package:get/get.dart';
 
 import '../modules/admin/bindings/admin_binding.dart';
 import '../modules/admin/views/admin_view.dart';
+import '../modules/admin/views/supplier_edit_view.dart';
 import '../modules/auth/bindings/auth_binding.dart';
 import '../modules/auth/views/auth_view.dart';
 import '../modules/auth/views/signin_view.dart';
@@ -61,6 +62,11 @@ class AppPages {
     GetPage(
       name: _Paths.ADMIN,
       page: () => const AdminView(),
+      binding: AdminBinding(),
+    ),
+    GetPage(
+      name: _Paths.EDITSUPPLIER,
+      page: () => const SupplierEditView(),
       binding: AdminBinding(),
     ),
   ];

@@ -11,6 +11,7 @@ abstract class Routes {
   static const CARS = _Paths.CARS;
   static const TRANSACTION = _Paths.TRANSACTION;
   static const ADMIN = _Paths.ADMIN;
+  static const EDITSUPPLIER = _Paths.EDITSUPPLIER;
 }
 
 abstract class _Paths {
@@ -23,4 +24,5 @@ abstract class _Paths {
   static const CARS = '/cars';
   static const TRANSACTION = '/transaction';
   static const ADMIN = '/admin';
+  static const EDITSUPPLIER = '/editsupplier';
 }
