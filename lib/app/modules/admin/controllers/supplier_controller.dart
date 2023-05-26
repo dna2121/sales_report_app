@@ -10,12 +10,11 @@ class SupplierController extends GetxController {
   final supplFormKey = GlobalKey<FormState>();
   final AuthController authController = Get.find();
   final userRepo = UserRepository.instance;
-  final DocumentReference docref = UserRepository.instance.userCollection.doc();
   final nameController = TextEditingController();
   final phoneNumberController = TextEditingController();
   final addressController = TextEditingController();
 
-  String name = '';
+  // String name = '';
 
   @override
   void onClose() {
@@ -52,7 +51,7 @@ class SupplierController extends GetxController {
           name: name,
           phoneNumber: phoneNumber,
           address: address,
-          id: docref.id,
+          id: userRepo.userCollection.doc().id,
           role: ['user'],
         ),
       );
@@ -64,10 +63,18 @@ class SupplierController extends GetxController {
           nameController.clear();
           phoneNumberController.clear();
           addressController.clear();
+
           Get.back(); //close dialog
         },
         textConfirm: 'Okay',
       );
     }
+  }
+
+  Stream<QuerySnapshot<Object?>> getUser() {
+    CollectionReference userCollection =
+        FirebaseFirestore.instance.collection('Users');
+
+    return userCollection.orderBy("name").snapshots();
   }
 }
