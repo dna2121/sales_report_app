@@ -25,11 +25,11 @@ class CarsView extends GetView<CarsController> {
           )
         ],
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(17),
-        child: Column(
-          children: [
-            Row(
+      body: Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.fromLTRB(17, 17, 17, 1),
+            child: Row(
               children: [
                 Expanded(
                   child: TextFormField(
@@ -82,32 +82,32 @@ class CarsView extends GetView<CarsController> {
                 ),
               ],
             ),
-            Expanded(
-              child: StreamBuilder(
-                  stream: controller.getCars(),
-                  builder: (context, snapshot) {
-                    if (snapshot.hasError) {
-                      return Text('Something went wrong');
-                    }
+          ),
+          Expanded(
+            child: StreamBuilder(
+                stream: controller.getCars(),
+                builder: (context, snapshot) {
+                  if (snapshot.hasError) {
+                    return Text('Something went wrong');
+                  }
 
-                    if (snapshot.connectionState == ConnectionState.waiting) {
-                      return Text("Loading");
-                    }
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return Text("Loading");
+                  }
 
-                    return ListView(
-                      children:
-                          snapshot.data!.docs.map((DocumentSnapshot document) {
-                        Map<String, dynamic> data =
-                            document.data()! as Map<String, dynamic>;
-                        return ListTile(
-                          title: Text(data['carNumber']),
-                        );
-                      }).toList(),
-                    );
-                  }),
-            )
-          ],
-        ),
+                  return ListView(
+                    children:
+                        snapshot.data!.docs.map((DocumentSnapshot document) {
+                      Map<String, dynamic> data =
+                          document.data()! as Map<String, dynamic>;
+                      return ListTile(
+                        title: Text(data['carNumber']),
+                      );
+                    }).toList(),
+                  );
+                }),
+          )
+        ],
       ),
     );
   }
