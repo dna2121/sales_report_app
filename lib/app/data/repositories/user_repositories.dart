@@ -22,4 +22,8 @@ class UserRepository {
         .collection("Cars")
         .add({"carNumber": carNumber, "timestamps": Timestamp.now()});
   }
+
+  editUser(UserProfile userProfile) async {
+    await userCollection.doc(userProfile.id).update(userProfile.toMap());
+  }
 }
