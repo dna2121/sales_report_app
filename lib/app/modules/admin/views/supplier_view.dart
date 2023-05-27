@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../routes/app_pages.dart';
 import '../controllers/supplier_controller.dart';
 
 class SupplierView extends GetView<SupplierController> {
@@ -119,6 +120,7 @@ class SupplierView extends GetView<SupplierController> {
                         ),
                         title: Text(data['name']),
                         subtitle: Text(data['phoneNumber']),
+                        onLongPress: () => controller.deleteProduct(data["id"]),
                         onTap: () {
                           Get.bottomSheet(
                               backgroundColor: Colors.white,
@@ -131,8 +133,16 @@ class SupplierView extends GetView<SupplierController> {
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
                                       children: [
-                                        Text(data['name'],
-                                            style: TextStyle(fontSize: 21)),
+                                        Row(
+                                          children: [
+                                            Text(data['name'],
+                                                style: TextStyle(fontSize: 21)),
+                                            IconButton(
+                                                onPressed: () => Get.toNamed(
+                                                    Routes.EDITSUPPLIER),
+                                                icon: Icon(Icons.edit)),
+                                          ],
+                                        ),
                                         SizedBox(height: 17),
                                         Text("Phone Number"),
                                         Text(data['phoneNumber']),

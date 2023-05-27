@@ -77,4 +77,26 @@ class SupplierController extends GetxController {
 
     return userCollection.orderBy("name").snapshots();
   }
+
+  void deleteProduct(String keyid) async {
+    DocumentReference documentReference = userRepo.userCollection.doc(keyid);
+
+    try {
+      Get.defaultDialog(
+        title: "Delete Data",
+        middleText: "Do you want to delete the data?",
+        onConfirm: () async {
+          await documentReference.delete();
+          Get.back();
+        },
+        textConfirm: "Yes",
+        textCancel: "No",
+      );
+    } catch (e) {
+      Get.defaultDialog(
+        title: "Something's wrong.",
+        middleText: "Delete data failed.",
+      );
+    }
+  }
 }
