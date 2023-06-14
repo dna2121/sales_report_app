@@ -12,7 +12,7 @@ class SupplierView extends GetView<SupplierController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Suppliers'),
+        title: const Text('Admin'),
         centerTitle: true,
       ),
       body: Column(
@@ -22,76 +22,10 @@ class SupplierView extends GetView<SupplierController> {
             child: Row(
               children: [
                 Expanded(
-                  child: TextFormField(
-                    decoration: InputDecoration(
-                      labelText: "Search",
-                    ),
+                  child: ElevatedButton(
+                    onPressed: () => Get.toNamed(Routes.SIGNUP),
+                    child: Text("Create a new account"),
                   ),
-                ),
-                IconButton(
-                  onPressed: () {
-                    Get.bottomSheet(
-                      backgroundColor: Colors.white,
-                      SingleChildScrollView(
-                        child: Container(
-                          child: Padding(
-                            padding: const EdgeInsets.all(17),
-                            child: Column(
-                              children: [
-                                Text("Add Supplier"),
-                                Form(
-                                  key: controller.supplFormKey,
-                                  child: Column(
-                                    children: [
-                                      TextFormField(
-                                        decoration:
-                                            InputDecoration(labelText: "Name"),
-                                        controller: controller.nameController,
-                                        validator: controller.validator,
-                                      ),
-                                      TextFormField(
-                                        decoration: InputDecoration(
-                                            labelText: "Phone Number"),
-                                        controller:
-                                            controller.phoneNumberController,
-                                        validator: controller.validator,
-                                      ),
-                                      TextFormField(
-                                        decoration: InputDecoration(
-                                            labelText: "Address"),
-                                        controller:
-                                            controller.addressController,
-                                        validator: controller.validator,
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                SizedBox(
-                                  height: 27,
-                                ),
-                                SizedBox(
-                                  width: double.infinity,
-                                  child: ElevatedButton(
-                                    onPressed: () {
-                                      controller.nameController.text.isEmpty |
-                                              controller.phoneNumberController
-                                                  .text.isEmpty |
-                                              controller.addressController.text
-                                                  .isEmpty
-                                          ? controller.textEmpty
-                                          : controller.addNewUser();
-                                    },
-                                    child: Text("Save"),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-                    );
-                  },
-                  icon: Icon(Icons.add),
                 ),
               ],
             ),
@@ -120,7 +54,6 @@ class SupplierView extends GetView<SupplierController> {
                         ),
                         title: Text(data['name']),
                         subtitle: Text(data['phoneNumber']),
-                        onLongPress: () => controller.deleteProduct(data["id"]),
                         onTap: () {
                           Get.bottomSheet(
                               backgroundColor: Colors.white,
@@ -133,16 +66,8 @@ class SupplierView extends GetView<SupplierController> {
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
                                       children: [
-                                        Row(
-                                          children: [
-                                            Text(data['name'],
-                                                style: TextStyle(fontSize: 21)),
-                                            IconButton(
-                                                onPressed: () => Get.toNamed(
-                                                    Routes.EDITSUPPLIER),
-                                                icon: Icon(Icons.edit)),
-                                          ],
-                                        ),
+                                        Text(data['name'],
+                                            style: TextStyle(fontSize: 21)),
                                         SizedBox(height: 17),
                                         Text("Phone Number"),
                                         Text(data['phoneNumber']),
