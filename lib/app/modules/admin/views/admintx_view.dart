@@ -32,9 +32,9 @@ class AdminTxView extends GetView<AdminTxController> {
                         popupProps: PopupProps.menu(
                             showSearchBox: true, showSelectedItems: true),
                         items: snapshot.data!,
-                        selectedItem: controller.selectedValue,
+                        selectedItem: controller.selectedName,
                         onChanged: (value) {
-                          controller.selectedValue = value!;
+                          controller.selectedName = value!;
                         },
                       );
                     } else {
@@ -50,7 +50,7 @@ class AdminTxView extends GetView<AdminTxController> {
               ),
               ElevatedButton(
                 onPressed: () {
-                  controller.addTrc();
+                  controller.addTrx();
                 },
                 child: Text("Save"),
               ),

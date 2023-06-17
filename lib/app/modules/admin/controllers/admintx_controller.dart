@@ -11,7 +11,7 @@ class AdminTxController extends GetxController {
   final hargaController = TextEditingController();
   final userRepo = UserRepository.instance;
 
-  String? selectedValue;
+  String? selectedName;
 
   String? validator(String? value) {
     return null;
@@ -31,26 +31,61 @@ class AdminTxController extends GetxController {
     });
   }
 
-  void addTrc() async {
+  void addTrx() async {
     if (trxFormKey.currentState!.validate()) {
       String harga = hargaController.text;
 
-      CollectionReference trxCollection =
-          FirebaseFirestore.instance.collection('Transaction');
+      String? userID = await getUserIdFromName(selectedName.toString());
 
+      if (userID != null) {
+        CollectionReference trxCollection =
+            FirebaseFirestore.instance.collection('Transaction');
 
-      await trxCollection.add({'harga': harga, 'name': selectedValue});
+        DocumentReference docref = await trxCollection.add({
+          'harga': harga,
+          'name': selectedName,
+          'transactionID': FieldValue.serverTimestamp(),
+          'userID': userID
+        });
 
-      Get.defaultDialog(
-        title: 'Success',
-        middleText: "Data added.",
-        onConfirm: () {
-          hargaController.clear();
-          selectedValue = null;
-          Get.back(); //close dialog
-        },
-        textConfirm: 'Okay',
-      );
+        //to get the transaction ID
+        String transactionID = docref.id;
+        await docref.update({
+          'transactionID': transactionID,
+        });
+
+        Get.defaultDialog(
+          title: 'Success',
+          middleText: "Data added.",
+          onConfirm: () {
+            hargaController.clear();
+            Get.back(); //close dialog
+          },
+          textConfirm: 'Okay',
+        );
+      }
     }
+  }
+
+  Future<String?> getUserIdFromName(String selectedName) async {
+    // Get a reference to the Firestore collection
+    CollectionReference usersCollection =
+        FirebaseFirestore.instance.collection('Users');
+
+    // Query the collection to find the document with the matching name
+    QuerySnapshot<Object?> snapshot = await usersCollection
+        .where('name', isEqualTo: selectedName)
+        .limit(1)
+        .get();
+
+    if (snapshot.docs.isNotEmpty) {
+      // Retrieve the first document from the query snapshot
+      QueryDocumentSnapshot<Object?> documentSnapshot = snapshot.docs[0];
+
+      // Retrieve and return the document ID
+      return documentSnapshot.id;
+    }
+
+    return null; // Return null if no matching document found
   }
 }
