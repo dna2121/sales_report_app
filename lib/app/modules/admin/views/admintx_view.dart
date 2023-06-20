@@ -28,29 +28,73 @@ class AdminTxView extends GetView<AdminTxController> {
 
                     if (snapshot.hasData) {
                       return DropdownSearch<String>(
-                        key: controller.popupBuilderKey,
+                        dropdownDecoratorProps: DropDownDecoratorProps(
+                            dropdownSearchDecoration:
+                                InputDecoration(labelText: "Name")),
+                        clearButtonProps: ClearButtonProps(isVisible: true),
                         popupProps: PopupProps.menu(
-                            showSearchBox: true, showSelectedItems: true),
+                            showSearchBox: true,
+                            showSelectedItems: true,
+                            searchFieldProps: TextFieldProps(
+                                decoration:
+                                    InputDecoration(labelText: "Search..."))),
                         items: snapshot.data!,
                         selectedItem: controller.selectedName,
                         onChanged: (value) {
-                          controller.selectedName = value!;
+                          controller.selectedName = value;
                         },
                       );
                     } else {
                       return CircularProgressIndicator();
                     }
                   }),
+              // StreamBuilder(
+              //     stream: controller.streamCar(),
+              //     builder: (context, snapshot) {
+              //       if (snapshot.connectionState == ConnectionState.waiting) {
+              //         return Text("Loading...");
+              //       }
+
+              //       if (snapshot.hasData) {
+              //         return DropdownSearch<String>(
+              //           dropdownDecoratorProps: DropDownDecoratorProps(
+              //               dropdownSearchDecoration:
+              //                   InputDecoration(labelText: "Plat Mobil")),
+              //           clearButtonProps: ClearButtonProps(isVisible: true),
+              //           popupProps: PopupProps.menu(
+              //               showSearchBox: true,
+              //               showSelectedItems: true,
+              //               searchFieldProps: TextFieldProps(
+              //                   decoration:
+              //                       InputDecoration(labelText: "Search..."))),
+              //           items: snapshot.data!,
+              //           // selectedItem: controller.selectedCar,
+              //           onChanged: (value) {
+              //             // controller.selectedCar = value;
+              //             print(value);
+              //           },
+              //         );
+              //       } else {
+              //         return CircularProgressIndicator();
+              //       }
+              //     }),
               TextFormField(
                 decoration: InputDecoration(
-                  label: Text("harga"),
+                  label: Text("Harga"),
                 ),
-                controller: controller.hargaController,
+                controller: controller.priceController,
+                validator: controller.validator,
+              ),
+              TextFormField(
+                decoration: InputDecoration(
+                  label: Text("Berat dalam ton"),
+                ),
+                controller: controller.weightController,
                 validator: controller.validator,
               ),
               ElevatedButton(
                 onPressed: () {
-                  controller.addTrx();
+                  controller.addNewTx();
                 },
                 child: Text("Save"),
               ),
