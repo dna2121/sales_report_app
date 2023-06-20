@@ -25,7 +25,7 @@ class AdminView extends GetView<AdminController> {
               BottomNavigationBarItem(
                 icon: Icon(Icons.groups_2_outlined),
                 activeIcon: Icon(Icons.groups_2),
-                label: 'Suppliers',
+                label: 'Farmer',
               ),
             ],
           ),
