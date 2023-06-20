@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:sales_report_app/app/modules/admin/views/new_tx_view.dart';
 
 import '../modules/admin/bindings/admin_binding.dart';
 import '../modules/admin/views/admin_view.dart';
@@ -61,6 +62,11 @@ class AppPages {
     GetPage(
       name: _Paths.ADMIN,
       page: () => const AdminView(),
+      binding: AdminBinding(),
+    ),
+    GetPage(
+      name: _Paths.NEWTX,
+      page: () => const NewTxView(),
       binding: AdminBinding(),
     ),
   ];

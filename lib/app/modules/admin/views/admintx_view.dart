@@ -16,6 +16,10 @@ class AdminTxView extends GetView<AdminTxController> {
         title: const Text('Admin'),
         centerTitle: true,
       ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () => Get.toNamed(Routes.NEWTX),
+        child: Icon(Icons.add),
+      ),
       body: Form(
         key: controller.trxFormKey,
         child: Padding(
