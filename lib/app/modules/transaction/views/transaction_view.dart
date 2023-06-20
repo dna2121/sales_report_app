@@ -41,7 +41,7 @@ class TransactionView extends GetView<TransactionController> {
                     maintainState: true,
                     child: ElevatedButton(
                       onPressed: () {
-                        Get.toNamed(Routes.ADMIN);
+                        Get.offAllNamed(Routes.ADMIN);
                       },
                       child: Text('Admin form'),
                     ),

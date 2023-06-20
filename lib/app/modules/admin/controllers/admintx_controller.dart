@@ -28,6 +28,10 @@ class AdminTxController extends GetxController {
     super.onClose();
   }
 
+  Stream<QuerySnapshot<Object?>> streamTx() {
+    return txRepo.txCollection.snapshots();
+  }
+
   Stream<List<String>> streamName() {
     Query<Map<String, dynamic>> itemsRef = FirebaseFirestore.instance
         .collection('Users')
