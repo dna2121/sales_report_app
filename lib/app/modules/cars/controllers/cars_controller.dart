@@ -59,10 +59,10 @@ class CarsController extends GetxController {
       String carNumber = carsController.text;
 
       userRepo.addTruck(Car(
-          carID: userRepo.carCollection.doc().id,
-          userID: '${AuthController.instance.firebaseAuth.currentUser!.uid}',
-          carNumber: carNumber,
-          timestamp: DateTime.now()));
+        carID: userRepo.carCollection.doc().id,
+        userID: '${AuthController.instance.firebaseAuth.currentUser!.uid}',
+        carNumber: carNumber,
+      ));
 
       Get.defaultDialog(
         title: 'Success',

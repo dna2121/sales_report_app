@@ -4,25 +4,21 @@ class Car {
   String carID;
   String userID;
   String carNumber;
-  DateTime timestamp;
   Car({
     required this.carID,
     required this.userID,
     required this.carNumber,
-    required this.timestamp,
   });
 
   Car copyWith({
     String? carID,
     String? userID,
     String? carNumber,
-    DateTime? timestamp,
   }) {
     return Car(
       carID: carID ?? this.carID,
       userID: userID ?? this.userID,
       carNumber: carNumber ?? this.carNumber,
-      timestamp: timestamp ?? this.timestamp,
     );
   }
 
@@ -31,7 +27,6 @@ class Car {
       'carID': carID,
       'userID': userID,
       'carNumber': carNumber,
-      'timestamp': timestamp.millisecondsSinceEpoch,
     };
   }
 
@@ -40,7 +35,6 @@ class Car {
       carID: map['carID'] ?? '',
       userID: map['userID'] ?? '',
       carNumber: map['carNumber'] ?? '',
-      timestamp: DateTime.fromMillisecondsSinceEpoch(map['timestamp']),
     );
   }
 
@@ -49,9 +43,7 @@ class Car {
   factory Car.fromJson(String source) => Car.fromMap(json.decode(source));
 
   @override
-  String toString() {
-    return 'Car(carID: $carID, userID: $userID, carNumber: $carNumber, timestamp: $timestamp)';
-  }
+  String toString() => 'Car(carID: $carID, userID: $userID, carNumber: $carNumber)';
 
   @override
   bool operator ==(Object other) {
@@ -60,15 +52,9 @@ class Car {
     return other is Car &&
       other.carID == carID &&
       other.userID == userID &&
-      other.carNumber == carNumber &&
-      other.timestamp == timestamp;
+      other.carNumber == carNumber;
   }
 
   @override
-  int get hashCode {
-    return carID.hashCode ^
-      userID.hashCode ^
-      carNumber.hashCode ^
-      timestamp.hashCode;
-  }
+  int get hashCode => carID.hashCode ^ userID.hashCode ^ carNumber.hashCode;
 }
