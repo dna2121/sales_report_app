@@ -17,13 +17,6 @@ class UserRepository {
     await userCollection.doc(userProfile.id).set(userProfile.toMap());
   }
 
-  void addCars(String carNumber) async {
-    await userCollection
-        .doc('${AuthController.instance.firebaseAuth.currentUser!.uid}')
-        .collection("Cars")
-        .add({"carNumber": carNumber, "timestamps": Timestamp.now()});
-  }
-
   editUser(UserProfile userProfile) async {
     await userCollection.doc(userProfile.id).update(userProfile.toMap());
   }
