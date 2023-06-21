@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:sales_report_app/app/data/models/car.dart';
 import 'package:sales_report_app/app/data/models/user_profile.dart';
 import 'package:sales_report_app/app/modules/auth/controllers/auth_controller.dart';
 
@@ -25,5 +26,13 @@ class UserRepository {
 
   editUser(UserProfile userProfile) async {
     await userCollection.doc(userProfile.id).update(userProfile.toMap());
+  }
+
+  //MOBIL MOBILAN
+  CollectionReference carCollection =
+      FirebaseFirestore.instance.collection('Car');
+
+  addTruck(Car car) async {
+    await carCollection.doc(car.carID).set(car.toMap());
   }
 }

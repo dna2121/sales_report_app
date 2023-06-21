@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -67,7 +68,7 @@ class CarsView extends GetView<CarsController> {
                                   onPressed: () {
                                     controller.carsController.text.isEmpty
                                         ? controller.textEmpty
-                                        : controller.addNewCar();
+                                        : controller.addCar();
                                   },
                                   child: Text("Save"),
                                 ),
@@ -85,7 +86,7 @@ class CarsView extends GetView<CarsController> {
           ),
           Expanded(
             child: StreamBuilder(
-                stream: controller.getCars(),
+                stream: controller.StreamCar(),
                 builder: (context, snapshot) {
                   if (snapshot.hasError) {
                     return Text('Something went wrong');
@@ -101,8 +102,30 @@ class CarsView extends GetView<CarsController> {
                       Map<String, dynamic> data =
                           document.data()! as Map<String, dynamic>;
                       return ListTile(
-                        title: Text(data['carNumber']),
-                      );
+                          leading: CircleAvatar(
+                            backgroundColor: Colors.teal,
+                            child: Icon(
+                              Icons.fire_truck,
+                              color: Colors.white,
+                            ),
+                          ),
+                          title: Text(data['carNumber']),
+                          onLongPress: () {
+                            Get.bottomSheet(
+                              backgroundColor: Colors.white,
+                              Container(
+                                padding: EdgeInsets.all(17),
+                                width: double.infinity,
+                                height: 100,
+                                child: ElevatedButton(
+                                  onPressed: () {
+                                    controller.deleteCar(data["carID"]);
+                                  },
+                                  child: Text("Delete"),
+                                ),
+                              ),
+                            );
+                          });
                     }).toList(),
                   );
                 }),
