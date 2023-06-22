@@ -18,6 +18,14 @@ class TransactionView extends GetView<TransactionController> {
       appBar: AppBar(
         title: const Text('Transaction'),
         centerTitle: true,
+        leading: IconButton(
+          onPressed: () {
+            Get.toNamed(Routes.PROFILE);
+          },
+          icon: CircleAvatar(
+            child: Icon(Icons.person_4),
+          ),
+        ),
       ),
       body: Center(
         child: Column(

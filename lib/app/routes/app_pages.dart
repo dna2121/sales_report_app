@@ -1,17 +1,19 @@
 import 'package:get/get.dart';
-import 'package:sales_report_app/app/modules/admin/views/new_tx_view.dart';
-import 'package:sales_report_app/app/modules/cars/views/cars_edit_view.dart';
 
 import '../modules/admin/bindings/admin_binding.dart';
 import '../modules/admin/views/admin_view.dart';
+import '../modules/admin/views/new_tx_view.dart';
 import '../modules/auth/bindings/auth_binding.dart';
 import '../modules/auth/views/auth_view.dart';
 import '../modules/auth/views/signin_view.dart';
 import '../modules/auth/views/signup_view.dart';
 import '../modules/cars/bindings/cars_binding.dart';
+import '../modules/cars/views/cars_edit_view.dart';
 import '../modules/cars/views/cars_view.dart';
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
+import '../modules/profile/bindings/profile_binding.dart';
+import '../modules/profile/views/profile_view.dart';
 import '../modules/splash/bindings/splash_binding.dart';
 import '../modules/splash/views/splash_view.dart';
 import '../modules/transaction/bindings/transaction_binding.dart';
@@ -74,6 +76,11 @@ class AppPages {
       name: _Paths.NEWTX,
       page: () => const NewTxView(),
       binding: AdminBinding(),
+    ),
+    GetPage(
+      name: _Paths.PROFILE,
+      page: () => const ProfileView(),
+      binding: ProfileBinding(),
     ),
   ];
 }
