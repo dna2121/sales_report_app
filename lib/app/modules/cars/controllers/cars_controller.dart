@@ -12,6 +12,8 @@ class CarsController extends GetxController {
   final userRepo = UserRepository.instance;
   final carsController = TextEditingController();
 
+  late String documentId;
+
   void signOut() {
     authController.signOut();
   }
@@ -96,6 +98,47 @@ class CarsController extends GetxController {
         title: "Something's wrong.",
         middleText: "Delete data failed.",
       );
+    }
+  }
+
+  void fetchCarDoc() async {
+    try {
+      DocumentSnapshot snapshot =
+          await userRepo.carCollection.doc(documentId).get();
+
+      if (snapshot.exists) {
+        Map<String, dynamic> data = snapshot.data() as Map<String, dynamic>;
+        String carNum = data['carNumber'] as String;
+        carsController.text = carNum;
+      }
+    } catch (error) {
+      print('Failed to fetch document data: $error');
+    }
+  }
+
+  void updateCarDoc() async {
+    String newCarNum = carsController.text;
+
+    try {
+      await FirebaseFirestore.instance.collection('Car').doc(documentId).update(
+        {'carNumber': newCarNum},
+        // SetOptions(merge: true)
+      );
+
+      Get.defaultDialog(
+        title: 'Success',
+        middleText: "Data updated.",
+        onConfirm: () {
+          carsController.clear();
+          Get.back(); //close dialog
+          Get.back(); //close page
+        },
+        textConfirm: 'Okay',
+      );
+
+      print('Document updated successfully');
+    } catch (error) {
+      print('Failed to update document: $error');
     }
   }
 }

@@ -1,8 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:sales_report_app/app/routes/app_pages.dart';
 
 import '../controllers/cars_controller.dart';
 
@@ -44,7 +44,7 @@ class CarsView extends GetView<CarsController> {
                     Get.bottomSheet(
                       backgroundColor: Colors.white,
                       Container(
-                        height: 250,
+                        height: 220,
                         child: Padding(
                           padding: const EdgeInsets.all(17),
                           child: Column(
@@ -113,16 +113,31 @@ class CarsView extends GetView<CarsController> {
                           onLongPress: () {
                             Get.bottomSheet(
                               backgroundColor: Colors.white,
-                              Container(
-                                padding: EdgeInsets.all(17),
-                                width: double.infinity,
-                                height: 100,
-                                child: ElevatedButton(
-                                  onPressed: () {
-                                    controller.deleteCar(data["carID"]);
-                                  },
-                                  child: Text("Delete"),
-                                ),
+                              Column(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  Container(
+                                    padding: EdgeInsets.fromLTRB(17, 17, 17, 2),
+                                    width: double.infinity,
+                                    child: ElevatedButton(
+                                      onPressed: () {
+                                        Get.toNamed(Routes.CARSEDIT,
+                                            arguments: data['carID']);
+                                      },
+                                      child: Text("Edit"),
+                                    ),
+                                  ),
+                                  Container(
+                                    padding: EdgeInsets.fromLTRB(17, 2, 17, 17),
+                                    width: double.infinity,
+                                    child: ElevatedButton(
+                                      onPressed: () {
+                                        controller.deleteCar(data["carID"]);
+                                      },
+                                      child: Text("Delete"),
+                                    ),
+                                  ),
+                                ],
                               ),
                             );
                           });

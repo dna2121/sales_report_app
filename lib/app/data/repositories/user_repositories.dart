@@ -1,7 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:sales_report_app/app/data/models/car.dart';
 import 'package:sales_report_app/app/data/models/user_profile.dart';
-import 'package:sales_report_app/app/modules/auth/controllers/auth_controller.dart';
 
 class UserRepository {
   UserRepository._();
@@ -27,5 +26,9 @@ class UserRepository {
 
   addTruck(Car car) async {
     await carCollection.doc(car.carID).set(car.toMap());
+  }
+
+  editTruck(Car car) async {
+    await userCollection.doc(car.carID).update(car.toMap());
   }
 }
