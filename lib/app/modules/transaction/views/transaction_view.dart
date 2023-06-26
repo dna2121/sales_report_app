@@ -97,8 +97,8 @@ class TransactionView extends GetView<TransactionController> {
                             title: Text(data['name']),
                             subtitle: Text('${data['weight']} ton'),
                             leading: CircleAvatar(
-                              backgroundColor: Colors.grey[200],
-                              child: Icon(Icons.person),
+                              backgroundColor: Colors.indigo[400],
+                              child: Icon(Icons.person, color: Colors.white),
                             ),
                             trailing: Text(
                               '+Rp ${data['price']}',
@@ -106,7 +106,8 @@ class TransactionView extends GetView<TransactionController> {
                                   TextStyle(fontSize: 14, color: Colors.green),
                             ),
                             onTap: () {
-                              Get.toNamed(Routes.DETAILTX);
+                              Get.toNamed(Routes.DETAILTX,
+                                  arguments: data['transactionID']);
                             },
                           );
                         }).toList(),
