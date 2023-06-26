@@ -14,76 +14,78 @@ class ProfileView extends GetView<ProfileController> {
         title: const Text('Profile'),
         centerTitle: true,
       ),
-      body: Column(
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Expanded(
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text("Email"),
-                      SizedBox(height: 7),
-                      Text("Name"),
-                      SizedBox(height: 7),
-                      Text("Phone Number"),
-                      SizedBox(height: 7),
-                      Text("Address"),
-                    ],
-                  ),
-                ),
-              ),
-              SizedBox(width: 7),
-              StreamBuilder(
-                  stream: controller.getData(),
-                  builder: (context, snapshot) {
-                    if (snapshot.connectionState == ConnectionState.waiting) {
-                      return Text("Loading");
-                    }
+      body: Center(
+        child: StreamBuilder(
+            stream: controller.getData(),
+            builder: (context, snapshot) {
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return Text("Loading");
+              }
 
-                    if (snapshot.hasData) {
-                      var userData = snapshot.data!;
+              if (snapshot.hasData) {
+                var userData = snapshot.data!;
 
-                      return Expanded(
-                        flex: 2,
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(userData['email']),
-                              SizedBox(height: 7),
-                              Text(userData['name']),
-                              SizedBox(height: 7),
-                              Text(userData['phoneNumber']),
-                              SizedBox(height: 7),
-                              Text(userData['address']),
-                            ],
+                return Column(
+                  children: [
+                    Row(
+                      children: [
+                        Expanded(
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text("Email"),
+                                SizedBox(height: 7),
+                                Text("Name"),
+                                SizedBox(height: 7),
+                                Text("Phone Number"),
+                                SizedBox(height: 7),
+                                Text("Address"),
+                              ],
+                            ),
                           ),
                         ),
-                      );
-                    } else if (snapshot.hasError) {
-                      return SizedBox();
-                    } else {
-                      return SizedBox();
-                    }
-                  })
-            ],
-          ),
-          Container(
-            padding: EdgeInsets.all(17),
-            width: double.infinity,
-            child: ElevatedButton(
-              onPressed: () {
-                Get.toNamed(Routes.UPDATEPROFILE);
-              },
-              child: Text("Edit Profile"),
-            ),
-          ),
-        ],
+                        SizedBox(width: 7),
+                        Expanded(
+                          flex: 2,
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(userData['email']),
+                                SizedBox(height: 7),
+                                Text(userData['name']),
+                                SizedBox(height: 7),
+                                Text(userData['phoneNumber']),
+                                SizedBox(height: 7),
+                                Text(userData['address']),
+                              ],
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
+                    Container(
+                      padding: EdgeInsets.all(17),
+                      width: double.infinity,
+                      child: ElevatedButton(
+                        onPressed: () {
+                          Get.toNamed(Routes.UPDATEPROFILE,
+                              arguments: userData['id']);
+                        },
+                        child: Text("Edit Profile"),
+                      ),
+                    ),
+                  ],
+                );
+              } else if (snapshot.hasError) {
+                return SizedBox();
+              } else {
+                return SizedBox();
+              }
+            }),
       ),
     );
   }

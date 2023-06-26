@@ -9,6 +9,8 @@ class UserRepository {
     return UserRepository._();
   }
 
+  late String documentId;
+
   CollectionReference userCollection =
       FirebaseFirestore.instance.collection('Users');
 
@@ -17,7 +19,7 @@ class UserRepository {
   }
 
   editUser(UserProfile userProfile) async {
-    await userCollection.doc(userProfile.id).update(userProfile.toMap());
+    await userCollection.doc(documentId).update(userProfile.toMap());
   }
 
   //MOBIL MOBILAN
