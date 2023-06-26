@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:sales_report_app/app/modules/auth/controllers/auth_controller.dart';
 
 import '../../../data/repositories/user_repositories.dart';
 
@@ -61,6 +62,11 @@ class UpdateProfileController extends GetxController {
         {'name': newName, 'address': newAddress, 'phoneNumber': newPhone},
         // SetOptions(merge: true)
       );
+
+      var newUser = AuthController
+          .instance.firebaseAuth.currentUser; //untuk dapat uid account
+
+      newUser!.updateDisplayName(newName);
 
       Get.defaultDialog(
         title: 'Success',
