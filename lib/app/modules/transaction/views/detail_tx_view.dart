@@ -31,6 +31,7 @@ class DetailTxView extends GetView<DetailTxController> {
               readOnly: true,
               decoration: InputDecoration(border: OutlineInputBorder()),
             ),
+            SizedBox(height: 17),
             Text(
               'Price',
               style: TextStyle(fontSize: 18),
@@ -42,6 +43,7 @@ class DetailTxView extends GetView<DetailTxController> {
               decoration: InputDecoration(
                   prefixText: "Rp. ", border: OutlineInputBorder()),
             ),
+            SizedBox(height: 17),
             // Text(
             //   'Car Number',
             //   style: TextStyle(fontSize: 18),

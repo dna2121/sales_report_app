@@ -79,6 +79,9 @@ class AdminTxView extends GetView<AdminTxController> {
                             '+Rp ${data['price']}',
                             style: TextStyle(fontSize: 14, color: Colors.green),
                           ),
+                          onTap: () {
+                            Get.toNamed(Routes.ADMDETAILTX);
+                          },
                         );
                       }).toList(),
                     );
