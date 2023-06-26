@@ -33,6 +33,7 @@ class CarsView extends GetView<CarsController> {
                 ),
                 IconButton(
                   onPressed: () {
+                    controller.carsController.clear();
                     Get.bottomSheet(
                       backgroundColor: Colors.white,
                       Container(
