@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:sales_report_app/app/routes/app_pages.dart';
 
 import '../controllers/profile_controller.dart';
 
@@ -76,7 +77,9 @@ class ProfileView extends GetView<ProfileController> {
             padding: EdgeInsets.all(17),
             width: double.infinity,
             child: ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                Get.toNamed(Routes.UPDATEPROFILE);
+              },
               child: Text("Edit Profile"),
             ),
           ),

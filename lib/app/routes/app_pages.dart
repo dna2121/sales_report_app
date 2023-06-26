@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:sales_report_app/app/modules/profile/views/update_profile_view.dart';
 
 import '../modules/admin/bindings/admin_binding.dart';
 import '../modules/admin/views/admin_view.dart';
@@ -80,6 +81,11 @@ class AppPages {
     GetPage(
       name: _Paths.PROFILE,
       page: () => const ProfileView(),
+      binding: ProfileBinding(),
+    ),
+    GetPage(
+      name: _Paths.UPDATEPROFILE,
+      page: () => const UpdateProfileView(),
       binding: ProfileBinding(),
     ),
   ];

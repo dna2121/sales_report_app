@@ -14,6 +14,7 @@ abstract class Routes {
   static const ADMIN = _Paths.ADMIN;
   static const NEWTX = _Paths.NEWTX;
   static const PROFILE = _Paths.PROFILE;
+  static const UPDATEPROFILE = _Paths.UPDATEPROFILE;
 }
 
 abstract class _Paths {
@@ -29,4 +30,5 @@ abstract class _Paths {
   static const ADMIN = '/admin';
   static const NEWTX = '/new-tx';
   static const PROFILE = '/profile';
+  static const UPDATEPROFILE = '/update-profile';
 }
