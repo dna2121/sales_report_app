@@ -80,7 +80,8 @@ class AdminTxView extends GetView<AdminTxController> {
                             style: TextStyle(fontSize: 14, color: Colors.green),
                           ),
                           onTap: () {
-                            Get.toNamed(Routes.ADMDETAILTX);
+                            Get.toNamed(Routes.ADMDETAILTX,
+                                arguments: data['transactionID']);
                           },
                         );
                       }).toList(),
