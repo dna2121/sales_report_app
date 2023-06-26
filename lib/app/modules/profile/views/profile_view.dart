@@ -80,17 +80,6 @@ class ProfileView extends GetView<ProfileController> {
               child: Text("Edit Profile"),
             ),
           ),
-          Container(
-            padding: EdgeInsets.symmetric(horizontal: 17),
-            width: double.infinity,
-            child: ElevatedButton(
-              onPressed: () {},
-              // style: ButtonStyle(
-              //     backgroundColor: MaterialStateProperty.all<Color?>(
-              //         Color.fromARGB(255, 255, 71, 58))),
-              child: Text("Log out"),
-            ),
-          ),
         ],
       ),
     );

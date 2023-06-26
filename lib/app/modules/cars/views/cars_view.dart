@@ -17,14 +17,6 @@ class CarsView extends GetView<CarsController> {
       appBar: AppBar(
         title: const Text('Cars'),
         centerTitle: true,
-        actions: [
-          IconButton(
-            onPressed: () {
-              controller.signOut();
-            },
-            icon: Icon(Icons.logout_outlined),
-          )
-        ],
       ),
       body: Column(
         children: [
