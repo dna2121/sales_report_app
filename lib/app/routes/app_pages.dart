@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:sales_report_app/app/modules/profile/views/update_profile_view.dart';
+import 'package:sales_report_app/app/modules/transaction/views/detail_tx_view.dart';
 
 import '../modules/admin/bindings/admin_binding.dart';
 import '../modules/admin/views/admin_view.dart';
@@ -66,6 +67,11 @@ class AppPages {
     GetPage(
       name: _Paths.TRANSACTION,
       page: () => TransactionView(),
+      binding: TransactionBinding(),
+    ),
+    GetPage(
+      name: _Paths.DETAILTX,
+      page: () => DetailTxView(),
       binding: TransactionBinding(),
     ),
     GetPage(

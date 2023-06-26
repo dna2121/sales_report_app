@@ -105,6 +105,9 @@ class TransactionView extends GetView<TransactionController> {
                               style:
                                   TextStyle(fontSize: 14, color: Colors.green),
                             ),
+                            onTap: () {
+                              Get.toNamed(Routes.DETAILTX);
+                            },
                           );
                         }).toList(),
                       );
