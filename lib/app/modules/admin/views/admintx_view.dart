@@ -19,14 +19,37 @@ class AdminTxView extends GetView<AdminTxController> {
         onPressed: () => Get.toNamed(Routes.NEWTX),
         child: Icon(Icons.add),
       ),
+      drawer: Drawer(
+        child: ListView(
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(17.0),
+              child: Text(
+                'Hi, Admin.',
+                style: TextStyle(fontSize: 20),
+              ),
+            ),
+            Divider(),
+            ListTile(
+              title: const Text('User Form'),
+              onTap: () {
+                Get.offAllNamed(Routes.HOME);
+              },
+            ),
+            ListTile(
+              title: const Text(
+                'Log out',
+                style: TextStyle(color: Colors.red),
+              ),
+              onTap: () {
+                controller.signOut();
+              },
+            ),
+          ],
+        ),
+      ),
       body: Column(
         children: [
-          ElevatedButton(
-            onPressed: () {
-              Get.offAllNamed(Routes.HOME);
-            },
-            child: Text('User form'),
-          ),
           Expanded(
             child: StreamBuilder(
                 stream: controller.streamTx(),

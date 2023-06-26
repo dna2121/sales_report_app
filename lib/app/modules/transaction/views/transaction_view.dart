@@ -18,22 +18,18 @@ class TransactionView extends GetView<TransactionController> {
       appBar: AppBar(
         title: const Text('Transaction'),
         centerTitle: true,
-        leading: IconButton(
-          onPressed: () {
-            Get.toNamed(Routes.PROFILE);
-          },
-          icon: CircleAvatar(
-            child: Icon(Icons.person_4),
-          ),
-        ),
       ),
-      body: Center(
-        child: Column(
+      drawer: Drawer(
+        child: ListView(
           children: [
-            Text(
-              'Hi ${AuthController.instance.firebaseAuth.currentUser!.displayName.toString()}',
-              style: TextStyle(fontSize: 20),
+            Padding(
+              padding: const EdgeInsets.all(17.0),
+              child: Text(
+                'Hi, ${AuthController.instance.firebaseAuth.currentUser!.displayName.toString()}.',
+                style: TextStyle(fontSize: 20),
+              ),
             ),
+            Divider(),
             StreamBuilder(
               stream: controller.getRole(),
               builder: (context, snapshot) {
@@ -44,14 +40,11 @@ class TransactionView extends GetView<TransactionController> {
                   return Visibility(
                     visible:
                         id == "zzY6CyiF0lWkvDFTZx011tSiBr22" ? true : false,
-                    maintainAnimation: true,
-                    maintainSize: true,
-                    maintainState: true,
-                    child: ElevatedButton(
-                      onPressed: () {
+                    child: ListTile(
+                      title: const Text('Admin Form'),
+                      onTap: () {
                         Get.offAllNamed(Routes.ADMIN);
                       },
-                      child: Text('Admin form'),
                     ),
                   );
                 } else if (snapshot.hasError) {
@@ -61,6 +54,27 @@ class TransactionView extends GetView<TransactionController> {
                 }
               },
             ),
+            ListTile(
+              title: const Text('Profile'),
+              onTap: () {
+                Get.toNamed(Routes.PROFILE);
+              },
+            ),
+            ListTile(
+              title: const Text(
+                'Log out',
+                style: TextStyle(color: Colors.red),
+              ),
+              onTap: () {
+                controller.signOut();
+              },
+            ),
+          ],
+        ),
+      ),
+      body: Center(
+        child: Column(
+          children: [
             Expanded(
               child: StreamBuilder(
                   stream: controller.streamTxById(),

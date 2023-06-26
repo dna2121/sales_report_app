@@ -8,6 +8,11 @@ import '../../auth/controllers/auth_controller.dart';
 class TransactionController extends GetxController {
   final txRepo = TransactionRepository.instance;
   final userRepo = UserRepository.instance;
+  final AuthController authController = Get.find();
+
+  void signOut() {
+    authController.signOut();
+  }
 
   CollectionReference userCollection =
       FirebaseFirestore.instance.collection('Users');
