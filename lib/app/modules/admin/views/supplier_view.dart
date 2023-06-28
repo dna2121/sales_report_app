@@ -48,41 +48,72 @@ class SupplierView extends GetView<SupplierController> {
                       Map<String, dynamic> data =
                           document.data()! as Map<String, dynamic>;
                       return ListTile(
-                        leading: CircleAvatar(
-                          backgroundColor: Colors.grey[200],
-                          child: Icon(Icons.person),
-                        ),
-                        title: Text(data['name']),
-                        subtitle: Text(data['phoneNumber']),
-                        onTap: () {
-                          Get.bottomSheet(
-                              backgroundColor: Colors.white,
-                              SingleChildScrollView(
-                                child: Container(
-                                  width: double.infinity,
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(17.0),
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text(data['name'],
-                                            style: TextStyle(fontSize: 21)),
-                                        SizedBox(height: 17),
-                                        Text("Phone Number"),
-                                        Text(data['phoneNumber']),
-                                        SizedBox(height: 17),
-                                        Text("Address"),
-                                        Text(data['address']),
-                                        SizedBox(height: 17),
-                                        Text("Cars"),
-                                      ],
+                          leading: CircleAvatar(
+                            backgroundColor: Colors.grey[200],
+                            child: Icon(Icons.person),
+                          ),
+                          title: Text(data['name']),
+                          subtitle: Text(data['phoneNumber']),
+                          onTap: () {
+                            Get.bottomSheet(
+                                backgroundColor: Colors.white,
+                                SingleChildScrollView(
+                                  child: Container(
+                                    width: double.infinity,
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(17.0),
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Text(data['name'],
+                                              style: TextStyle(fontSize: 21)),
+                                          SizedBox(height: 17),
+                                          Text("Phone Number"),
+                                          Text(data['phoneNumber']),
+                                          SizedBox(height: 17),
+                                          Text("Address"),
+                                          Text(data['address']),
+                                          SizedBox(height: 17),
+                                          Text("Cars"),
+                                        ],
+                                      ),
                                     ),
                                   ),
-                                ),
-                              ));
-                        },
-                      );
+                                ));
+                          },
+                          onLongPress: () {
+                            Get.bottomSheet(
+                              backgroundColor: Colors.white,
+                              Column(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  // Container(
+                                  //   padding:
+                                  //       EdgeInsets.fromLTRB(17, 17, 17, 2),
+                                  //   width: double.infinity,
+                                  //   child: ElevatedButton(
+                                  //     onPressed: () {
+                                  //       Get.toNamed(Routes.UPDATETX,
+                                  //           arguments: data['transactionID']);
+                                  //     },
+                                  //     child: Text("Edit"),
+                                  //   ),
+                                  // ),
+                                  Container(
+                                    padding: EdgeInsets.fromLTRB(17, 2, 17, 17),
+                                    width: double.infinity,
+                                    child: ElevatedButton(
+                                      onPressed: () {
+                                        controller.deleteUser(data["id"]);
+                                      },
+                                      child: Text("Delete"),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            );
+                          });
                     }).toList(),
                   );
                 }),
