@@ -47,12 +47,17 @@ class SupplierView extends GetView<SupplierController> {
                         snapshot.data!.docs.map((DocumentSnapshot document) {
                       Map<String, dynamic> data =
                           document.data()! as Map<String, dynamic>;
+
+                      var roles = List<String>.from(data['role']);
+
                       return ListTile(
                           leading: CircleAvatar(
                             backgroundColor: Colors.grey[200],
                             child: Icon(Icons.person),
                           ),
-                          title: Text(data['name']),
+                          title: Text(roles.contains('admin')
+                              ? '${data['name']} (Admin)'
+                              : '${data['name']}'),
                           subtitle: Text(data['phoneNumber']),
                           onTap: () {
                             Get.bottomSheet(
@@ -66,7 +71,10 @@ class SupplierView extends GetView<SupplierController> {
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,
                                         children: [
-                                          Text(data['name'],
+                                          Text(
+                                              roles.contains('admin')
+                                                  ? '${data['name']} (Admin)'
+                                                  : '${data['name']}',
                                               style: TextStyle(fontSize: 21)),
                                           SizedBox(height: 17),
                                           Text("Phone Number"),
