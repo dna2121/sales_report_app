@@ -69,21 +69,55 @@ class AdminTxView extends GetView<AdminTxController> {
                         Map<String, dynamic> data =
                             document.data()! as Map<String, dynamic>;
                         return ListTile(
-                          title: Text(data['name']),
-                          subtitle: Text('${data['weight']} ton'),
-                          leading: CircleAvatar(
-                            backgroundColor: Colors.grey[200],
-                            child: Icon(Icons.person),
-                          ),
-                          trailing: Text(
-                            '+Rp ${data['price']}',
-                            style: TextStyle(fontSize: 14, color: Colors.green),
-                          ),
-                          onTap: () {
-                            Get.toNamed(Routes.ADMDETAILTX,
-                                arguments: data['transactionID']);
-                          },
-                        );
+                            title: Text(data['name']),
+                            subtitle: Text('${data['weight']} ton'),
+                            leading: CircleAvatar(
+                              backgroundColor: Colors.grey[200],
+                              child: Icon(Icons.person),
+                            ),
+                            trailing: Text(
+                              '+Rp ${data['price']}',
+                              style:
+                                  TextStyle(fontSize: 14, color: Colors.green),
+                            ),
+                            onTap: () {
+                              Get.toNamed(Routes.ADMDETAILTX,
+                                  arguments: data['transactionID']);
+                            },
+                            onLongPress: () {
+                              Get.bottomSheet(
+                                backgroundColor: Colors.white,
+                                Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    Container(
+                                      padding:
+                                          EdgeInsets.fromLTRB(17, 17, 17, 2),
+                                      width: double.infinity,
+                                      child: ElevatedButton(
+                                        onPressed: () {
+                                          Get.toNamed(Routes.UPDATETX,
+                                              arguments: data['transactionID']);
+                                        },
+                                        child: Text("Edit"),
+                                      ),
+                                    ),
+                                    Container(
+                                      padding:
+                                          EdgeInsets.fromLTRB(17, 2, 17, 17),
+                                      width: double.infinity,
+                                      child: ElevatedButton(
+                                        onPressed: () {
+                                          controller
+                                              .deleteTx(data["transactionID"]);
+                                        },
+                                        child: Text("Delete"),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              );
+                            });
                       }).toList(),
                     );
                   }

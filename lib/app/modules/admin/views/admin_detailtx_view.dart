@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:sales_report_app/app/modules/admin/controllers/admin_detailtx_controller.dart';
-import 'package:sales_report_app/app/routes/app_pages.dart';
 
 class AdminDetailtxView extends GetView<AdminDetailtxController> {
   const AdminDetailtxView({Key? key}) : super(key: key);
@@ -57,13 +56,6 @@ class AdminDetailtxView extends GetView<AdminDetailtxController> {
                   suffixText: "kg ", border: OutlineInputBorder()),
             ),
             SizedBox(height: 17),
-            SizedBox(
-                width: double.infinity,
-                child: ElevatedButton(
-                    onPressed: () {
-                      Get.toNamed(Routes.UPDATETX);
-                    },
-                    child: Text("Edit transaction")))
           ],
         ),
       ),
