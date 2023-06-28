@@ -52,7 +52,9 @@ class NewTxView extends GetView<AdminTxController> {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: TextFormField(
+                keyboardType: TextInputType.number,
                 decoration: InputDecoration(
+                  prefixText: "Rp. ",
                   label: Text("Harga"),
                 ),
                 controller: controller.priceC,
@@ -62,8 +64,10 @@ class NewTxView extends GetView<AdminTxController> {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: TextFormField(
+                keyboardType: TextInputType.number,
                 decoration: InputDecoration(
-                  label: Text("Berat dalam kilogram"),
+                  suffixText: " kilogram",
+                  label: Text("Berat"),
                 ),
                 controller: controller.weightC,
                 validator: controller.validator,
