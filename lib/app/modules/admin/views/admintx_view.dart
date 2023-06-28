@@ -12,7 +12,7 @@ class AdminTxView extends GetView<AdminTxController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Admin'),
+        title: const Text('Transaction'),
         centerTitle: true,
       ),
       floatingActionButton: FloatingActionButton(
@@ -70,7 +70,7 @@ class AdminTxView extends GetView<AdminTxController> {
                             document.data()! as Map<String, dynamic>;
                         return ListTile(
                             title: Text(data['name']),
-                            subtitle: Text('${data['weight']} ton'),
+                            subtitle: Text('${data['weight']} kg'),
                             leading: CircleAvatar(
                               backgroundColor: Colors.grey[200],
                               child: Icon(Icons.person),

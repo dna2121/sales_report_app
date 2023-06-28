@@ -95,7 +95,7 @@ class TransactionView extends GetView<TransactionController> {
                               document.data()! as Map<String, dynamic>;
                           return ListTile(
                             title: Text(data['name']),
-                            subtitle: Text('${data['weight']} ton'),
+                            subtitle: Text('${data['weight']} kg'),
                             leading: CircleAvatar(
                               backgroundColor: Colors.indigo[400],
                               child: Icon(Icons.person, color: Colors.white),

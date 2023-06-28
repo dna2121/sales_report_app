@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
-import 'package:sales_report_app/app/modules/transaction/controllers/detail_tx_controller.dart';
+import 'package:sales_report_app/app/modules/transaction/controllers/transaction_controller.dart';
 
-class DetailTxView extends GetView<DetailTxController> {
+class DetailTxView extends GetView<TransactionController> {
   const DetailTxView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {

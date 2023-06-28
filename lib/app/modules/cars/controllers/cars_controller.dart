@@ -18,21 +18,6 @@ class CarsController extends GetxController {
     authController.signOut();
   }
 
-  @override
-  void onInit() {
-    super.onInit();
-  }
-
-  @override
-  void onReady() {
-    super.onReady();
-  }
-
-  @override
-  void onClose() {
-    super.onClose();
-  }
-
   String? validator(String? value) {
     return null;
   }
@@ -120,10 +105,9 @@ class CarsController extends GetxController {
     String newCarNum = carsController.text;
 
     try {
-      await FirebaseFirestore.instance.collection('Car').doc(documentId).update(
-        {'carNumber': newCarNum},
-        // SetOptions(merge: true)
-      );
+      await userRepo.carCollection
+          .doc(documentId)
+          .update({'carNumber': newCarNum});
 
       Get.defaultDialog(
         title: 'Success',

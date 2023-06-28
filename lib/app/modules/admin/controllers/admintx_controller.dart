@@ -3,18 +3,26 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sales_report_app/app/data/repositories/transactions_repositories.dart';
 
+import '../../../data/models/transactions.dart';
 import '../../auth/controllers/auth_controller.dart';
 
 class AdminTxController extends GetxController {
   final txRepo = TransactionRepository.instance;
   final AuthController authController = Get.find();
-  final dtTxFormKey = GlobalKey<FormState>();
+  final trxFormKey = GlobalKey<FormState>();
   final priceC = TextEditingController();
   final nameC = TextEditingController();
   // final carC = TextEditingController();
   final weightC = TextEditingController();
 
   late String documentId;
+  String? selectedName;
+
+  void onClose() {
+    priceC.dispose();
+    weightC.dispose();
+    super.onClose();
+  }
 
   void signOut() {
     authController.signOut();
@@ -60,11 +68,9 @@ class AdminTxController extends GetxController {
         Map<String, dynamic> data = snapshot.data() as Map<String, dynamic>;
         int price = data['price'] as int;
         String name = data['name'] as String;
-        // String car = data['carNumber'] as String;
         int weight = data['weight'] as int;
         priceC.text = price.toString();
         nameC.text = name;
-        // carC.text = car;
         weightC.text = weight.toString();
       }
     } catch (error) {
@@ -78,13 +84,9 @@ class AdminTxController extends GetxController {
     int newWeight = int.parse(weightC.text);
 
     try {
-      await FirebaseFirestore.instance
-          .collection('Transaction')
+      await txRepo.txCollection
           .doc(documentId)
-          .update(
-        {'name': newName, 'price': newPrice, 'weight': newWeight},
-        // SetOptions(merge: true)
-      );
+          .update({'name': newName, 'price': newPrice, 'weight': newWeight});
 
       Get.defaultDialog(
         title: 'Success',
@@ -103,5 +105,68 @@ class AdminTxController extends GetxController {
     } catch (error) {
       print('Failed to update document: $error');
     }
+  }
+
+  Stream<List<String>> streamName() {
+    Query<Map<String, dynamic>> itemsRef = FirebaseFirestore.instance
+        .collection('Users')
+        .orderBy("name", descending: false);
+    return itemsRef.snapshots().map((snapshot) {
+      return snapshot.docs.map((doc) => doc['name'] as String).toList();
+    });
+  }
+
+  void addNewTx() async {
+    if (trxFormKey.currentState!.validate()) {
+      int harga = int.parse(priceC.text);
+      int berat = int.parse(weightC.text);
+      // DateTime tanggal = tanggalController.text as DateTime;
+
+      String? userID = await getUserIdFromName(selectedName.toString());
+
+      if (userID != null) {
+        await txRepo.addTx(
+          Transactions(
+            userID: userID,
+            transactionID: txRepo.txCollection.doc().id,
+            name: selectedName.toString(),
+            price: harga,
+            weight: berat,
+          ),
+        );
+        Get.defaultDialog(
+          title: 'Success',
+          middleText: "Data added.",
+          onConfirm: () {
+            priceC.clear();
+            weightC.clear();
+            Get.back(); //close dialog
+          },
+          textConfirm: 'Okay',
+        );
+      }
+    }
+  }
+
+  Future<String?> getUserIdFromName(String selectedName) async {
+    // Get a reference to the Firestore collection
+    CollectionReference usersCollection =
+        FirebaseFirestore.instance.collection('Users');
+
+    // Query the collection to find the document with the matching name
+    QuerySnapshot<Object?> snapshot = await usersCollection
+        .where('name', isEqualTo: selectedName)
+        .limit(1)
+        .get();
+
+    if (snapshot.docs.isNotEmpty) {
+      // Retrieve the first document from the query snapshot
+      QueryDocumentSnapshot<Object?> documentSnapshot = snapshot.docs[0];
+
+      // Retrieve and return the document ID
+      return documentSnapshot.id;
+    }
+
+    return null; // Return null if no matching document found
   }
 }

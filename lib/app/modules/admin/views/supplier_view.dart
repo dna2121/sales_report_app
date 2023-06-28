@@ -12,7 +12,7 @@ class SupplierView extends GetView<SupplierController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Admin'),
+        title: const Text('Farmer'),
         centerTitle: true,
       ),
       body: Column(

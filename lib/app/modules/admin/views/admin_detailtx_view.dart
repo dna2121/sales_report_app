@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
-import 'package:sales_report_app/app/modules/admin/controllers/admin_detailtx_controller.dart';
+import 'package:sales_report_app/app/modules/admin/controllers/admintx_controller.dart';
 
-class AdminDetailtxView extends GetView<AdminDetailtxController> {
+class AdminDetailtxView extends GetView<AdminTxController> {
   const AdminDetailtxView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {

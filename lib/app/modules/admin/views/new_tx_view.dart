@@ -2,9 +2,9 @@ import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
-import 'package:sales_report_app/app/modules/admin/controllers/new_tx_controller.dart';
+import 'package:sales_report_app/app/modules/admin/controllers/admintx_controller.dart';
 
-class NewTxView extends GetView<NewTxController> {
+class NewTxView extends GetView<AdminTxController> {
   const NewTxView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
@@ -55,7 +55,7 @@ class NewTxView extends GetView<NewTxController> {
                 decoration: InputDecoration(
                   label: Text("Harga"),
                 ),
-                controller: controller.priceController,
+                controller: controller.priceC,
                 validator: controller.validator,
               ),
             ),
@@ -63,9 +63,9 @@ class NewTxView extends GetView<NewTxController> {
               padding: const EdgeInsets.all(8.0),
               child: TextFormField(
                 decoration: InputDecoration(
-                  label: Text("Berat dalam ton"),
+                  label: Text("Berat dalam kilogram"),
                 ),
-                controller: controller.weightController,
+                controller: controller.weightC,
                 validator: controller.validator,
               ),
             ),
