@@ -47,6 +47,7 @@ class AdminTxController extends GetxController {
         onConfirm: () async {
           await documentReference.delete();
           Get.back();
+          Get.back();
         },
         textConfirm: "Yes",
         textCancel: "No",

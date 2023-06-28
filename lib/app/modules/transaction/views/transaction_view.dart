@@ -35,18 +35,21 @@ class TransactionView extends GetView<TransactionController> {
               builder: (context, snapshot) {
                 if (snapshot.hasData) {
                   var userData = snapshot.data!;
-                  var id = userData['id'];
+                  var roles = List<String>.from(userData['role']);
 
-                  return Visibility(
-                    visible:
-                        id == "zzY6CyiF0lWkvDFTZx011tSiBr22" ? true : false,
-                    child: ListTile(
-                      title: const Text('Admin Form'),
-                      onTap: () {
-                        Get.offAllNamed(Routes.ADMIN);
-                      },
-                    ),
-                  );
+                  if (roles.contains('admin')) {
+                    return Visibility(
+                      visible: true,
+                      child: ListTile(
+                        title: const Text('Admin Form'),
+                        onTap: () {
+                          Get.offAllNamed(Routes.ADMIN);
+                        },
+                      ),
+                    );
+                  } else {
+                    return SizedBox();
+                  }
                 } else if (snapshot.hasError) {
                   return SizedBox();
                 } else {
