@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:sales_report_app/app/data/repositories/user_repositories.dart';
 
 import '../../../data/repositories/transactions_repositories.dart';
@@ -13,7 +14,7 @@ class TransactionController extends GetxController {
   final dtTxFormKey = GlobalKey<FormState>();
   final priceC = TextEditingController();
   final nameC = TextEditingController();
-  // final carC = TextEditingController();
+  final dateC = TextEditingController();
   final weightC = TextEditingController();
   
   late String documentId;
@@ -57,11 +58,12 @@ class TransactionController extends GetxController {
         Map<String, dynamic> data = snapshot.data() as Map<String, dynamic>;
         int price = data['price'] as int;
         String name = data['name'] as String;
-        // String car = data['carNumber'] as String;
         int weight = data['weight'] as int;
+        Timestamp timestamp = data['date'] as Timestamp;
+
         priceC.text = price.toString();
         nameC.text = name;
-        // carC.text = car;
+        dateC.text = DateFormat('dd MMMM yyyy').format(timestamp.toDate());
         weightC.text = weight.toString();
       }
     } catch (error) {

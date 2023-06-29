@@ -71,9 +71,12 @@ class AdminTxController extends GetxController {
         int price = data['price'] as int;
         String name = data['name'] as String;
         int weight = data['weight'] as int;
+        Timestamp timestamp = data['date'] as Timestamp;
+
         priceC.text = price.toString();
         nameC.text = name;
         weightC.text = weight.toString();
+        dateC.text = DateFormat('dd MMMM yyyy').format(timestamp.toDate());
       }
     } catch (error) {
       print('Failed to fetch document data: $error');

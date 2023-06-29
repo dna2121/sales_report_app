@@ -41,10 +41,16 @@ class AdminDetailtxView extends GetView<AdminTxController> {
                   prefixText: "Rp. ", border: OutlineInputBorder()),
             ),
             SizedBox(height: 17),
-            // Text(
-            //   'Car Number',
-            //   style: TextStyle(fontSize: 18),
-            // ),
+            Text(
+              'Date',
+              style: TextStyle(fontSize: 18),
+            ),
+            TextFormField(
+              controller: controller.dateC,
+              readOnly: true,
+              decoration: InputDecoration(border: OutlineInputBorder()),
+            ),
+            SizedBox(height: 17),
             Text(
               'Weight',
               style: TextStyle(fontSize: 18),
