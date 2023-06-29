@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:sales_report_app/app/data/repositories/transactions_repositories.dart';
 
 import '../../../data/models/transactions.dart';
@@ -121,11 +122,12 @@ class AdminTxController extends GetxController {
     if (trxFormKey.currentState!.validate()) {
       int harga = int.parse(priceC.text);
       int berat = int.parse(weightC.text);
-      // DateTime tanggal = tanggalController.text as DateTime;
+      DateTime tanggal = DateTime.parse(dateC.text);
 
       String? userID = await getUserIdFromName(selectedName.toString());
 
       if (userID != null) {
+        Timestamp timestamp = Timestamp.fromDate(tanggal);
         await txRepo.addTx(
           Transactions(
             userID: userID,
@@ -133,6 +135,7 @@ class AdminTxController extends GetxController {
             name: selectedName.toString(),
             price: harga,
             weight: berat,
+            date: timestamp,
           ),
         );
         Get.defaultDialog(
@@ -141,6 +144,7 @@ class AdminTxController extends GetxController {
           onConfirm: () {
             priceC.clear();
             weightC.clear();
+            dateC.clear();
             Get.back(); //close dialog
           },
           textConfirm: 'Okay',
@@ -169,5 +173,23 @@ class AdminTxController extends GetxController {
     }
 
     return null; // Return null if no matching document found
+  }
+
+  //TANGGAL
+  final dateC = TextEditingController();
+  var selectedDate = DateTime.now().obs;
+
+  chooseDate() async {
+    DateTime? pickedDate = await showDatePicker(
+      context: Get.context!,
+      initialDate: DateTime.now(),
+      firstDate: DateTime(1990),
+      lastDate: DateTime(2100),
+      errorFormatText: "Enter valid date",
+    );
+    if (pickedDate != null) {
+      selectedDate.value = pickedDate;
+      dateC.text = DateFormat('yyyy-MM-dd').format(selectedDate.value);
+    }
   }
 }

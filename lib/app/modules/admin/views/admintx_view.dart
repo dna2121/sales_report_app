@@ -16,7 +16,13 @@ class AdminTxView extends GetView<AdminTxController> {
         centerTitle: true,
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () => Get.toNamed(Routes.NEWTX),
+        onPressed: () {
+          controller.weightC.clear();
+          controller.priceC.clear();
+          controller.dateC.clear();
+
+          Get.toNamed(Routes.NEWTX);
+        },
         child: Icon(Icons.add),
       ),
       drawer: Drawer(

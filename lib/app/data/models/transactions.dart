@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Transactions {
   String userID;
@@ -7,7 +8,7 @@ class Transactions {
   int price;
   String? carNumber;
   int weight;
-  DateTime? date;
+  Timestamp? date;
   Transactions({
     required this.userID,
     required this.transactionID,
@@ -25,7 +26,7 @@ class Transactions {
     int? price,
     String? carNumber,
     int? weight,
-    DateTime? date,
+    Timestamp? date,
   }) {
     return Transactions(
       userID: userID ?? this.userID,
@@ -46,7 +47,7 @@ class Transactions {
       'price': price,
       'carNumber': carNumber,
       'weight': weight,
-      'date': date?.millisecondsSinceEpoch,
+      'date': date,
     };
   }
 
@@ -58,7 +59,7 @@ class Transactions {
       price: map['price']?.toInt() ?? 0,
       carNumber: map['carNumber'],
       weight: map['weight']?.toInt() ?? 0,
-      date: map['date'] != null ? DateTime.fromMillisecondsSinceEpoch(map['date']) : null,
+      date: map['date'] as Timestamp,
     );
   }
 

@@ -64,6 +64,18 @@ class NewTxView extends GetView<AdminTxController> {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: TextFormField(
+                decoration: InputDecoration(labelText: "Tanggal"),
+                controller: controller.dateC,
+                validator: controller.validator,
+                onTap: () async {
+                  FocusScope.of(context).requestFocus(new FocusNode());
+                  await controller.chooseDate();
+                },
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: TextFormField(
                 keyboardType: TextInputType.number,
                 decoration: InputDecoration(
                   suffixText: " kilogram",
