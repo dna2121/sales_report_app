@@ -57,6 +57,7 @@ class CarsController extends GetxController {
         onConfirm: () {
           carsController.clear();
           Get.back(); //close dialog
+          Get.back(); //closs bottom sheet
         },
         textConfirm: 'Okay',
       );
@@ -73,7 +74,8 @@ class CarsController extends GetxController {
         middleText: "Do you want to delete the data?",
         onConfirm: () async {
           await documentReference.delete();
-          Get.back();
+          Get.back(); //close dialog
+          Get.back(); //close the bottom sheet
         },
         textConfirm: "Yes",
         textCancel: "No",
@@ -116,6 +118,7 @@ class CarsController extends GetxController {
           carsController.clear();
           Get.back(); //close dialog
           Get.back(); //close page
+          Get.back(); //close bottom sheet
         },
         textConfirm: 'Okay',
       );

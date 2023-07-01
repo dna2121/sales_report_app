@@ -13,7 +13,7 @@ class UpdateTxView extends GetView<AdminTxController> {
 
     return Scaffold(
         appBar: AppBar(
-          title: const Text('UpdateTxView'),
+          title: const Text('Edit Transaction'),
           centerTitle: true,
         ),
         body: Form(

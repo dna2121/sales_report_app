@@ -20,6 +20,8 @@ class AdminTxView extends GetView<AdminTxController> {
           controller.weightC.clear();
           controller.priceC.clear();
           controller.dateC.clear();
+          controller.selectedName = null;
+          controller.selectedCarnum = null;
 
           Get.toNamed(Routes.NEWTX);
         },

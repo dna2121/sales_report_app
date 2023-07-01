@@ -36,7 +36,9 @@ class CarsEditView extends GetView<CarsController> {
                 width: double.infinity,
                 child: ElevatedButton(
                   onPressed: () {
-                    controller.updateCarDoc();
+                    controller.carsController.text.isEmpty
+                        ? controller.textEmpty
+                        : controller.updateCarDoc();
                   },
                   child: Text("Save"),
                 ),

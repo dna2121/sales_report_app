@@ -18,6 +18,7 @@ class AdminTxController extends GetxController {
 
   late String documentId;
   String? selectedName;
+  String? selectedCarnum;
 
   void onClose() {
     priceC.dispose();
@@ -34,6 +35,18 @@ class AdminTxController extends GetxController {
   }
 
   String? validator(String? value) {
+    return null;
+  }
+
+  String? get textEmpty {
+    Get.defaultDialog(
+      title: 'Failed',
+      middleText: "Text cannot be empty",
+      onConfirm: () {
+        Get.back(); //close dialog
+      },
+      textConfirm: 'Okay',
+    );
     return null;
   }
 
@@ -102,6 +115,7 @@ class AdminTxController extends GetxController {
           weightC.clear();
           Get.back(); //close dialog
           Get.back(); //close page
+          Get.back(); //close bottom sheet
         },
         textConfirm: 'Okay',
       );
@@ -121,6 +135,17 @@ class AdminTxController extends GetxController {
     });
   }
 
+  Stream<List<String>> streamCarNumber(String userID) {
+    Query<Map<String, dynamic>> carRef = FirebaseFirestore.instance
+        .collection('Car')
+        .where('userID', isEqualTo: userID);
+    return carRef.snapshots().map((snapshot) {
+      return snapshot.docs.map((doc) => doc['carNumber'] as String).toList();
+    });
+  }
+
+  Stream<List<String>>? carNumberStream;
+
   void addNewTx() async {
     if (trxFormKey.currentState!.validate()) {
       int harga = int.parse(priceC.text);
@@ -133,13 +158,13 @@ class AdminTxController extends GetxController {
         Timestamp timestamp = Timestamp.fromDate(tanggal);
         await txRepo.addTx(
           Transactions(
-            userID: userID,
-            transactionID: txRepo.txCollection.doc().id,
-            name: selectedName.toString(),
-            price: harga,
-            weight: berat,
-            date: timestamp,
-          ),
+              userID: userID,
+              transactionID: txRepo.txCollection.doc().id,
+              name: selectedName.toString(),
+              price: harga,
+              weight: berat,
+              date: timestamp,
+              carNumber: selectedCarnum.toString()),
         );
         Get.defaultDialog(
           title: 'Success',
@@ -149,6 +174,7 @@ class AdminTxController extends GetxController {
             weightC.clear();
             dateC.clear();
             Get.back(); //close dialog
+            Get.back(); //close page
           },
           textConfirm: 'Okay',
         );
