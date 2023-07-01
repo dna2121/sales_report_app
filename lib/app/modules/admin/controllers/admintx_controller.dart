@@ -13,7 +13,7 @@ class AdminTxController extends GetxController {
   final trxFormKey = GlobalKey<FormState>();
   final priceC = TextEditingController();
   final nameC = TextEditingController();
-  // final carC = TextEditingController();
+  final carC = TextEditingController();
   final weightC = TextEditingController();
 
   late String documentId;
@@ -85,11 +85,13 @@ class AdminTxController extends GetxController {
         String name = data['name'] as String;
         int weight = data['weight'] as int;
         Timestamp timestamp = data['date'] as Timestamp;
+        String carnum = data['carNumber'] as String;
 
         priceC.text = price.toString();
-        nameC.text = name;
+        selectedName = name;
         weightC.text = weight.toString();
         dateC.text = DateFormat('dd MMMM yyyy').format(timestamp.toDate());
+        carC.text = carnum;
       }
     } catch (error) {
       print('Failed to fetch document data: $error');
@@ -97,14 +99,24 @@ class AdminTxController extends GetxController {
   }
 
   void updateTxDoc() async {
-    String newName = nameC.text;
+    String newName = selectedName.toString();
     int newPrice = int.parse(priceC.text);
     int newWeight = int.parse(weightC.text);
+    String newCarnum = carC.text;
+    DateTime tanggal = DateTime.parse(dateC.text);
+    Timestamp newTimestamp = Timestamp.fromDate(tanggal);
+
+    String? userID = await getUserIdFromName(selectedName.toString());
 
     try {
-      await txRepo.txCollection
-          .doc(documentId)
-          .update({'name': newName, 'price': newPrice, 'weight': newWeight});
+      await txRepo.txCollection.doc(documentId).update({
+        'name': newName,
+        'price': newPrice,
+        'weight': newWeight,
+        'userID': userID,
+        'carNumber': newCarnum,
+        'date': newTimestamp
+      });
 
       Get.defaultDialog(
         title: 'Success',
