@@ -35,6 +35,9 @@ class AdminTxController extends GetxController {
   }
 
   String? validator(String? value) {
+    if (value == null || value.isEmpty) {
+      return 'Please fill the filled';
+    }
     return null;
   }
 

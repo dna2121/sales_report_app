@@ -41,6 +41,7 @@ class NewTxView extends GetView<AdminTxController> {
                                       InputDecoration(labelText: "Search..."))),
                           items: snapshot.data!,
                           selectedItem: controller.selectedName,
+                          validator: controller.validator,
                           onChanged: (value) async {
                             controller.selectedName = value;
                             String? userId =
@@ -118,6 +119,7 @@ class NewTxView extends GetView<AdminTxController> {
                           ),
                           items: snapshot.data!,
                           selectedItem: controller.selectedCarnum,
+                          validator: controller.validator,
                           onChanged: (value) async {
                             controller.selectedCarnum = value;
                           },

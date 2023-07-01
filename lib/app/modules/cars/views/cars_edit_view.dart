@@ -29,6 +29,7 @@ class CarsEditView extends GetView<CarsController> {
                   decoration: InputDecoration(labelText: "Car Number"),
                   controller: controller.carsController,
                   validator: controller.validator,
+                  textCapitalization: TextCapitalization.characters,
                 ),
               ),
               Container(

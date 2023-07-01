@@ -71,10 +71,11 @@ class UpdateTxView extends GetView<AdminTxController> {
                   style: TextStyle(fontSize: 18),
                 ),
                 TextFormField(
-                  decoration: InputDecoration(labelText: "Tanggal"),
                   controller: controller.dateC,
                   validator: controller.validator,
-                  onTap: () async {},
+                  onTap: () async {
+                    FocusScope.of(context).requestFocus(new FocusNode());
+                  },
                 ),
                 SizedBox(height: 17),
                 Text(
@@ -96,6 +97,7 @@ class UpdateTxView extends GetView<AdminTxController> {
                   controller: controller.carC,
                   validator: controller.validator,
                   decoration: InputDecoration(border: OutlineInputBorder()),
+                  textCapitalization: TextCapitalization.characters,
                 ),
                 SizedBox(height: 17),
                 Container(

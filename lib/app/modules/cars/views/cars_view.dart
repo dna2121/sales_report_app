@@ -50,6 +50,8 @@ class CarsView extends GetView<CarsController> {
                                       InputDecoration(labelText: "Car Number"),
                                   controller: controller.carsController,
                                   validator: controller.validator,
+                                  textCapitalization:
+                                      TextCapitalization.characters,
                                 ),
                               ),
                               SizedBox(
