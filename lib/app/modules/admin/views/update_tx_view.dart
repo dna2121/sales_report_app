@@ -1,7 +1,9 @@
+import 'package:date_field/date_field.dart';
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:sales_report_app/app/modules/admin/controllers/admintx_controller.dart';
 
 class UpdateTxView extends GetView<AdminTxController> {
@@ -11,6 +13,8 @@ class UpdateTxView extends GetView<AdminTxController> {
     final String documentId = Get.arguments;
     controller.documentId = documentId;
     controller.fetchTxDoc();
+    DateTime initialValue =
+        DateTime.tryParse(controller.dateC.text) ?? DateTime.now();
 
     return Scaffold(
         appBar: AppBar(
@@ -70,11 +74,19 @@ class UpdateTxView extends GetView<AdminTxController> {
                   'Date',
                   style: TextStyle(fontSize: 18),
                 ),
-                TextFormField(
-                  controller: controller.dateC,
-                  validator: controller.validator,
-                  onTap: () async {
-                    FocusScope.of(context).requestFocus(new FocusNode());
+                DateTimeFormField(
+                  decoration: const InputDecoration(
+                    border: OutlineInputBorder(),
+                    suffixIcon: Icon(Icons.event_note),
+                  ),
+                  initialDate: initialValue,
+                  firstDate: DateTime(1900),
+                  lastDate: DateTime(2100),
+                  initialValue: initialValue,
+                  dateFormat: DateFormat('dd MMMM yyyy'),
+                  autovalidateMode: AutovalidateMode.always,
+                  onDateSelected: (DateTime value) {
+                    controller.dateC.text = value.toString();
                   },
                 ),
                 SizedBox(height: 17),

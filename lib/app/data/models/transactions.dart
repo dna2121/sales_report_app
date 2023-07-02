@@ -1,4 +1,5 @@
 import 'dart:convert';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Transactions {
@@ -8,7 +9,7 @@ class Transactions {
   int price;
   String? carNumber;
   int weight;
-  Timestamp? date;
+  DateTime? date;
   Transactions({
     required this.userID,
     required this.transactionID,
@@ -26,7 +27,7 @@ class Transactions {
     int? price,
     String? carNumber,
     int? weight,
-    Timestamp? date,
+    DateTime? date,
   }) {
     return Transactions(
       userID: userID ?? this.userID,
@@ -47,7 +48,7 @@ class Transactions {
       'price': price,
       'carNumber': carNumber,
       'weight': weight,
-      'date': date,
+      'date': Timestamp.fromDate(date!),
     };
   }
 
@@ -59,13 +60,16 @@ class Transactions {
       price: map['price']?.toInt() ?? 0,
       carNumber: map['carNumber'],
       weight: map['weight']?.toInt() ?? 0,
-      date: map['date'] as Timestamp,
+      date: map['date'] != null
+          ? DateTime.fromMillisecondsSinceEpoch(map['date'])
+          : null,
     );
   }
 
   String toJson() => json.encode(toMap());
 
-  factory Transactions.fromJson(String source) => Transactions.fromMap(json.decode(source));
+  factory Transactions.fromJson(String source) =>
+      Transactions.fromMap(json.decode(source));
 
   @override
   String toString() {
@@ -75,25 +79,25 @@ class Transactions {
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
-  
+
     return other is Transactions &&
-      other.userID == userID &&
-      other.transactionID == transactionID &&
-      other.name == name &&
-      other.price == price &&
-      other.carNumber == carNumber &&
-      other.weight == weight &&
-      other.date == date;
+        other.userID == userID &&
+        other.transactionID == transactionID &&
+        other.name == name &&
+        other.price == price &&
+        other.carNumber == carNumber &&
+        other.weight == weight &&
+        other.date == date;
   }
 
   @override
   int get hashCode {
     return userID.hashCode ^
-      transactionID.hashCode ^
-      name.hashCode ^
-      price.hashCode ^
-      carNumber.hashCode ^
-      weight.hashCode ^
-      date.hashCode;
+        transactionID.hashCode ^
+        name.hashCode ^
+        price.hashCode ^
+        carNumber.hashCode ^
+        weight.hashCode ^
+        date.hashCode;
   }
 }

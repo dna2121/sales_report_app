@@ -15,13 +15,19 @@ class AdminTxController extends GetxController {
   final nameC = TextEditingController();
   final carC = TextEditingController();
   final weightC = TextEditingController();
+  final dateC = TextEditingController();
 
+  var selectedDate = DateTime.now().obs;
   late String documentId;
   String? selectedName;
   String? selectedCarnum;
+  Stream<List<String>>? carNumberStream;
 
   void onClose() {
     priceC.dispose();
+    weightC.dispose();
+    nameC.dispose();
+    dateC.dispose();
     weightC.dispose();
     super.onClose();
   }
@@ -32,6 +38,46 @@ class AdminTxController extends GetxController {
 
   Stream<QuerySnapshot<Object?>> streamTx() {
     return txRepo.txCollection.snapshots();
+  }
+
+  Stream<List<String>> streamName() {
+    Query<Map<String, dynamic>> itemsRef = FirebaseFirestore.instance
+        .collection('Users')
+        .orderBy("name", descending: false);
+    return itemsRef.snapshots().map((snapshot) {
+      return snapshot.docs.map((doc) => doc['name'] as String).toList();
+    });
+  }
+
+  Stream<List<String>> streamCarNumber(String userID) {
+    Query<Map<String, dynamic>> carRef = FirebaseFirestore.instance
+        .collection('Car')
+        .where('userID', isEqualTo: userID);
+    return carRef.snapshots().map((snapshot) {
+      return snapshot.docs.map((doc) => doc['carNumber'] as String).toList();
+    });
+  }
+
+  Future<String?> getUserIdFromName(String selectedName) async {
+    // Get a reference to the Firestore collection
+    CollectionReference usersCollection =
+        FirebaseFirestore.instance.collection('Users');
+
+    // Query the collection to find the document with the matching name
+    QuerySnapshot<Object?> snapshot = await usersCollection
+        .where('name', isEqualTo: selectedName)
+        .limit(1)
+        .get();
+
+    if (snapshot.docs.isNotEmpty) {
+      // Retrieve the first document from the query snapshot
+      QueryDocumentSnapshot<Object?> documentSnapshot = snapshot.docs[0];
+
+      // Retrieve and return the document ID
+      return documentSnapshot.id;
+    }
+
+    return null; // Return null if no matching document found
   }
 
   String? validator(String? value) {
@@ -93,7 +139,7 @@ class AdminTxController extends GetxController {
         priceC.text = price.toString();
         selectedName = name;
         weightC.text = weight.toString();
-        dateC.text = DateFormat('dd MMMM yyyy').format(timestamp.toDate());
+        dateC.text = DateFormat('yyyy-MM-dd').format(timestamp.toDate());
         carC.text = carnum;
       }
     } catch (error) {
@@ -106,8 +152,7 @@ class AdminTxController extends GetxController {
     int newPrice = int.parse(priceC.text);
     int newWeight = int.parse(weightC.text);
     String newCarnum = carC.text;
-    DateTime tanggal = DateTime.parse(dateC.text);
-    Timestamp newTimestamp = Timestamp.fromDate(tanggal);
+    DateTime tanggalBaru = DateTime.parse(dateC.text);
 
     String? userID = await getUserIdFromName(selectedName.toString());
 
@@ -118,7 +163,7 @@ class AdminTxController extends GetxController {
         'weight': newWeight,
         'userID': userID,
         'carNumber': newCarnum,
-        'date': newTimestamp
+        'date': tanggalBaru
       });
 
       Get.defaultDialog(
@@ -141,26 +186,6 @@ class AdminTxController extends GetxController {
     }
   }
 
-  Stream<List<String>> streamName() {
-    Query<Map<String, dynamic>> itemsRef = FirebaseFirestore.instance
-        .collection('Users')
-        .orderBy("name", descending: false);
-    return itemsRef.snapshots().map((snapshot) {
-      return snapshot.docs.map((doc) => doc['name'] as String).toList();
-    });
-  }
-
-  Stream<List<String>> streamCarNumber(String userID) {
-    Query<Map<String, dynamic>> carRef = FirebaseFirestore.instance
-        .collection('Car')
-        .where('userID', isEqualTo: userID);
-    return carRef.snapshots().map((snapshot) {
-      return snapshot.docs.map((doc) => doc['carNumber'] as String).toList();
-    });
-  }
-
-  Stream<List<String>>? carNumberStream;
-
   void addNewTx() async {
     if (trxFormKey.currentState!.validate()) {
       int harga = int.parse(priceC.text);
@@ -170,7 +195,6 @@ class AdminTxController extends GetxController {
       String? userID = await getUserIdFromName(selectedName.toString());
 
       if (userID != null) {
-        Timestamp timestamp = Timestamp.fromDate(tanggal);
         await txRepo.addTx(
           Transactions(
               userID: userID,
@@ -178,7 +202,7 @@ class AdminTxController extends GetxController {
               name: selectedName.toString(),
               price: harga,
               weight: berat,
-              date: timestamp,
+              date: tanggal,
               carNumber: selectedCarnum.toString()),
         );
         Get.defaultDialog(
@@ -196,32 +220,6 @@ class AdminTxController extends GetxController {
       }
     }
   }
-
-  Future<String?> getUserIdFromName(String selectedName) async {
-    // Get a reference to the Firestore collection
-    CollectionReference usersCollection =
-        FirebaseFirestore.instance.collection('Users');
-
-    // Query the collection to find the document with the matching name
-    QuerySnapshot<Object?> snapshot = await usersCollection
-        .where('name', isEqualTo: selectedName)
-        .limit(1)
-        .get();
-
-    if (snapshot.docs.isNotEmpty) {
-      // Retrieve the first document from the query snapshot
-      QueryDocumentSnapshot<Object?> documentSnapshot = snapshot.docs[0];
-
-      // Retrieve and return the document ID
-      return documentSnapshot.id;
-    }
-
-    return null; // Return null if no matching document found
-  }
-
-  //TANGGAL
-  final dateC = TextEditingController();
-  var selectedDate = DateTime.now().obs;
 
   chooseDate() async {
     DateTime? pickedDate = await showDatePicker(

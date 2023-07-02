@@ -17,6 +17,7 @@ dependencies:
   get_cli: ^1.8.1
   dropdown_search: ^5.0.6
   intl: ^0.18.1
+  date_field: ^3.0.5
 
 dev_dependencies: 
   build_runner: ^2.3.3
