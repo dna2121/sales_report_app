@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
-import 'package:sales_report_app/app/modules/admin/views/admintx_view.dart';
 import 'package:sales_report_app/app/modules/admin/views/supplier_view.dart';
+import 'package:sales_report_app/app/modules/admin/views/trx_view.dart';
 
 import '../controllers/admin_controller.dart';
 
@@ -20,7 +20,7 @@ class AdminView extends GetView<AdminController> {
               BottomNavigationBarItem(
                 icon: Icon(Icons.receipt_long_outlined),
                 activeIcon: Icon(Icons.receipt_long),
-                label: 'AdminTx',
+                label: 'Transaction',
               ),
               BottomNavigationBarItem(
                 icon: Icon(Icons.groups_2_outlined),
@@ -34,7 +34,7 @@ class AdminView extends GetView<AdminController> {
       body: Obx(
         () => IndexedStack(
           index: controller.tabIndex.value,
-          children: [AdminTxView(), SupplierView()],
+          children: [TrxView(), SupplierView()],
         ),
       ),
     );

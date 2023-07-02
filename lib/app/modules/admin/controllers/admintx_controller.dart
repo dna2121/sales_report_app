@@ -28,7 +28,6 @@ class AdminTxController extends GetxController {
     weightC.dispose();
     nameC.dispose();
     dateC.dispose();
-    weightC.dispose();
     super.onClose();
   }
 
