@@ -30,7 +30,7 @@ class AuthController extends GetxController {
     if (user == null) {
       Get.offAllNamed(Routes.SIGNIN);
     } else {
-      Get.offAllNamed(Routes.HOME);
+      Get.offAllNamed(Routes.TRX);
     }
   }
 

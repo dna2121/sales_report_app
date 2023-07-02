@@ -209,9 +209,10 @@ class AdminTxController extends GetxController {
           title: 'Success',
           middleText: "Data added.",
           onConfirm: () {
-            priceC.clear();
-            weightC.clear();
-            dateC.clear();
+            // priceC.clear();
+            // weightC.clear();
+            // dateC.clear();
+            resetForm();
             Get.back(); //close dialog
             Get.back(); //close page
           },
@@ -219,6 +220,13 @@ class AdminTxController extends GetxController {
         );
       }
     }
+  }
+
+  void resetForm() {
+    trxFormKey.currentState?.reset();
+    selectedName = null;
+    selectedCarnum = null;
+    selectedDate.value = DateTime.now();
   }
 
   chooseDate() async {
