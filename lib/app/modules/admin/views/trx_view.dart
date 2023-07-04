@@ -66,6 +66,23 @@ class TrxView extends GetView<AdminTxController> {
             }
 
             if (snapshot.hasData) {
+              List<DocumentSnapshot> documents = snapshot.data!.docs;
+              Map<String, int> groupTotalPrices = {};
+
+              documents.forEach((document) {
+                Timestamp timestamp = document['date'] as Timestamp;
+                DateTime date = timestamp.toDate();
+                String groupKey = DateFormat('d MMMM').format(date);
+                int price = document['price'] as int;
+
+                if (groupTotalPrices.containsKey(groupKey)) {
+                  groupTotalPrices[groupKey] =
+                      groupTotalPrices[groupKey]! + price;
+                } else {
+                  groupTotalPrices[groupKey] = price;
+                }
+              });
+
               final formatCurrency =
                   NumberFormat.currency(locale: 'id_ID', symbol: 'Rp ');
 
@@ -78,13 +95,27 @@ class TrxView extends GetView<AdminTxController> {
                   return DateFormat('d MMMM').format(date);
                 },
                 groupSeparatorBuilder: (value) {
+                  String groupKey = value;
+                  int totalPrice = groupTotalPrices[groupKey]!;
+                  String formattedAmount = formatCurrency.format(totalPrice);
+
                   return Padding(
                     padding:
                         const EdgeInsets.symmetric(horizontal: 17, vertical: 5),
-                    child: Text(
-                      value,
-                      style:
-                          TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: Text(
+                            value,
+                            style: TextStyle(
+                                fontSize: 16, fontWeight: FontWeight.w500),
+                          ),
+                        ),
+                        Text(
+                          formattedAmount,
+                          style: TextStyle(fontSize: 16),
+                        ),
+                      ],
                     ),
                   );
                 },
