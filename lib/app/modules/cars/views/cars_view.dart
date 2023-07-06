@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:sales_report_app/app/routes/app_pages.dart';
 
 import '../controllers/cars_controller.dart';
 
@@ -16,20 +17,12 @@ class CarsView extends GetView<CarsController> {
       appBar: AppBar(
         title: const Text('Cars'),
         centerTitle: true,
-        actions: [
-          IconButton(
-            onPressed: () {
-              controller.signOut();
-            },
-            icon: Icon(Icons.logout_outlined),
-          )
-        ],
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(17),
-        child: Column(
-          children: [
-            Row(
+      body: Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.fromLTRB(17, 17, 17, 1),
+            child: Row(
               children: [
                 Expanded(
                   child: TextFormField(
@@ -40,10 +33,11 @@ class CarsView extends GetView<CarsController> {
                 ),
                 IconButton(
                   onPressed: () {
+                    controller.carsController.clear();
                     Get.bottomSheet(
                       backgroundColor: Colors.white,
                       Container(
-                        height: 250,
+                        height: 220,
                         child: Padding(
                           padding: const EdgeInsets.all(17),
                           child: Column(
@@ -56,6 +50,8 @@ class CarsView extends GetView<CarsController> {
                                       InputDecoration(labelText: "Car Number"),
                                   controller: controller.carsController,
                                   validator: controller.validator,
+                                  textCapitalization:
+                                      TextCapitalization.characters,
                                 ),
                               ),
                               SizedBox(
@@ -67,7 +63,7 @@ class CarsView extends GetView<CarsController> {
                                   onPressed: () {
                                     controller.carsController.text.isEmpty
                                         ? controller.textEmpty
-                                        : controller.addNewCar();
+                                        : controller.addCar();
                                   },
                                   child: Text("Save"),
                                 ),
@@ -82,32 +78,69 @@ class CarsView extends GetView<CarsController> {
                 ),
               ],
             ),
-            Expanded(
-              child: StreamBuilder(
-                  stream: controller.getCars(),
-                  builder: (context, snapshot) {
-                    if (snapshot.hasError) {
-                      return Text('Something went wrong');
-                    }
+          ),
+          Expanded(
+            child: StreamBuilder(
+                stream: controller.StreamCar(),
+                builder: (context, snapshot) {
+                  if (snapshot.hasError) {
+                    return Text('Something went wrong');
+                  }
 
-                    if (snapshot.connectionState == ConnectionState.waiting) {
-                      return Text("Loading");
-                    }
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return Text("Loading");
+                  }
 
-                    return ListView(
-                      children:
-                          snapshot.data!.docs.map((DocumentSnapshot document) {
-                        Map<String, dynamic> data =
-                            document.data()! as Map<String, dynamic>;
-                        return ListTile(
+                  return ListView(
+                    children:
+                        snapshot.data!.docs.map((DocumentSnapshot document) {
+                      Map<String, dynamic> data =
+                          document.data()! as Map<String, dynamic>;
+                      return ListTile(
+                          leading: CircleAvatar(
+                            backgroundColor: Colors.teal,
+                            child: Icon(
+                              Icons.fire_truck,
+                              color: Colors.white,
+                            ),
+                          ),
                           title: Text(data['carNumber']),
-                        );
-                      }).toList(),
-                    );
-                  }),
-            )
-          ],
-        ),
+                          onLongPress: () {
+                            Get.bottomSheet(
+                              backgroundColor: Colors.white,
+                              Column(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  Container(
+                                    padding: EdgeInsets.fromLTRB(17, 17, 17, 2),
+                                    width: double.infinity,
+                                    child: ElevatedButton(
+                                      onPressed: () {
+                                        Get.toNamed(Routes.CARSEDIT,
+                                            arguments: data['carID']);
+                                      },
+                                      child: Text("Edit"),
+                                    ),
+                                  ),
+                                  Container(
+                                    padding: EdgeInsets.fromLTRB(17, 2, 17, 17),
+                                    width: double.infinity,
+                                    child: ElevatedButton(
+                                      onPressed: () {
+                                        controller.deleteCar(data["carID"]);
+                                      },
+                                      child: Text("Delete"),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            );
+                          });
+                    }).toList(),
+                  );
+                }),
+          )
+        ],
       ),
     );
   }

@@ -1,12 +1,17 @@
+// ignore_for_file: must_be_immutable
+
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:sales_report_app/app/routes/app_pages.dart';
 
 import '../../auth/controllers/auth_controller.dart';
 import '../controllers/transaction_controller.dart';
 
 class TransactionView extends GetView<TransactionController> {
-  const TransactionView({Key? key}) : super(key: key);
+  TransactionView({Key? key}) : super(key: key);
+  TransactionController controller = Get.put(TransactionController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -14,10 +19,107 @@ class TransactionView extends GetView<TransactionController> {
         title: const Text('Transaction'),
         centerTitle: true,
       ),
+      drawer: Drawer(
+        child: ListView(
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(17.0),
+              child: Text(
+                'Hi, ${AuthController.instance.firebaseAuth.currentUser!.displayName.toString()}.',
+                style: TextStyle(fontSize: 20),
+              ),
+            ),
+            Divider(),
+            StreamBuilder(
+              stream: controller.getRole(),
+              builder: (context, snapshot) {
+                if (snapshot.hasData) {
+                  var userData = snapshot.data!;
+                  var roles = List<String>.from(userData['role']);
+
+                  if (roles.contains('admin')) {
+                    return Visibility(
+                      visible: true,
+                      child: ListTile(
+                        title: const Text('Admin Form'),
+                        onTap: () {
+                          Get.offAllNamed(Routes.ADMIN);
+                        },
+                      ),
+                    );
+                  } else {
+                    return SizedBox();
+                  }
+                } else if (snapshot.hasError) {
+                  return SizedBox();
+                } else {
+                  return SizedBox();
+                }
+              },
+            ),
+            ListTile(
+              title: const Text('Profile'),
+              onTap: () {
+                Get.toNamed(Routes.PROFILE);
+              },
+            ),
+            ListTile(
+              title: const Text(
+                'Log out',
+                style: TextStyle(color: Colors.red),
+              ),
+              onTap: () {
+                controller.signOut();
+              },
+            ),
+          ],
+        ),
+      ),
       body: Center(
-        child: Text(
-          'Hi ${AuthController.instance.firebaseAuth.currentUser!.displayName.toString()}',
-          style: TextStyle(fontSize: 20),
+        child: Column(
+          children: [
+            Expanded(
+              child: StreamBuilder(
+                  stream: controller.streamTxById(),
+                  builder: (context, snapshot) {
+                    if (snapshot.hasError) {
+                      return Text('Something went wrong');
+                    }
+
+                    if (snapshot.connectionState == ConnectionState.waiting) {
+                      return Text("Loading");
+                    }
+
+                    if (snapshot.hasData) {
+                      return ListView(
+                        children: snapshot.data!.docs
+                            .map((DocumentSnapshot document) {
+                          Map<String, dynamic> data =
+                              document.data()! as Map<String, dynamic>;
+                          return ListTile(
+                            title: Text(data['name']),
+                            subtitle: Text('${data['weight']} kg'),
+                            leading: CircleAvatar(
+                              backgroundColor: Colors.indigo[400],
+                              child: Icon(Icons.person, color: Colors.white),
+                            ),
+                            trailing: Text(
+                              '+Rp ${data['price']}',
+                              style:
+                                  TextStyle(fontSize: 14, color: Colors.green),
+                            ),
+                            onTap: () {
+                              Get.toNamed(Routes.DETAILTX,
+                                  arguments: data['transactionID']);
+                            },
+                          );
+                        }).toList(),
+                      );
+                    }
+                    return SizedBox();
+                  }),
+            )
+          ],
         ),
       ),
     );
