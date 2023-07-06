@@ -128,4 +128,35 @@ class CarsController extends GetxController {
       print('Failed to update document: $error');
     }
   }
+
+  final searchC = TextEditingController();
+  final carSnapshot = Rxn<QuerySnapshot>();
+
+  @override
+  void onInit() {
+    super.onInit();
+    fetchCarList();
+  }
+
+  void fetchCarList() {
+    carSnapshot.bindStream(StreamCar());
+  }
+
+  void onSearchTextChanged(String value) {
+    if (value.isEmpty) {
+      carSnapshot.bindStream(StreamCar());
+    } else {
+      carSnapshot.bindStream(searchDocuments(value));
+    }
+  }
+
+  Stream<QuerySnapshot> searchDocuments(String keyword) {
+    final currentUserID = AuthController.instance.firebaseAuth.currentUser!.uid;
+
+    return userRepo.carCollection
+        .where("userID", isEqualTo: currentUserID)
+        .where("carNumber", isGreaterThanOrEqualTo: keyword)
+        .where("carNumber", isLessThanOrEqualTo: "${keyword}\uf8ff")
+        .snapshots();
+  }
 }
