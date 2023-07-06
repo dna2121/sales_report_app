@@ -22,7 +22,20 @@ class SalesReport extends StatelessWidget {
       title: "Application",
       initialRoute: AppPages.INITIAL,
       getPages: AppPages.routes,
-      theme: ThemeData(useMaterial3: true),
+      theme: ThemeData(
+          useMaterial3: true,
+          fontFamily: 'Krub',
+          appBarTheme: AppBarTheme(
+            backgroundColor: Colors.transparent,
+            titleTextStyle: TextStyle(color: Colors.black, fontSize: 24),
+          ),
+          bottomNavigationBarTheme: BottomNavigationBarThemeData(
+            backgroundColor: const Color.fromRGBO(245, 245, 245, 1),
+            selectedItemColor: const Color.fromRGBO(136, 164, 124, 1),
+          ),
+          floatingActionButtonTheme: FloatingActionButtonThemeData(
+              foregroundColor: Colors.white,
+              backgroundColor: const Color.fromRGBO(136, 164, 124, 1))),
       initialBinding: AppBinding(),
     );
   }
