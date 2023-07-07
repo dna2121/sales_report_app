@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:sales_report_app/app/modules/auth/controllers/signup_controller.dart';
+import 'package:sales_report_app/utils/widget.dart';
 
 class SignupView extends GetView<SignupController> {
   const SignupView({Key? key}) : super(key: key);
@@ -19,43 +20,57 @@ class SignupView extends GetView<SignupController> {
             padding: const EdgeInsets.all(17),
             child: Column(
               children: [
-                TextFormField(
-                  decoration: InputDecoration(labelText: "Name"),
-                  controller: controller.nameController,
+                RegisterField(
+                  hintText: "Name",
+                  textEditingController: controller.nameController,
                   validator: controller.validator,
+                  textInputAction: TextInputAction.next,
                 ),
-                TextFormField(
-                  decoration: InputDecoration(labelText: "Email"),
-                  controller: controller.emailController,
+                SizedBox(height: 17),
+                RegisterField(
+                  hintText: "Email",
+                  textEditingController: controller.emailController,
                   validator: controller.validator,
+                  textInputAction: TextInputAction.next,
+                  keyboardType: TextInputType.emailAddress,
                 ),
-                TextFormField(
-                  decoration: InputDecoration(labelText: "Phone Number"),
-                  controller: controller.phoneNumberController,
+                SizedBox(height: 17),
+                RegisterField(
+                  hintText: "Phone Number",
+                  textEditingController: controller.phoneNumberController,
                   validator: controller.validator,
+                  keyboardType: TextInputType.phone,
+                  textInputAction: TextInputAction.next,
                 ),
-                TextFormField(
-                  decoration: InputDecoration(labelText: "Address"),
-                  controller: controller.addressController,
+                SizedBox(height: 17),
+                RegisterField(
+                  hintText: "Address",
+                  textEditingController: controller.addressController,
                   validator: controller.validator,
+                  textInputAction: TextInputAction.next,
+                  keyboardType: TextInputType.streetAddress,
                 ),
-                TextFormField(
-                  decoration: InputDecoration(labelText: "Password"),
-                  controller: controller.passwordController,
-                  validator: controller.validator,
-                ),
+                SizedBox(height: 17),
+                Obx(() => RegisterField(
+                      hintText: "Password",
+                      textEditingController: controller.passwordController,
+                      validator: controller.validator,
+                      obscureText: controller.isPasswordHidden.value,
+                      suffixIcon: IconButton(
+                        onPressed: () {
+                          controller.isPasswordHidden.value =
+                              !controller.isPasswordHidden.value;
+                        },
+                        icon: Icon(controller.isPasswordHidden.value
+                            ? Icons.visibility_off_outlined
+                            : Icons.visibility),
+                      ),
+                    )),
                 SizedBox(
                   height: 37,
                 ),
-                SizedBox(
-                  width: double.infinity,
-                  child: ElevatedButton(
-                    onPressed: () {
-                      controller.signUp();
-                    },
-                    child: Text("Sign up"),
-                  ),
-                ),
+                StringButton(
+                    pressed: () => controller.signUp(), text: "Sign up")
               ],
             ),
           ),

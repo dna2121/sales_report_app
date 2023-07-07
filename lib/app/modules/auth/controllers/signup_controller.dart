@@ -12,6 +12,12 @@ class SignupController extends GetxController {
   final addressController = TextEditingController();
   // final AuthController authController = Get.find();
 
+  var isPasswordHidden = true.obs;
+
+  void togglePasswordVisibility() {
+    isPasswordHidden.toggle().value;
+  }
+
   @override
   void onInit() {
     super.onInit();

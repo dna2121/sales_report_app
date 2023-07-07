@@ -74,6 +74,51 @@ class InputField extends StatelessWidget {
   }
 }
 
+//REGISTER FIELD
+class RegisterField extends StatelessWidget {
+  RegisterField({
+    super.key,
+    this.hintText,
+    this.textEditingController,
+    this.validator,
+    this.keyboardType,
+    this.textInputAction,
+    this.suffixIcon,
+    this.obscureText = false,
+  });
+
+  String? hintText;
+  TextEditingController? textEditingController;
+  String? Function(String?)? validator;
+  TextInputType? keyboardType;
+  TextInputAction? textInputAction;
+  Widget? suffixIcon;
+  bool obscureText;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        color: AppColor.grey,
+        borderRadius: BorderRadius.circular(7),
+        border: Border.all(color: AppColor.green),
+      ),
+      child: TextFormField(
+        decoration: InputDecoration(
+            contentPadding: EdgeInsets.all(16),
+            hintText: hintText,
+            border: InputBorder.none,
+            suffixIcon: suffixIcon),
+        controller: textEditingController,
+        validator: validator,
+        keyboardType: keyboardType,
+        textInputAction: textInputAction,
+        obscureText: obscureText,
+      ),
+    );
+  }
+}
+
 //STRING BUTTON
 class StringButton extends StatelessWidget {
   StringButton({super.key, required this.pressed, required this.text});
