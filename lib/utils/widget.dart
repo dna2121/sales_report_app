@@ -31,6 +31,10 @@ class InputField extends StatelessWidget {
     this.textCapitalization = TextCapitalization.none,
     this.readOnly = false,
     this.maxLines = 1,
+    this.keyboardType,
+    this.prefixText,
+    this.suffixText,
+    this.onTap,
   });
 
   final TextEditingController? controller;
@@ -40,6 +44,10 @@ class InputField extends StatelessWidget {
   TextCapitalization textCapitalization;
   final bool readOnly;
   int maxLines;
+  TextInputType? keyboardType;
+  String? prefixText;
+  String? suffixText;
+  void Function()? onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -50,13 +58,17 @@ class InputField extends StatelessWidget {
         decoration: InputDecoration(
             hintText: hintText,
             border: InputBorder.none,
-            contentPadding: EdgeInsets.symmetric(horizontal: 11)),
+            contentPadding: EdgeInsets.symmetric(horizontal: 11),
+            prefixText: prefixText,
+            suffixText: suffixText),
         controller: controller,
         validator: validator,
         onChanged: onChanged,
         textCapitalization: TextCapitalization.characters,
         readOnly: readOnly,
         maxLines: maxLines,
+        keyboardType: keyboardType,
+        onTap: onTap,
       ),
     );
   }
