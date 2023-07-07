@@ -1,7 +1,11 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:sales_report_app/app/modules/admin/controllers/admintx_controller.dart';
+
+import '../../../../utils/widget.dart';
 
 class AdminDetailtxView extends GetView<AdminTxController> {
   const AdminDetailtxView({Key? key}) : super(key: key);
@@ -10,59 +14,104 @@ class AdminDetailtxView extends GetView<AdminTxController> {
     final String documentId = Get.arguments;
     controller.documentId = documentId;
     controller.fetchTxDoc();
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Detail Transaction'),
         centerTitle: true,
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(18.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              'Name',
-              style: TextStyle(fontSize: 18),
-            ),
-            TextFormField(
-              controller: controller.nameC,
-              readOnly: true,
-              decoration: InputDecoration(border: OutlineInputBorder()),
-            ),
-            SizedBox(height: 17),
-            Text(
-              'Price',
-              style: TextStyle(fontSize: 18),
-            ),
-            TextFormField(
-              controller: controller.priceC,
-              readOnly: true,
-              decoration: InputDecoration(
-                  prefixText: "Rp. ", border: OutlineInputBorder()),
-            ),
-            SizedBox(height: 17),
-            Text(
-              'Date',
-              style: TextStyle(fontSize: 18),
-            ),
-            TextFormField(
-              controller: controller.dateC,
-              readOnly: true,
-              decoration: InputDecoration(border: OutlineInputBorder()),
-            ),
-            SizedBox(height: 17),
-            Text(
-              'Weight',
-              style: TextStyle(fontSize: 18),
-            ),
-            TextFormField(
-              controller: controller.weightC,
-              readOnly: true,
-              decoration: InputDecoration(
-                  suffixText: "kg ", border: OutlineInputBorder()),
-            ),
-            SizedBox(height: 17),
-          ],
+      body: SingleChildScrollView(
+        child: StreamBuilder(
+          stream: controller.getDetailTx(),
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return Center(child: Text("Loading"));
+            }
+
+            if (!snapshot.hasData) {
+              return Center(child: Text("There is no data"));
+            }
+
+            if (snapshot.hasData) {
+              var userData = snapshot.data!;
+
+              int totalPrice = userData['price'];
+              final formatCurrency =
+                  NumberFormat.currency(locale: 'id_ID', symbol: 'Rp ');
+              String formattedAmount = formatCurrency.format(totalPrice);
+
+              Timestamp timestamp = userData['date'] as Timestamp;
+              DateTime date = timestamp.toDate();
+              String tanggal = DateFormat('d MMMM yyyy').format(date);
+
+              return Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SizedBox(height: 18),
+                  Padding(
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 21, vertical: 7),
+                    child: HeaderText(text: "Name"),
+                  ),
+                  Padding(
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 21, vertical: 7),
+                    child: StringField(text: userData['name']),
+                  ),
+                  SizedBox(height: 18),
+                  Padding(
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 21, vertical: 7),
+                    child: HeaderText(text: "Price"),
+                  ),
+                  Padding(
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 21, vertical: 7),
+                    child: StringField(text: formattedAmount),
+                  ),
+                  SizedBox(height: 18),
+                  Padding(
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 21, vertical: 7),
+                    child: HeaderText(text: "Date"),
+                  ),
+                  Padding(
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 21, vertical: 7),
+                    child: StringField(text: tanggal),
+                  ),
+                  SizedBox(height: 18),
+                  Padding(
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 21, vertical: 7),
+                    child: HeaderText(text: "Weight"),
+                  ),
+                  Padding(
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 21, vertical: 7),
+                    child: StringField(
+                        text: userData['weight'].toString() + " kg"),
+                  ),
+                  SizedBox(height: 18),
+                  Padding(
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 21, vertical: 7),
+                    child: HeaderText(text: "Car Number"),
+                  ),
+                  Padding(
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 21, vertical: 7),
+                    child: StringField(text: userData['carNumber']),
+                  ),
+                  SizedBox(height: 18),
+                ],
+              );
+            } else if (snapshot.hasError) {
+              return Center(child: Text('Something went wrong'));
+            } else {
+              return SizedBox();
+            }
+          },
         ),
       ),
     );

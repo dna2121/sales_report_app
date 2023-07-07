@@ -39,6 +39,10 @@ class AdminTxController extends GetxController {
     return txRepo.txCollection.snapshots();
   }
 
+  Stream<DocumentSnapshot<Object?>> getDetailTx() {
+    return txRepo.txCollection.doc(documentId).snapshots();
+  }
+
   Stream<List<String>> streamName() {
     Query<Map<String, dynamic>> itemsRef = FirebaseFirestore.instance
         .collection('Users')
