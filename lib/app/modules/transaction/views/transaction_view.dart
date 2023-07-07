@@ -119,6 +119,7 @@ class TransactionView extends GetView<TransactionController> {
 
                       final formatCurrency =
                           NumberFormat.currency(locale: 'id_ID', symbol: 'Rp ');
+                      
                       return GroupedListView(
                         elements: snapshot.data!.docs,
                         order: GroupedListOrder.DESC,
