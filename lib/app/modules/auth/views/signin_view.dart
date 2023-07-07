@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:sales_report_app/utils/widget.dart';
 import '../controllers/signin_controller.dart';
 
 class SigninView extends GetView<SigninController> {
@@ -18,28 +19,33 @@ class SigninView extends GetView<SigninController> {
           padding: const EdgeInsets.all(17),
           child: Column(
             children: [
-              TextFormField(
-                decoration: InputDecoration(labelText: "Email"),
+              RegisterField(
+                hintText: "Email",
                 validator: controller.validator,
-                controller: controller.emailController,
+                textEditingController: controller.emailController,
+                keyboardType: TextInputType.emailAddress,
+                textInputAction: TextInputAction.next,
               ),
-              TextFormField(
-                decoration: InputDecoration(labelText: "Password"),
-                validator: controller.validator,
-                controller: controller.passwordController,
-              ),
+              SizedBox(height: 27),
+              Obx(() => RegisterField(
+                    hintText: "Password",
+                    textEditingController: controller.passwordController,
+                    validator: controller.validator,
+                    obscureText: controller.isPasswordHidden.value,
+                    suffixIcon: IconButton(
+                      onPressed: () {
+                        controller.isPasswordHidden.value =
+                            !controller.isPasswordHidden.value;
+                      },
+                      icon: Icon(controller.isPasswordHidden.value
+                          ? Icons.visibility_off_outlined
+                          : Icons.visibility),
+                    ),
+                  )),
               SizedBox(
-                height: 37,
+                height: 47,
               ),
-              SizedBox(
-                width: double.infinity,
-                child: ElevatedButton(
-                  onPressed: () {
-                    controller.signin();
-                  },
-                  child: Text("Login"),
-                ),
-              ),
+              StringButton(pressed: () => controller.signin(), text: "Login")
             ],
           ),
         ),

@@ -1,5 +1,4 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import 'package:sales_report_app/app/data/models/user_profile.dart';
 import 'package:sales_report_app/app/data/repositories/user_repositories.dart';
@@ -55,9 +54,11 @@ class AuthController extends GetxController {
         duration: Duration(seconds: 3),
       ));
     } catch (e) {
-      if (kDebugMode) {
-        print(e);
-      }
+      Get.showSnackbar(GetSnackBar(
+        title: 'Error',
+        message: e.toString(),
+        duration: Duration(seconds: 3),
+      ));
     }
   }
 
@@ -89,9 +90,11 @@ class AuthController extends GetxController {
         duration: Duration(seconds: 2),
       ));
     } catch (e) {
-      if (kDebugMode) {
-        print(e);
-      }
+      Get.showSnackbar(GetSnackBar(
+        title: 'Error',
+        message: e.toString(),
+        duration: Duration(seconds: 3),
+      ));
     }
   }
 }

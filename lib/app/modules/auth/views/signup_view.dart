@@ -26,7 +26,7 @@ class SignupView extends GetView<SignupController> {
                   validator: controller.validator,
                   textInputAction: TextInputAction.next,
                 ),
-                SizedBox(height: 17),
+                SizedBox(height: 27),
                 RegisterField(
                   hintText: "Email",
                   textEditingController: controller.emailController,
@@ -34,7 +34,7 @@ class SignupView extends GetView<SignupController> {
                   textInputAction: TextInputAction.next,
                   keyboardType: TextInputType.emailAddress,
                 ),
-                SizedBox(height: 17),
+                SizedBox(height: 27),
                 RegisterField(
                   hintText: "Phone Number",
                   textEditingController: controller.phoneNumberController,
@@ -42,7 +42,7 @@ class SignupView extends GetView<SignupController> {
                   keyboardType: TextInputType.phone,
                   textInputAction: TextInputAction.next,
                 ),
-                SizedBox(height: 17),
+                SizedBox(height: 27),
                 RegisterField(
                   hintText: "Address",
                   textEditingController: controller.addressController,
@@ -50,11 +50,11 @@ class SignupView extends GetView<SignupController> {
                   textInputAction: TextInputAction.next,
                   keyboardType: TextInputType.streetAddress,
                 ),
-                SizedBox(height: 17),
+                SizedBox(height: 27),
                 Obx(() => RegisterField(
                       hintText: "Password",
                       textEditingController: controller.passwordController,
-                      validator: controller.validator,
+                      validator: controller.passwordValidator,
                       obscureText: controller.isPasswordHidden.value,
                       suffixIcon: IconButton(
                         onPressed: () {
