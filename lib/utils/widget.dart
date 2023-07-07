@@ -14,7 +14,8 @@ class HeaderText extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       text,
-      style: TextStyle(fontWeight: FontWeight.w600, fontSize: 18),
+      style: TextStyle(
+          fontWeight: FontWeight.w600, fontSize: 18, letterSpacing: 1),
     );
   }
 }
@@ -86,9 +87,7 @@ class EditButton extends StatelessWidget {
       width: double.infinity,
       child: ElevatedButton(
         style: ButtonStyle(backgroundColor: AppColor.abuabu),
-        onPressed: () {
-          Pressed;
-        },
+        onPressed: Pressed,
         child: Text(
           text,
           style: TextStyle(color: Colors.black87),

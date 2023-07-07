@@ -26,6 +26,7 @@ class SalesReport extends StatelessWidget {
       theme: ThemeData(
         useMaterial3: true,
         fontFamily: 'Krub',
+        scaffoldBackgroundColor: Colors.white,
         appBarTheme: AppBarTheme(
           backgroundColor: Colors.transparent,
           titleTextStyle: TextStyle(color: Colors.black, fontSize: 24),
@@ -46,6 +47,15 @@ class SalesReport extends StatelessWidget {
             ),
           ),
         ),
+        cardTheme: CardTheme(
+          margin: EdgeInsets.symmetric(horizontal: 11, vertical: 3),
+          color: AppColor.background,
+          elevation: 0,
+          shape: RoundedRectangleBorder(
+              side: BorderSide(color: Colors.grey.shade300),
+              borderRadius: BorderRadius.circular(11)),
+        ),
+        drawerTheme: DrawerThemeData(backgroundColor: Colors.grey.shade200),
       ),
       initialBinding: AppBinding(),
     );

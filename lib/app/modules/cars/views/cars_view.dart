@@ -57,7 +57,7 @@ class CarsView extends GetView<CarsController> {
                                 Form(
                                   key: controller.carsFormKey,
                                   child: InputField(
-                                      hintText: "Add New Car Number",
+                                      hintText: "ex: KB 1637 WT",
                                       controller: controller.carsController,
                                       validator: controller.validator),
                                 ),
