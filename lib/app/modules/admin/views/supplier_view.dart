@@ -59,21 +59,22 @@ class SupplierView extends GetView<SupplierController> {
                                   child: Container(
                                     width: double.infinity,
                                     child: Padding(
-                                      padding: const EdgeInsets.all(17.0),
+                                      padding: const EdgeInsets.symmetric(
+                                          vertical: 26, horizontal: 18),
                                       child: Column(
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,
                                         children: [
-                                          Text(
-                                              roles.contains('admin')
-                                                  ? '${data['name']} (Admin)'
-                                                  : '${data['name']}',
-                                              style: TextStyle(fontSize: 21)),
+                                          HeaderText(
+                                            text: roles.contains('admin')
+                                                ? '${data['name']} (Admin)'
+                                                : '${data['name']}',
+                                          ),
                                           SizedBox(height: 17),
-                                          Text("Phone Number"),
+                                          TitleText(text: "Phone Number"),
                                           Text(data['phoneNumber']),
                                           SizedBox(height: 17),
-                                          Text("Address"),
+                                          TitleText(text: "Address"),
                                           Text(data['address']),
                                           SizedBox(height: 17),
                                         ],
