@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:sales_report_app/utils/widget.dart';
 
 import '../../../routes/app_pages.dart';
 import '../controllers/supplier_controller.dart';
@@ -18,28 +19,20 @@ class SupplierView extends GetView<SupplierController> {
       body: Column(
         children: [
           Padding(
-            padding: const EdgeInsets.fromLTRB(17, 17, 17, 1),
-            child: Row(
-              children: [
-                Expanded(
-                  child: ElevatedButton(
-                    onPressed: () => Get.toNamed(Routes.SIGNUP),
-                    child: Text("Create a new account"),
-                  ),
-                ),
-              ],
-            ),
-          ),
+              padding: const EdgeInsets.fromLTRB(17, 17, 17, 1),
+              child: StringButton(
+                  pressed: () => Get.toNamed(Routes.SIGNUP),
+                  text: "Create a new account")),
           Expanded(
             child: StreamBuilder(
                 stream: controller.getUser(),
                 builder: (context, snapshot) {
                   if (snapshot.hasError) {
-                    return Text('Something went wrong');
+                    return Center(child: Text('Something went wrong'));
                   }
 
                   if (snapshot.connectionState == ConnectionState.waiting) {
-                    return Text("Loading");
+                    return Center(child: Text("Loading"));
                   }
 
                   return ListView(
@@ -96,28 +89,12 @@ class SupplierView extends GetView<SupplierController> {
                               Column(
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
-                                  // Container(
-                                  //   padding:
-                                  //       EdgeInsets.fromLTRB(17, 17, 17, 2),
-                                  //   width: double.infinity,
-                                  //   child: ElevatedButton(
-                                  //     onPressed: () {
-                                  //       Get.toNamed(Routes.UPDATETX,
-                                  //           arguments: data['transactionID']);
-                                  //     },
-                                  //     child: Text("Edit"),
-                                  //   ),
-                                  // ),
-                                  Container(
-                                    padding: EdgeInsets.fromLTRB(17, 2, 17, 17),
-                                    width: double.infinity,
-                                    child: ElevatedButton(
-                                      onPressed: () {
+                                  EditButton(text: "Edit", Pressed: () {}),
+                                  DeleteButton(
+                                      text: "Delete",
+                                      Pressed: () {
                                         controller.deleteUser(data["id"]);
-                                      },
-                                      child: Text("Delete"),
-                                    ),
-                                  ),
+                                      })
                                 ],
                               ),
                             );
