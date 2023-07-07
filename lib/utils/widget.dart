@@ -15,7 +15,7 @@ class HeaderText extends StatelessWidget {
     return Text(
       text,
       style: TextStyle(
-          fontWeight: FontWeight.w600, fontSize: 18, letterSpacing: 1),
+          fontWeight: FontWeight.w600, fontSize: 18, letterSpacing: 0.5),
     );
   }
 }
@@ -118,5 +118,43 @@ class DeleteButton extends StatelessWidget {
         ),
       ),
     );
+  }
+}
+
+//TITLE TEXT
+class TitleText extends StatelessWidget {
+  const TitleText({
+    super.key,
+    required this.text,
+  });
+
+  final String text;
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      text,
+      style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+    );
+  }
+}
+
+//STRING FIELD
+class StringField extends StatelessWidget {
+  StringField({
+    super.key,
+    required this.text,
+  });
+
+  String text;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+        width: double.infinity,
+        padding: EdgeInsets.all(13),
+        decoration: BoxDecoration(
+            color: AppColor.grey2, borderRadius: BorderRadius.circular(8)),
+        child: TitleText(text: text));
   }
 }

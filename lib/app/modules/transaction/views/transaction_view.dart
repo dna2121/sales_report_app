@@ -96,7 +96,7 @@ class TransactionView extends GetView<TransactionController> {
                     }
 
                     if (!snapshot.hasData) {
-                      return Text("Loading...");
+                      return Center(child: Text("Loading..."));
                     }
 
                     if (snapshot.hasData) {
@@ -134,8 +134,7 @@ class TransactionView extends GetView<TransactionController> {
                               formatCurrency.format(totalPrice);
 
                           return Padding(
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 17, vertical: 5),
+                            padding: const EdgeInsets.fromLTRB(19, 13, 19, 10),
                             child: Row(
                               children: [
                                 Expanded(child: HeaderText(text: value)),
@@ -181,23 +180,6 @@ class TransactionView extends GetView<TransactionController> {
           ],
         ),
       ),
-    );
-  }
-}
-
-class TitleText extends StatelessWidget {
-  const TitleText({
-    super.key,
-    required this.text,
-  });
-
-  final String text;
-
-  @override
-  Widget build(BuildContext context) {
-    return Text(
-      text,
-      style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
     );
   }
 }

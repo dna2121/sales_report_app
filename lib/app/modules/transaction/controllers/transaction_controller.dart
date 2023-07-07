@@ -36,6 +36,12 @@ class TransactionController extends GetxController {
         .snapshots();
   }
 
+  Stream<DocumentSnapshot<Object?>> getDetailTx() {
+    return txRepo.txCollection
+        .doc(documentId)
+        .snapshots();
+  }
+
   @override
   void onClose() {
     priceC.dispose();

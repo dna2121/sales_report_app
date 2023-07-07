@@ -48,12 +48,12 @@ class SalesReport extends StatelessWidget {
           ),
         ),
         cardTheme: CardTheme(
-          margin: EdgeInsets.symmetric(horizontal: 11, vertical: 3),
+          margin: EdgeInsets.symmetric(horizontal: 11, vertical: 9),
           color: AppColor.background,
           elevation: 0,
           shape: RoundedRectangleBorder(
               side: BorderSide(color: Colors.grey.shade300),
-              borderRadius: BorderRadius.circular(11)),
+              borderRadius: BorderRadius.circular(13)),
         ),
         drawerTheme: DrawerThemeData(backgroundColor: Colors.grey.shade200),
       ),
