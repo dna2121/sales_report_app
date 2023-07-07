@@ -19,6 +19,7 @@ abstract class Routes {
   static const UPDATETX = _Paths.UPDATETX;
   static const PROFILE = _Paths.PROFILE;
   static const UPDATEPROFILE = _Paths.UPDATEPROFILE;
+  static const UPDATESUPPLIER = _Paths.UPDATESUPPLIER;
 }
 
 abstract class _Paths {
@@ -39,4 +40,5 @@ abstract class _Paths {
   static const UPDATETX = '/update-tx';
   static const PROFILE = '/profile';
   static const UPDATEPROFILE = '/update-profile';
+  static const UPDATESUPPLIER = '/update-supplier';
 }

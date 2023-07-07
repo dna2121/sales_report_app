@@ -76,7 +76,6 @@ class SupplierView extends GetView<SupplierController> {
                                           Text("Address"),
                                           Text(data['address']),
                                           SizedBox(height: 17),
-                                          Text("Cars"),
                                         ],
                                       ),
                                     ),
@@ -89,7 +88,12 @@ class SupplierView extends GetView<SupplierController> {
                               Column(
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
-                                  EditButton(text: "Edit", Pressed: () {}),
+                                  EditButton(
+                                      text: "Edit",
+                                      Pressed: () {
+                                        Get.toNamed(Routes.UPDATESUPPLIER,
+                                            arguments: data['id']);
+                                      }),
                                   DeleteButton(
                                       text: "Delete",
                                       Pressed: () {
