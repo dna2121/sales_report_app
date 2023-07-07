@@ -25,6 +25,7 @@ class SignupView extends GetView<SignupController> {
                   textEditingController: controller.nameController,
                   validator: controller.validator,
                   textInputAction: TextInputAction.next,
+                  textCapitalization: TextCapitalization.words,
                 ),
                 SizedBox(height: 27),
                 RegisterField(

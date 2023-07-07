@@ -85,6 +85,7 @@ class RegisterField extends StatelessWidget {
     this.textInputAction,
     this.suffixIcon,
     this.obscureText = false,
+    this.textCapitalization = TextCapitalization.none,
   });
 
   String? hintText;
@@ -94,6 +95,7 @@ class RegisterField extends StatelessWidget {
   TextInputAction? textInputAction;
   Widget? suffixIcon;
   bool obscureText;
+  TextCapitalization textCapitalization;
 
   @override
   Widget build(BuildContext context) {
@@ -114,6 +116,7 @@ class RegisterField extends StatelessWidget {
         keyboardType: keyboardType,
         textInputAction: textInputAction,
         obscureText: obscureText,
+        textCapitalization: textCapitalization,
       ),
     );
   }

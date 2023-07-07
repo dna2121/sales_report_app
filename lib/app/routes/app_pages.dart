@@ -3,6 +3,7 @@ import 'package:sales_report_app/app/modules/admin/views/admin_detailtx_view.dar
 import 'package:sales_report_app/app/modules/admin/views/trx_view.dart';
 import 'package:sales_report_app/app/modules/admin/views/update_supplier_view.dart';
 import 'package:sales_report_app/app/modules/admin/views/update_tx_view.dart';
+import 'package:sales_report_app/app/modules/auth/views/forgot_password_view.dart';
 import 'package:sales_report_app/app/modules/profile/views/update_profile_view.dart';
 import 'package:sales_report_app/app/modules/transaction/views/detail_tx_view.dart';
 
@@ -56,6 +57,11 @@ class AppPages {
     GetPage(
       name: _Paths.SIGNUP,
       page: () => const SignupView(),
+      binding: AuthBinding(),
+    ),
+    GetPage(
+      name: _Paths.FORGOTPASSWORD,
+      page: () => const ForgotPasswordView(),
       binding: AuthBinding(),
     ),
     GetPage(

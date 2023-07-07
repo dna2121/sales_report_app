@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:sales_report_app/app/modules/auth/views/forgot_password_view.dart';
+import 'package:sales_report_app/utils/color.dart';
 import 'package:sales_report_app/utils/widget.dart';
 import '../controllers/signin_controller.dart';
 
@@ -42,6 +44,18 @@ class SigninView extends GetView<SigninController> {
                           : Icons.visibility),
                     ),
                   )),
+              // SizedBox(height: 17),
+              Align(
+                alignment: Alignment.centerRight,
+                child: TextButton(
+                    onPressed: () {
+                      Get.to(ForgotPasswordView());
+                    },
+                    child: Text(
+                      "Forgot password?",
+                      style: TextStyle(color: AppColor.green),
+                    )),
+              ),
               SizedBox(
                 height: 47,
               ),

@@ -20,6 +20,7 @@ abstract class Routes {
   static const PROFILE = _Paths.PROFILE;
   static const UPDATEPROFILE = _Paths.UPDATEPROFILE;
   static const UPDATESUPPLIER = _Paths.UPDATESUPPLIER;
+  static const FORGOTPASSWORD = _Paths.FORGOTPASSWORD;
 }
 
 abstract class _Paths {
@@ -29,6 +30,7 @@ abstract class _Paths {
   static const SIGNIN = '/signin';
   static const SPLASH = '/splash';
   static const SIGNUP = '/signup';
+  static const FORGOTPASSWORD = '/forgot-password';
   static const CARS = '/cars';
   static const CARSEDIT = '/cars-edit';
   static const TRANSACTION = '/transaction';
