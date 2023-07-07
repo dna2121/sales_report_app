@@ -58,6 +58,8 @@ class CarsView extends GetView<CarsController> {
                                   key: controller.carsFormKey,
                                   child: InputField(
                                       hintText: "ex: KB 1637 WT",
+                                      textCapitalization:
+                                          TextCapitalization.characters,
                                       controller: controller.carsController,
                                       validator: controller.validator),
                                 ),

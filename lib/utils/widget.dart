@@ -22,19 +22,24 @@ class HeaderText extends StatelessWidget {
 
 //INPUT FIELD
 class InputField extends StatelessWidget {
-  InputField(
-      {super.key,
-      this.hintText,
-      this.controller,
-      this.validator,
-      this.onChanged,
-      TextCapitalization textCapitalization = TextCapitalization.none});
+  InputField({
+    super.key,
+    this.hintText,
+    this.controller,
+    this.validator,
+    this.onChanged,
+    this.textCapitalization = TextCapitalization.none,
+    this.readOnly = false,
+    this.maxLines = 1,
+  });
 
   final TextEditingController? controller;
   String? Function(String?)? validator;
-  TextCapitalization? textCapitalization;
   String? hintText;
   void Function(String)? onChanged;
+  TextCapitalization textCapitalization;
+  final bool readOnly;
+  int maxLines;
 
   @override
   Widget build(BuildContext context) {
@@ -49,6 +54,9 @@ class InputField extends StatelessWidget {
         controller: controller,
         validator: validator,
         onChanged: onChanged,
+        textCapitalization: TextCapitalization.characters,
+        readOnly: readOnly,
+        maxLines: maxLines,
       ),
     );
   }
