@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sales_report_app/app/data/models/car.dart';
+import 'package:sales_report_app/utils/color.dart';
 
 import '../../../data/repositories/user_repositories.dart';
 import '../../auth/controllers/auth_controller.dart';
@@ -70,16 +71,16 @@ class CarsController extends GetxController {
 
     try {
       Get.defaultDialog(
-        title: "Delete Data",
-        middleText: "Do you want to delete the data?",
-        onConfirm: () async {
-          await documentReference.delete();
-          Get.back(); //close dialog
-          Get.back(); //close the bottom sheet
-        },
-        textConfirm: "Yes",
-        textCancel: "No",
-      );
+          title: "Delete Data",
+          middleText: "Do you want to delete the data?",
+          onConfirm: () async {
+            await documentReference.delete();
+            Get.back(); //close dialog
+            Get.back(); //close the bottom sheet
+          },
+          textConfirm: "Yes",
+          textCancel: "No",
+          backgroundColor: AppColor.background);
     } catch (e) {
       Get.defaultDialog(
         title: "Something's wrong.",
