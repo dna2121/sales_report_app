@@ -31,6 +31,13 @@ class UpdateTxView extends GetView<AdminTxController> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  TitleText(text: "TransactionID"),
+                  SizedBox(height: 7),
+                  InputField(
+                    readOnly: true,
+                    controller: controller.trxidC,
+                  ),
+                  SizedBox(height: 17),
                   TitleText(text: "Name"),
                   SizedBox(height: 7),
                   StreamBuilder(
