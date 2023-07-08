@@ -28,7 +28,7 @@ class SalesReport extends StatelessWidget {
         fontFamily: 'Krub',
         scaffoldBackgroundColor: Colors.white,
         appBarTheme: AppBarTheme(
-          backgroundColor: Colors.transparent,
+          backgroundColor: Colors.white,
           titleTextStyle: TextStyle(color: Colors.black, fontSize: 24),
         ),
         bottomNavigationBarTheme: BottomNavigationBarThemeData(

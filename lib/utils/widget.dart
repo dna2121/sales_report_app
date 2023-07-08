@@ -35,6 +35,7 @@ class InputField extends StatelessWidget {
     this.prefixText,
     this.suffixText,
     this.onTap,
+    this.textInputAction,
   });
 
   final TextEditingController? controller;
@@ -48,6 +49,7 @@ class InputField extends StatelessWidget {
   String? prefixText;
   String? suffixText;
   void Function()? onTap;
+  TextInputAction? textInputAction;
 
   @override
   Widget build(BuildContext context) {
@@ -69,6 +71,7 @@ class InputField extends StatelessWidget {
         maxLines: maxLines,
         keyboardType: keyboardType,
         onTap: onTap,
+        textInputAction: textInputAction,
       ),
     );
   }

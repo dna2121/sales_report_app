@@ -15,7 +15,7 @@ class TrxView extends GetView<AdminTxController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Transaction'),
+        title: const Text('Admin Transaction'),
         centerTitle: true,
       ),
       floatingActionButton: FloatingActionButton(

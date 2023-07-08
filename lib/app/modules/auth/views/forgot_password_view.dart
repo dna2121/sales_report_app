@@ -23,7 +23,7 @@ class ForgotPasswordView extends GetView<ForgotPasswordController> {
                 decoration: InputDecoration(hintText: "Email"),
                 autovalidateMode: AutovalidateMode.onUserInteraction,
                 validator: (email) =>
-                    email != null ? 'Enter a valid email' : null,
+                    email == null ? 'Enter a valid email' : null,
                 textInputAction: TextInputAction.done,
                 keyboardType: TextInputType.emailAddress,
                 controller: controller.emailController,

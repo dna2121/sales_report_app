@@ -10,6 +10,9 @@ class SigninView extends GetView<SigninController> {
   const SigninView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
+    controller.emailController.clear();
+    controller.passwordController.clear();
+    
     return Scaffold(
       appBar: AppBar(
         title: const Text('Login'),

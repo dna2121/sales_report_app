@@ -46,6 +46,8 @@ class UpdateSupplierView extends GetView<SupplierController> {
                       child: InputField(
                         controller: controller.nameC,
                         validator: controller.validator,
+                        textCapitalization: TextCapitalization.words,
+                        textInputAction: TextInputAction.next,
                       ),
                     )
                   ],
@@ -59,6 +61,8 @@ class UpdateSupplierView extends GetView<SupplierController> {
                       child: InputField(
                         controller: controller.phoneC,
                         validator: controller.validator,
+                        textInputAction: TextInputAction.next,
+                        keyboardType: TextInputType.phone,
                       ),
                     )
                   ],
@@ -74,6 +78,8 @@ class UpdateSupplierView extends GetView<SupplierController> {
                         controller: controller.addressC,
                         validator: controller.validator,
                         maxLines: 4,
+                        textInputAction: TextInputAction.next,
+                        keyboardType: TextInputType.streetAddress,
                       ),
                     ),
                   ],

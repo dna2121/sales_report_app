@@ -48,7 +48,6 @@ class NewTxView extends GetView<AdminTxController> {
                             popupProps: PopupProps.dialog(
                               showSearchBox: true,
                               showSelectedItems: true,
-                              constraints: BoxConstraints.tightFor(height: 500),
                               dialogProps: DialogProps(
                                 backgroundColor: AppColor.background,
                                 contentPadding: EdgeInsetsDirectional.symmetric(
@@ -149,7 +148,6 @@ class NewTxView extends GetView<AdminTxController> {
                             popupProps: PopupProps.dialog(
                               showSearchBox: true,
                               showSelectedItems: true,
-                              constraints: BoxConstraints.tightFor(height: 500),
                               dialogProps: DialogProps(
                                 backgroundColor: AppColor.background,
                                 contentPadding: EdgeInsetsDirectional.symmetric(
