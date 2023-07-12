@@ -64,11 +64,6 @@ class ProfileController extends GetxController {
       await userRepo.userCollection.doc(documentId).update(
           {'name': newName, 'address': newAddress, 'phoneNumber': newPhone});
 
-      var newUser = AuthController
-          .instance.firebaseAuth.currentUser; //untuk dapat uid account
-
-      newUser!.updateDisplayName(newName);
-
       Get.defaultDialog(
         title: 'Success',
         middleText: "Data updated.",

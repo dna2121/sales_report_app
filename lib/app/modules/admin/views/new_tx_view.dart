@@ -163,7 +163,7 @@ class NewTxView extends GetView<AdminTxController> {
                             ),
                             items: snapshot.data!,
                             selectedItem: controller.selectedCarnum,
-                            validator: controller.validator,
+                            // validator: controller.validator,
                             onChanged: (value) async {
                               controller.selectedCarnum = value;
                             },

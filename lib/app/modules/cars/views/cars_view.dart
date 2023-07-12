@@ -17,7 +17,7 @@ class CarsView extends GetView<CarsController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Cars'),
+        title: const Text('Car Number'),
         centerTitle: true,
       ),
       body: Column(

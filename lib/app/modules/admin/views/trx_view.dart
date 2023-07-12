@@ -42,7 +42,7 @@ class TrxView extends GetView<AdminTxController> {
             ),
             Divider(),
             ListTile(
-                title: const Text('User Form'),
+                title: const Text('User Page'),
                 leading: Icon(Icons.supervisor_account_outlined),
                 onTap: () => Get.offAllNamed(Routes.HOME)),
             ListTile(

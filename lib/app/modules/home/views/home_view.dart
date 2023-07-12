@@ -25,7 +25,7 @@ class HomeView extends GetView<HomeController> {
               BottomNavigationBarItem(
                 icon: Icon(Icons.fire_truck_outlined),
                 activeIcon: Icon(Icons.fire_truck),
-                label: 'Cars',
+                label: 'Car Number',
               ),
             ],
           ),

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
-import 'package:sales_report_app/app/modules/auth/views/forgot_password_view.dart';
 import 'package:sales_report_app/utils/color.dart';
 import 'package:sales_report_app/utils/widget.dart';
+import '../../../routes/app_pages.dart';
 import '../controllers/signin_controller.dart';
 
 class SigninView extends GetView<SigninController> {
@@ -52,7 +52,7 @@ class SigninView extends GetView<SigninController> {
                 alignment: Alignment.centerRight,
                 child: TextButton(
                     onPressed: () {
-                      Get.to(ForgotPasswordView());
+                      Get.toNamed(Routes.FORGOTPASSWORD);
                     },
                     child: Text(
                       "Forgot password?",

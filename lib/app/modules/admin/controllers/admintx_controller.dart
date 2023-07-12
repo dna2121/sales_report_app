@@ -17,6 +17,7 @@ class AdminTxController extends GetxController {
   final weightC = TextEditingController();
   final dateC = TextEditingController();
   final trxidC = TextEditingController();
+  final uidC = TextEditingController();
 
   var selectedDate = DateTime.now().obs;
   late String documentId;
@@ -140,6 +141,7 @@ class AdminTxController extends GetxController {
         Timestamp timestamp = data['date'] as Timestamp;
         String carnum = data['carNumber'] as String;
         String trxId = data['transactionID'] as String;
+        String uID = data['userID'] as String;
 
         priceC.text = price.toString();
         selectedName = name;
@@ -147,6 +149,7 @@ class AdminTxController extends GetxController {
         dateC.text = DateFormat('yyyy-MM-dd').format(timestamp.toDate());
         carC.text = carnum;
         trxidC.text = trxId;
+        uidC.text = uID;
       }
     } catch (error) {
       print('Failed to fetch document data: $error');

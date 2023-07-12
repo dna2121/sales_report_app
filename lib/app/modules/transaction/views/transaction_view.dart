@@ -9,7 +9,6 @@ import 'package:intl/intl.dart';
 import 'package:sales_report_app/app/routes/app_pages.dart';
 import 'package:sales_report_app/utils/widget.dart';
 
-import '../../auth/controllers/auth_controller.dart';
 import '../controllers/transaction_controller.dart';
 
 class TransactionView extends GetView<TransactionController> {
@@ -25,13 +24,23 @@ class TransactionView extends GetView<TransactionController> {
       drawer: Drawer(
         child: ListView(
           children: [
-            Padding(
-              padding: const EdgeInsets.all(17.0),
-              child: HeaderText(
-                text:
-                    'Hi, ${AuthController.instance.firebaseAuth.currentUser!.displayName.toString()}.',
-              ),
-            ),
+            StreamBuilder(
+                stream: controller.getRole(),
+                builder: (context, snapshot) {
+                  if (snapshot.hasData) {
+                    var userData = snapshot.data!;
+                    return Padding(
+                      padding: const EdgeInsets.all(17.0),
+                      child: HeaderText(
+                        text: 'Hi, ${userData['name']}.',
+                      ),
+                    );
+                  } else if (snapshot.hasError) {
+                    return SizedBox();
+                  } else {
+                    return SizedBox();
+                  }
+                }),
             Divider(),
             StreamBuilder(
               stream: controller.getRole(),
@@ -44,7 +53,7 @@ class TransactionView extends GetView<TransactionController> {
                     return Visibility(
                       visible: true,
                       child: ListTile(
-                        title: const Text('Admin Form'),
+                        title: const Text('Admin Page'),
                         leading: Icon(Icons.admin_panel_settings_outlined),
                         onTap: () {
                           Get.offAllNamed(Routes.ADMIN);
@@ -119,7 +128,7 @@ class TransactionView extends GetView<TransactionController> {
 
                       final formatCurrency =
                           NumberFormat.currency(locale: 'id_ID', symbol: 'Rp ');
-                      
+
                       return GroupedListView(
                         elements: snapshot.data!.docs,
                         order: GroupedListOrder.DESC,
