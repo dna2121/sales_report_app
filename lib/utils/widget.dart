@@ -1,6 +1,7 @@
 // ignore_for_file: must_be_immutable
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import 'color.dart';
 
@@ -36,6 +37,7 @@ class InputField extends StatelessWidget {
     this.suffixText,
     this.onTap,
     this.textInputAction,
+    this.inputFormatters,
   });
 
   final TextEditingController? controller;
@@ -50,6 +52,7 @@ class InputField extends StatelessWidget {
   String? suffixText;
   void Function()? onTap;
   TextInputAction? textInputAction;
+  List<TextInputFormatter>? inputFormatters;
 
   @override
   Widget build(BuildContext context) {
@@ -57,6 +60,7 @@ class InputField extends StatelessWidget {
       decoration: BoxDecoration(
           color: AppColor.grey2, borderRadius: BorderRadius.circular(7)),
       child: TextFormField(
+        inputFormatters: inputFormatters,
         decoration: InputDecoration(
             hintText: hintText,
             border: InputBorder.none,
@@ -79,17 +83,17 @@ class InputField extends StatelessWidget {
 
 //REGISTER FIELD
 class RegisterField extends StatelessWidget {
-  RegisterField({
-    super.key,
-    this.hintText,
-    this.textEditingController,
-    this.validator,
-    this.keyboardType,
-    this.textInputAction,
-    this.suffixIcon,
-    this.obscureText = false,
-    this.textCapitalization = TextCapitalization.none,
-  });
+  RegisterField(
+      {super.key,
+      this.hintText,
+      this.textEditingController,
+      this.validator,
+      this.keyboardType,
+      this.textInputAction,
+      this.suffixIcon,
+      this.obscureText = false,
+      this.textCapitalization = TextCapitalization.none,
+      this.inputFormatters});
 
   String? hintText;
   TextEditingController? textEditingController;
@@ -99,6 +103,7 @@ class RegisterField extends StatelessWidget {
   Widget? suffixIcon;
   bool obscureText;
   TextCapitalization textCapitalization;
+  List<TextInputFormatter>? inputFormatters;
 
   @override
   Widget build(BuildContext context) {
@@ -109,6 +114,7 @@ class RegisterField extends StatelessWidget {
         border: Border.all(color: AppColor.green),
       ),
       child: TextFormField(
+        inputFormatters: inputFormatters,
         decoration: InputDecoration(
             contentPadding: EdgeInsets.all(16),
             hintText: hintText,

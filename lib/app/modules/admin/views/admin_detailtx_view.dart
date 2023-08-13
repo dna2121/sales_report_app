@@ -103,17 +103,17 @@ class AdminDetailtxView extends GetView<AdminTxController> {
                         const EdgeInsets.symmetric(horizontal: 21, vertical: 7),
                     child: StringField(text: userData['carNumber']),
                   ),
-                  SizedBox(height: 18),
-                  Padding(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 21, vertical: 7),
-                    child: HeaderText(text: "TransactionID"),
-                  ),
-                  Padding(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 21, vertical: 7),
-                    child: StringField(text: userData['transactionID']),
-                  ),
+                  // SizedBox(height: 18),
+                  // Padding(
+                  //   padding:
+                  //       const EdgeInsets.symmetric(horizontal: 21, vertical: 7),
+                  //   child: HeaderText(text: "TransactionID"),
+                  // ),
+                  // Padding(
+                  //   padding:
+                  //       const EdgeInsets.symmetric(horizontal: 21, vertical: 7),
+                  //   child: StringField(text: userData['transactionID']),
+                  // ),
                   SizedBox(height: 35),
                 ],
               );

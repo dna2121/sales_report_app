@@ -102,17 +102,17 @@ class DetailTxView extends GetView<TransactionController> {
                     child: StringField(
                         text: userData['weight'].toString() + " kg"),
                   ),
-                  SizedBox(height: 18),
-                  Padding(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 21, vertical: 7),
-                    child: HeaderText(text: "TransactionID"),
-                  ),
-                  Padding(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 21, vertical: 7),
-                    child: StringField(text: userData['transactionID']),
-                  ),
+                  // SizedBox(height: 18),
+                  // Padding(
+                  //   padding:
+                  //       const EdgeInsets.symmetric(horizontal: 21, vertical: 7),
+                  //   child: HeaderText(text: "TransactionID"),
+                  // ),
+                  // Padding(
+                  //   padding:
+                  //       const EdgeInsets.symmetric(horizontal: 21, vertical: 7),
+                  //   child: StringField(text: userData['transactionID']),
+                  // ),
                   SizedBox(height: 35),
                 ],
               );

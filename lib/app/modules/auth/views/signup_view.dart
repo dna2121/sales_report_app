@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import 'package:get/get.dart';
 import 'package:sales_report_app/app/modules/auth/controllers/signup_controller.dart';
@@ -37,6 +38,10 @@ class SignupView extends GetView<SignupController> {
                 ),
                 SizedBox(height: 27),
                 RegisterField(
+                  inputFormatters: [
+                    FilteringTextInputFormatter.digitsOnly,
+                    LengthLimitingTextInputFormatter(13)
+                  ],
                   hintText: "Phone Number",
                   textEditingController: controller.phoneNumberController,
                   validator: controller.validator,

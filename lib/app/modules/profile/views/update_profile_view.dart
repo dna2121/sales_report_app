@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import 'package:get/get.dart';
 import 'package:sales_report_app/app/modules/profile/controllers/profile_controller.dart';
@@ -59,6 +60,10 @@ class UpdateProfileView extends GetView<ProfileController> {
                     Expanded(
                       flex: 3,
                       child: InputField(
+                        inputFormatters: [
+                          FilteringTextInputFormatter.digitsOnly,
+                          LengthLimitingTextInputFormatter(13)
+                        ],
                         controller: controller.phoneC,
                         validator: controller.validator,
                         textInputAction: TextInputAction.next,
