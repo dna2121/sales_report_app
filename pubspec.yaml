@@ -30,10 +30,10 @@ dev_dependencies:
 flutter: 
   uses-material-design: true
   fonts:
-    - family: Krub
+    - family: Poppins
       fonts:
-        - asset: asset/font/Krub-Regular.ttf
-        - asset: asset/font/Krub-Medium.ttf
+        - asset: asset/font/Poppins-Regular.ttf
+        - asset: asset/font/Poppins-Medium.ttf
           weight: 500
-        - asset: asset/font/Krub-SemiBold.ttf
+        - asset: asset/font/Poppins-SemiBold.ttf
           weight: 600

@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:sales_report_app/app/modules/transaction/controllers/transaction_controller.dart';
-import 'package:sales_report_app/utils/widget.dart';
 
 class DetailTxView extends GetView<TransactionController> {
   const DetailTxView({Key? key}) : super(key: key);
@@ -16,7 +15,7 @@ class DetailTxView extends GetView<TransactionController> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Details'),
+        title: const Text('Detail Transaction'),
         centerTitle: true,
       ),
       body: SingleChildScrollView(
@@ -43,78 +42,108 @@ class DetailTxView extends GetView<TransactionController> {
               DateTime date = timestamp.toDate();
               String tanggal = DateFormat('d MMMM yyyy').format(date);
 
-              return Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  SizedBox(height: 18),
-                  Padding(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 21, vertical: 7),
-                    child: HeaderText(text: "Name"),
-                  ),
-                  Padding(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 21, vertical: 7),
-                    child: StringField(text: userData['name']),
-                  ),
-                  SizedBox(height: 18),
-                  Padding(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 21, vertical: 7),
-                    child: HeaderText(text: "Price"),
-                  ),
-                  Padding(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 21, vertical: 7),
-                    child: StringField(text: formattedAmount),
-                  ),
-                  SizedBox(height: 18),
-                  Padding(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 21, vertical: 7),
-                    child: HeaderText(text: "Date"),
-                  ),
-                  Padding(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 21, vertical: 7),
-                    child: StringField(text: tanggal),
-                  ),
-                  SizedBox(height: 18),
-                  Padding(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 21, vertical: 7),
-                    child: HeaderText(text: "Car Number"),
-                  ),
-                  Padding(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 21, vertical: 7),
-                    child: StringField(text: userData['carNumber']),
-                  ),
-                  SizedBox(height: 18),
-                  Padding(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 21, vertical: 7),
-                    child: HeaderText(text: "Weight"),
-                  ),
-                  Padding(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 21, vertical: 7),
-                    child: StringField(
-                        text: userData['weight'].toString() + " kg"),
-                  ),
-                  // SizedBox(height: 18),
-                  // Padding(
-                  //   padding:
-                  //       const EdgeInsets.symmetric(horizontal: 21, vertical: 7),
-                  //   child: HeaderText(text: "TransactionID"),
-                  // ),
-                  // Padding(
-                  //   padding:
-                  //       const EdgeInsets.symmetric(horizontal: 21, vertical: 7),
-                  //   child: StringField(text: userData['transactionID']),
-                  // ),
-                  SizedBox(height: 35),
-                ],
+              return Center(
+                child: Container(
+                    margin: EdgeInsets.fromLTRB(19, 50, 19, 50),
+                    padding: EdgeInsets.symmetric(horizontal: 20),
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(15),
+                      border: Border.all(
+                        color: Colors.grey.shade300, // Border color
+                        width: 1, // Border width
+                      ),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.grey.withOpacity(0.3), // Shadow color
+                          spreadRadius: 1,
+                          blurRadius: 70,
+                          offset: Offset(0, 20),
+                        ),
+                      ],
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        SizedBox(height: 50),
+                        Container(
+                          width: double.infinity,
+                          padding: EdgeInsets.all(13),
+                          decoration: BoxDecoration(
+                              color: Color.fromRGBO(247, 248, 252, 1),
+                              borderRadius: BorderRadius.circular(8)),
+                          child: Text(
+                            userData['name'],
+                            style: TextStyle(
+                                fontSize: 16, fontWeight: FontWeight.w500),
+                          ),
+                        ),
+                        SizedBox(height: 20),
+                        Text(
+                          formattedAmount,
+                          style: TextStyle(
+                              fontSize: 26, fontWeight: FontWeight.w600),
+                        ),
+                        SizedBox(height: 14),
+                        Divider(thickness: 0.5),
+                        SizedBox(height: 20),
+                        Row(
+                          children: [
+                            Expanded(
+                                child: Text(
+                              "Berat",
+                              style: TextStyle(
+                                  color: Color.fromRGBO(127, 132, 143, 1)),
+                            )),
+                            Expanded(
+                                child: Text(
+                              userData['weight'].toString() + " kg",
+                              textAlign: TextAlign.right,
+                              style: TextStyle(
+                                  fontSize: 16, fontWeight: FontWeight.w500),
+                            )),
+                          ],
+                        ),
+                        SizedBox(height: 20),
+                        Row(
+                          children: [
+                            Expanded(
+                                child: Text(
+                              "Tanggal",
+                              style: TextStyle(
+                                  color: Color.fromRGBO(127, 132, 143, 1)),
+                            )),
+                            Expanded(
+                                child: Text(
+                              tanggal,
+                              textAlign: TextAlign.right,
+                              style: TextStyle(
+                                  fontSize: 16, fontWeight: FontWeight.w500),
+                            )),
+                          ],
+                        ),
+                        SizedBox(height: 20),
+                        Row(
+                          children: [
+                            Expanded(
+                                child: Text(
+                              "Nomor Kendaraan",
+                              style: TextStyle(
+                                  color: Color.fromRGBO(127, 132, 143, 1)),
+                            )),
+                            Expanded(
+                                child: Text(
+                              userData['carNumber'],
+                              textAlign: TextAlign.right,
+                              style: TextStyle(
+                                  fontSize: 16, fontWeight: FontWeight.w500),
+                            )),
+                          ],
+                        ),
+                        SizedBox(height: 50),
+                      ],
+                    )),
               );
             } else if (snapshot.hasError) {
               return Center(child: Text('Something went wrong'));

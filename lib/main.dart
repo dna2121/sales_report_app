@@ -26,11 +26,16 @@ class SalesReport extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         useMaterial3: true,
-        fontFamily: 'Krub',
+        fontFamily: 'Poppins',
+        textTheme: TextTheme(
+          bodyMedium: TextStyle(color: Color.fromRGBO(47, 57, 78, 1)),
+          bodyLarge: TextStyle(color: Color.fromRGBO(47, 57, 78, 1)),
+        ),
         scaffoldBackgroundColor: Colors.white,
         appBarTheme: AppBarTheme(
           backgroundColor: Colors.white,
-          titleTextStyle: TextStyle(color: Colors.black, fontSize: 24),
+          titleTextStyle: TextStyle(
+              color: Colors.black, fontSize: 24, fontFamily: 'Poppins'),
         ),
         bottomNavigationBarTheme: BottomNavigationBarThemeData(
           backgroundColor: AppColor.grey,
