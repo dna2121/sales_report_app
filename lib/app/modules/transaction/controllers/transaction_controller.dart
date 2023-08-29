@@ -16,7 +16,6 @@ class TransactionController extends GetxController {
   final nameC = TextEditingController();
   final dateC = TextEditingController();
   final weightC = TextEditingController();
-  
   late String documentId;
 
   void signOut() {
@@ -33,13 +32,24 @@ class TransactionController extends GetxController {
     return txRepo.txCollection
         .where("userID",
             isEqualTo: AuthController.instance.firebaseAuth.currentUser!.uid)
+        .orderBy("date", descending: true)
+        .limit(3)
+        .snapshots();
+  }
+
+  Stream<QuerySnapshot<Object?>> streamTxToday() {
+    DateTime now = DateTime.now();
+    DateTime startOfDay = DateTime(now.year, now.month, now.day);
+
+    return txRepo.txCollection
+        .where("userID",
+            isEqualTo: AuthController.instance.firebaseAuth.currentUser!.uid)
+        .where("date", isEqualTo: startOfDay)
         .snapshots();
   }
 
   Stream<DocumentSnapshot<Object?>> getDetailTx() {
-    return txRepo.txCollection
-        .doc(documentId)
-        .snapshots();
+    return txRepo.txCollection.doc(documentId).snapshots();
   }
 
   @override

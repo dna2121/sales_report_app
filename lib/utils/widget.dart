@@ -16,7 +16,7 @@ class HeaderText extends StatelessWidget {
     return Text(
       text,
       style: TextStyle(
-          fontWeight: FontWeight.w600, fontSize: 18, letterSpacing: 0.5),
+          fontWeight: FontWeight.w500, fontSize: 18, letterSpacing: 0.5),
     );
   }
 }
@@ -144,7 +144,7 @@ class StringButton extends StatelessWidget {
       width: double.infinity,
       child: ElevatedButton(
         onPressed: pressed,
-        child: Text(text, style: TextStyle(color: Colors.white)),
+        child: Text(text, style: TextStyle(color: AppColor.title)),
       ),
     );
   }
@@ -234,4 +234,19 @@ class StringField extends StatelessWidget {
             color: AppColor.grey2, borderRadius: BorderRadius.circular(8)),
         child: TitleText(text: text));
   }
+}
+
+BoxDecoration whiteboxDecor() {
+  return BoxDecoration(
+    color: Colors.white,
+    borderRadius: BorderRadius.circular(15),
+    boxShadow: [
+      BoxShadow(
+        color: Colors.grey.withOpacity(0.3), // Shadow color
+        spreadRadius: 1,
+        blurRadius: 70,
+        offset: Offset(0, 20),
+      ),
+    ],
+  );
 }

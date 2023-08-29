@@ -28,27 +28,30 @@ class SalesReport extends StatelessWidget {
         useMaterial3: true,
         fontFamily: 'Poppins',
         textTheme: TextTheme(
-          bodyMedium: TextStyle(color: Color.fromRGBO(47, 57, 78, 1)),
-          bodyLarge: TextStyle(color: Color.fromRGBO(47, 57, 78, 1)),
-        ),
+            bodyMedium: TextStyle(color: AppColor.body),
+            bodyLarge:
+                TextStyle(color: AppColor.title, fontWeight: FontWeight.w500)),
         scaffoldBackgroundColor: Colors.white,
         appBarTheme: AppBarTheme(
           backgroundColor: Colors.white,
+          actionsIconTheme: IconThemeData(color: AppColor.iconColor),
+          toolbarHeight: 100,
           titleTextStyle: TextStyle(
-              color: Colors.black, fontSize: 24, fontFamily: 'Poppins'),
+              color: AppColor.title, fontSize: 22, fontFamily: 'Poppins'),
         ),
         bottomNavigationBarTheme: BottomNavigationBarThemeData(
-          backgroundColor: AppColor.grey,
-          selectedItemColor: AppColor.green,
+          selectedItemColor: AppColor.body,
+          showUnselectedLabels: false,
+          unselectedIconTheme: IconThemeData(color: Colors.grey),
         ),
         floatingActionButtonTheme: FloatingActionButtonThemeData(
             foregroundColor: Colors.white, backgroundColor: AppColor.green),
         elevatedButtonTheme: ElevatedButtonThemeData(
           style: ButtonStyle(
-            backgroundColor: AppColor.hijau,
+            backgroundColor: AppColor.button,
             shape: MaterialStateProperty.all<RoundedRectangleBorder>(
               RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(8),
+                borderRadius: BorderRadius.circular(20),
               ),
             ),
           ),
