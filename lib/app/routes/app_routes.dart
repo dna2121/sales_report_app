@@ -11,6 +11,7 @@ abstract class Routes {
   static const CARS = _Paths.CARS;
   static const CARSEDIT = _Paths.CARSEDIT;
   static const TRANSACTION = _Paths.TRANSACTION;
+  static const TXLIST = _Paths.TXLIST;
   static const DETAILTX = _Paths.DETAILTX;
   static const ADMIN = _Paths.ADMIN;
   static const TRX = _Paths.TRX;
@@ -34,6 +35,7 @@ abstract class _Paths {
   static const CARS = '/cars';
   static const CARSEDIT = '/cars-edit';
   static const TRANSACTION = '/transaction';
+  static const TXLIST = '/txlist';
   static const DETAILTX = '/detail-tx';
   static const ADMIN = '/admin';
   static const TRX = '/trx';

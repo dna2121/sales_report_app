@@ -6,6 +6,7 @@ import 'package:sales_report_app/app/modules/admin/views/update_tx_view.dart';
 import 'package:sales_report_app/app/modules/auth/views/forgot_password_view.dart';
 import 'package:sales_report_app/app/modules/profile/views/update_profile_view.dart';
 import 'package:sales_report_app/app/modules/transaction/views/detail_tx_view.dart';
+import 'package:sales_report_app/app/modules/transaction/views/txlist_view.dart';
 
 import '../modules/admin/bindings/admin_binding.dart';
 import '../modules/admin/views/admin_view.dart';
@@ -77,6 +78,11 @@ class AppPages {
     GetPage(
       name: _Paths.TRANSACTION,
       page: () => TransactionView(),
+      binding: TransactionBinding(),
+    ),
+    GetPage(
+      name: _Paths.TXLIST,
+      page: () => TxlistView(),
       binding: TransactionBinding(),
     ),
     GetPage(

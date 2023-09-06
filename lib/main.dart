@@ -57,12 +57,11 @@ class SalesReport extends StatelessWidget {
           ),
         ),
         cardTheme: CardTheme(
-          margin: EdgeInsets.symmetric(horizontal: 11, vertical: 9),
-          color: AppColor.background,
+          margin: EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+          // color: Colors.white,
           elevation: 0,
-          shape: RoundedRectangleBorder(
-              side: BorderSide(color: Colors.grey.shade300),
-              borderRadius: BorderRadius.circular(13)),
+          // shape:
+          //     RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
         ),
         drawerTheme: DrawerThemeData(backgroundColor: Colors.grey.shade200),
         dialogBackgroundColor: AppColor.background,

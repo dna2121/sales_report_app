@@ -138,7 +138,7 @@ class TransactionView extends GetView<TransactionController> {
                   HeaderText(text: "Transaksi Terbaru"),
                   SizedBox(height: 7),
                   StreamBuilder(
-                    stream: controller.streamTxById(),
+                    stream: controller.stream3TxById(),
                     builder: (context, snapshot) {
                       if (snapshot.hasError) {
                         return Center(child: Text('Something went wrong'));
@@ -200,7 +200,9 @@ class TransactionView extends GetView<TransactionController> {
                   SizedBox(height: 10),
                   Divider(color: Colors.grey.shade300),
                   SizedBox(height: 10),
-                  StringButton(pressed: () {}, text: "Daftar Transaksi"),
+                  StringButton(
+                      pressed: () => Get.toNamed(Routes.TXLIST),
+                      text: "Daftar Transaksi"),
                 ],
               ),
             ),

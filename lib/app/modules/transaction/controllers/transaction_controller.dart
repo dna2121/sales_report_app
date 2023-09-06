@@ -28,12 +28,20 @@ class TransactionController extends GetxController {
         .snapshots();
   }
 
-  Stream<QuerySnapshot<Object?>> streamTxById() {
+  Stream<QuerySnapshot<Object?>> stream3TxById() {
     return txRepo.txCollection
         .where("userID",
             isEqualTo: AuthController.instance.firebaseAuth.currentUser!.uid)
         .orderBy("date", descending: true)
         .limit(3)
+        .snapshots();
+  }
+
+  Stream<QuerySnapshot<Object?>> streamTxById() {
+    return txRepo.txCollection
+        .where("userID",
+            isEqualTo: AuthController.instance.firebaseAuth.currentUser!.uid)
+        .orderBy("date", descending: true)
         .snapshots();
   }
 
