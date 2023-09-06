@@ -250,3 +250,18 @@ BoxDecoration whiteboxDecor() {
     ],
   );
 }
+
+BoxDecoration cardboxDecor() {
+  return BoxDecoration(
+    color: Colors.white,
+    borderRadius: BorderRadius.circular(15),
+    boxShadow: [
+      BoxShadow(
+        color: Colors.grey.withOpacity(0.3), // Shadow color
+        spreadRadius: 3,
+        blurRadius: 8,
+        offset: Offset(0, 0),
+      ),
+    ],
+  );
+}
