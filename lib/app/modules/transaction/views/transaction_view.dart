@@ -84,7 +84,7 @@ class TransactionView extends GetView<TransactionController> {
               ),
               child: Column(mainAxisSize: MainAxisSize.min, children: [
                 SizedBox(height: 45),
-                HeaderText(text: "Total Pembelian Hari Ini"),
+                HeaderText(text: "Penjualan Hari Ini"),
                 SizedBox(height: 25),
                 StreamBuilder(
                   stream: controller.streamTxToday(),

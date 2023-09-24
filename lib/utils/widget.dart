@@ -7,16 +7,20 @@ import 'color.dart';
 
 //HEADER TEXT
 class HeaderText extends StatelessWidget {
-  HeaderText({super.key, required this.text});
+  HeaderText({super.key, required this.text, this.color});
 
   String text;
+  Color? color;
 
   @override
   Widget build(BuildContext context) {
     return Text(
       text,
       style: TextStyle(
-          fontWeight: FontWeight.w500, fontSize: 18, letterSpacing: 0.5),
+          fontWeight: FontWeight.w500,
+          fontSize: 18,
+          letterSpacing: 0.5,
+          color: color),
     );
   }
 }
