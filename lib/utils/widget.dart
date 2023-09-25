@@ -140,10 +140,17 @@ class RegisterField extends StatelessWidget {
 
 //STRING BUTTON
 class StringButton extends StatelessWidget {
-  StringButton({super.key, required this.pressed, required this.text});
+  StringButton(
+      {super.key,
+      required this.pressed,
+      required this.text,
+      this.backgroundColor,
+      this.color});
 
   void Function() pressed;
   String text;
+  MaterialStateProperty<Color?>? backgroundColor;
+  Color? color;
 
   @override
   Widget build(BuildContext context) {
@@ -159,8 +166,11 @@ class StringButton extends StatelessWidget {
       ),
       child: ElevatedButton(
         onPressed: pressed,
-        style: ButtonStyle(backgroundColor: AppColor.putihBtn),
-        child: Text(text, style: TextStyle(color: AppColor.title)),
+        style: ButtonStyle(backgroundColor: backgroundColor),
+        child: Text(
+          text,
+          style: TextStyle(color: color),
+        ),
       ),
     );
   }

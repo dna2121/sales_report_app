@@ -74,7 +74,10 @@ class SigninView extends GetView<SigninController> {
                 SizedBox(
                   height: 47,
                 ),
-                StringButton(pressed: () => controller.signin(), text: "Login")
+                StringButton(
+                    backgroundColor: AppColor.putihBtn,
+                    pressed: () => controller.signin(),
+                    text: "Login")
               ],
             ),
           ),

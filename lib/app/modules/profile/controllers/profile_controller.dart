@@ -12,6 +12,7 @@ class ProfileController extends GetxController {
   final nameC = TextEditingController();
   final phoneC = TextEditingController();
   final addressC = TextEditingController();
+  final AuthController authController = Get.find();
 
   late String documentId;
 
@@ -26,6 +27,10 @@ class ProfileController extends GetxController {
 
   String? validator(String? value) {
     return null;
+  }
+
+  void signOut() {
+    authController.signOut();
   }
 
   Stream<DocumentSnapshot<Object?>> getData() {

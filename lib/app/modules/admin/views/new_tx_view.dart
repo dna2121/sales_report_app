@@ -175,6 +175,7 @@ class NewTxView extends GetView<AdminTxController> {
                     }),
                 SizedBox(height: 25),
                 StringButton(
+                    backgroundColor: AppColor.putihBtn,
                     pressed: () {
                       controller.priceC.text.isEmpty &&
                               controller.dateC.text.isEmpty &&

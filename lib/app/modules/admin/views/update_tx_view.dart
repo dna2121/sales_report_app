@@ -152,6 +152,7 @@ class UpdateTxView extends GetView<AdminTxController> {
                   ),
                   SizedBox(height: 25),
                   StringButton(
+                      backgroundColor: AppColor.putihBtn,
                       pressed: () {
                         controller.nameC.text.isEmpty &&
                                 controller.priceC.text.isEmpty &&

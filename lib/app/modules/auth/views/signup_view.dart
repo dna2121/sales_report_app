@@ -5,6 +5,8 @@ import 'package:get/get.dart';
 import 'package:sales_report_app/app/modules/auth/controllers/signup_controller.dart';
 import 'package:sales_report_app/utils/widget.dart';
 
+import '../../../../utils/color.dart';
+
 class SignupView extends GetView<SignupController> {
   const SignupView({Key? key}) : super(key: key);
   @override
@@ -76,7 +78,9 @@ class SignupView extends GetView<SignupController> {
                   height: 37,
                 ),
                 StringButton(
-                    pressed: () => controller.signUp(), text: "Sign up")
+                    backgroundColor: AppColor.putihBtn,
+                    pressed: () => controller.signUp(),
+                    text: "Sign up")
               ],
             ),
           ),

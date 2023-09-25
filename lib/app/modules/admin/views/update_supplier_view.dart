@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:sales_report_app/app/modules/admin/controllers/supplier_controller.dart';
 
+import '../../../../utils/color.dart';
 import '../../../../utils/widget.dart';
 
 class UpdateSupplierView extends GetView<SupplierController> {
@@ -91,6 +92,7 @@ class UpdateSupplierView extends GetView<SupplierController> {
                 ),
                 SizedBox(height: 26),
                 StringButton(
+                  backgroundColor: AppColor.putihBtn,
                   pressed: () {
                     controller.updateUserDoc();
                   },

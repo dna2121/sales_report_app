@@ -44,6 +44,7 @@ class ForgotPasswordView extends GetView<ForgotPasswordController> {
           Padding(
             padding: const EdgeInsets.all(18.0),
             child: StringButton(
+                backgroundColor: AppColor.putihBtn,
                 pressed: () {
                   controller.resetPassword();
                 },

@@ -201,6 +201,7 @@ class TransactionView extends GetView<TransactionController> {
                   Divider(color: Colors.grey.shade300),
                   SizedBox(height: 10),
                   StringButton(
+                      backgroundColor: AppColor.putihBtn,
                       pressed: () => Get.toNamed(Routes.TXLIST),
                       text: "Daftar Transaksi"),
                 ],

@@ -5,6 +5,8 @@ import 'package:get/get.dart';
 import 'package:sales_report_app/app/modules/profile/controllers/profile_controller.dart';
 import 'package:sales_report_app/utils/widget.dart';
 
+import '../../../../utils/color.dart';
+
 class UpdateProfileView extends GetView<ProfileController> {
   const UpdateProfileView({Key? key}) : super(key: key);
   @override
@@ -91,6 +93,7 @@ class UpdateProfileView extends GetView<ProfileController> {
                 ),
                 SizedBox(height: 26),
                 StringButton(
+                  backgroundColor: AppColor.putihBtn,
                   pressed: () {
                     controller.updateUserDoc();
                   },

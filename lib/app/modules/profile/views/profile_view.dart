@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:sales_report_app/app/routes/app_pages.dart';
 import 'package:sales_report_app/utils/widget.dart';
 
+import '../../../../utils/color.dart';
 import '../controllers/profile_controller.dart';
 
 class ProfileView extends GetView<ProfileController> {
@@ -61,11 +62,21 @@ class ProfileView extends GetView<ProfileController> {
                       ),
                       SizedBox(height: 22),
                       StringButton(
+                        backgroundColor: AppColor.putihBtn,
                         pressed: () {
                           Get.toNamed(Routes.UPDATEPROFILE,
                               arguments: userData['id']);
                         },
                         text: "Edit Profile",
+                      ),
+                      SizedBox(height: 22),
+                      StringButton(
+                        backgroundColor: AppColor.merah,
+                        pressed: () {
+                          controller.signOut();
+                        },
+                        text: "Log out",
+                        color: Colors.white,
                       ),
                     ],
                   );

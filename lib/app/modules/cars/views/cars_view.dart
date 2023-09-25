@@ -69,6 +69,7 @@ class CarsView extends GetView<CarsController> {
                                     height: 27,
                                   ),
                                   StringButton(
+                                    backgroundColor: AppColor.putihBtn,
                                     text: "Save",
                                     pressed: () {
                                       controller.carsController.text.isEmpty

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sales_report_app/utils/widget.dart';
 
+import '../../../../utils/color.dart';
 import '../../../routes/app_pages.dart';
 import '../controllers/supplier_controller.dart';
 
@@ -21,6 +22,7 @@ class SupplierView extends GetView<SupplierController> {
           Padding(
               padding: const EdgeInsets.fromLTRB(17, 17, 17, 1),
               child: StringButton(
+                  backgroundColor: AppColor.putihBtn,
                   pressed: () => Get.toNamed(Routes.SIGNUP),
                   text: "Create a new account")),
           Expanded(
