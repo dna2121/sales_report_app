@@ -15,7 +15,7 @@ class DetailTxView extends GetView<TransactionController> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Detail Transaction'),
+        title: const Text('Detail Transaksi'),
       ),
       body: SingleChildScrollView(
         child: StreamBuilder(
@@ -139,14 +139,6 @@ class DetailTxView extends GetView<TransactionController> {
                                   fontSize: 16, fontWeight: FontWeight.w500),
                             )),
                           ],
-                        ),
-                        Divider(),
-                        SizedBox(height: 20),
-                        Text(
-                          "transactionID: " + userData['transactionID'],
-                          style: TextStyle(
-                              color: Color.fromRGBO(76, 79, 86, 1),
-                              fontWeight: FontWeight.w500),
                         ),
                         SizedBox(height: 50),
                       ],
