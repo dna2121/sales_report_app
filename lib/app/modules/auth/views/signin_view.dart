@@ -12,58 +12,71 @@ class SigninView extends GetView<SigninController> {
   Widget build(BuildContext context) {
     controller.emailController.clear();
     controller.passwordController.clear();
-    
+
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Login'),
-        centerTitle: true,
-      ),
-      body: Form(
-        key: controller.loginFormKey,
-        child: Padding(
-          padding: const EdgeInsets.all(17),
-          child: Column(
-            children: [
-              RegisterField(
-                hintText: "Email",
-                validator: controller.validator,
-                textEditingController: controller.emailController,
-                keyboardType: TextInputType.emailAddress,
-                textInputAction: TextInputAction.next,
-              ),
-              SizedBox(height: 27),
-              Obx(() => RegisterField(
-                    hintText: "Password",
-                    textEditingController: controller.passwordController,
-                    validator: controller.validator,
-                    obscureText: controller.isPasswordHidden.value,
-                    suffixIcon: IconButton(
-                      onPressed: () {
-                        controller.isPasswordHidden.value =
-                            !controller.isPasswordHidden.value;
-                      },
-                      icon: Icon(controller.isPasswordHidden.value
-                          ? Icons.visibility_off_outlined
-                          : Icons.visibility),
-                    ),
-                  )),
-              // SizedBox(height: 17),
-              Align(
-                alignment: Alignment.centerRight,
-                child: TextButton(
-                    onPressed: () {
-                      Get.toNamed(Routes.FORGOTPASSWORD);
-                    },
-                    child: Text(
-                      "Forgot password?",
-                      style: TextStyle(color: AppColor.green),
+      backgroundColor: AppColor.boxShadow,
+      body: SingleChildScrollView(
+        child: Form(
+          key: controller.loginFormKey,
+          child: Padding(
+            padding: const EdgeInsets.all(17),
+            child: Column(
+              children: [
+                SizedBox(height: 150),
+                Container(
+                  padding: EdgeInsets.all(10),
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(50),
+                      color: AppColor.body),
+                  child: Icon(
+                    Icons.person_outline,
+                    color: Colors.white,
+                    size: 50,
+                  ),
+                ),
+                SizedBox(height: 35),
+                RegisterField(
+                  hintText: "Email",
+                  prefixIcon: Icon(Icons.email),
+                  validator: controller.validator,
+                  textEditingController: controller.emailController,
+                  keyboardType: TextInputType.emailAddress,
+                  textInputAction: TextInputAction.next,
+                ),
+                SizedBox(height: 27),
+                Obx(() => RegisterField(
+                      prefixIcon: Icon(Icons.password),
+                      hintText: "Password",
+                      textEditingController: controller.passwordController,
+                      validator: controller.validator,
+                      obscureText: controller.isPasswordHidden.value,
+                      suffixIcon: IconButton(
+                        onPressed: () {
+                          controller.isPasswordHidden.value =
+                              !controller.isPasswordHidden.value;
+                        },
+                        icon: Icon(controller.isPasswordHidden.value
+                            ? Icons.visibility_off_outlined
+                            : Icons.visibility),
+                      ),
                     )),
-              ),
-              SizedBox(
-                height: 47,
-              ),
-              StringButton(pressed: () => controller.signin(), text: "Login")
-            ],
+                // SizedBox(height: 17),
+                Align(
+                  alignment: Alignment.centerRight,
+                  child: TextButton(
+                      onPressed: () {
+                        Get.toNamed(Routes.FORGOTPASSWORD);
+                      },
+                      child: Text(
+                        "Forgot password?",
+                      )),
+                ),
+                SizedBox(
+                  height: 47,
+                ),
+                StringButton(pressed: () => controller.signin(), text: "Login")
+              ],
+            ),
           ),
         ),
       ),

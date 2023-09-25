@@ -95,6 +95,7 @@ class RegisterField extends StatelessWidget {
       this.keyboardType,
       this.textInputAction,
       this.suffixIcon,
+      this.prefixIcon,
       this.obscureText = false,
       this.textCapitalization = TextCapitalization.none,
       this.inputFormatters});
@@ -105,6 +106,7 @@ class RegisterField extends StatelessWidget {
   TextInputType? keyboardType;
   TextInputAction? textInputAction;
   Widget? suffixIcon;
+  Widget? prefixIcon;
   bool obscureText;
   TextCapitalization textCapitalization;
   List<TextInputFormatter>? inputFormatters;
@@ -113,13 +115,14 @@ class RegisterField extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: AppColor.grey,
-        borderRadius: BorderRadius.circular(7),
-        border: Border.all(color: AppColor.green),
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(16),
+        // border: Border.all(color: AppColor.green),
       ),
       child: TextFormField(
         inputFormatters: inputFormatters,
         decoration: InputDecoration(
+            prefixIcon: prefixIcon,
             contentPadding: EdgeInsets.all(16),
             hintText: hintText,
             border: InputBorder.none,
@@ -146,8 +149,17 @@ class StringButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
+      decoration: BoxDecoration(
+        boxShadow: [
+          BoxShadow(
+            color: AppColor.grey,
+            blurRadius: 18,
+          ),
+        ],
+      ),
       child: ElevatedButton(
         onPressed: pressed,
+        style: ButtonStyle(backgroundColor: AppColor.putihBtn),
         child: Text(text, style: TextStyle(color: AppColor.title)),
       ),
     );

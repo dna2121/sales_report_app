@@ -6,6 +6,9 @@ class AppColor {
   static const Color title = Color.fromRGBO(47, 57, 78, 1);
   static const Color boxShadow = Color.fromRGBO(241, 240, 254, 1);
 
+  static const Color adminBody = Color.fromRGBO(22, 93, 45, 1);
+  static const Color adminBoxShadow = Color.fromARGB(255, 236, 255, 242);
+
   static const Color green = const Color.fromRGBO(136, 164, 124, 1);
   static const Color grey = const Color.fromRGBO(239, 239, 239, 1); //navbar
   static const Color grey2 =
@@ -20,4 +23,7 @@ class AppColor {
 
   static MaterialStateProperty<Color?> merah =
       MaterialStateProperty.all<Color>(Color.fromRGBO(222, 87, 87, 1));
+
+  static MaterialStateProperty<Color?> putihBtn =
+      MaterialStateProperty.all<Color>(Color.fromRGBO(255, 255, 255, 1));
 }
