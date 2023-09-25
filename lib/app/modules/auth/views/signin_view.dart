@@ -24,7 +24,7 @@ class SigninView extends GetView<SigninController> {
               children: [
                 SizedBox(height: 150),
                 Container(
-                  padding: EdgeInsets.all(10),
+                  padding: EdgeInsets.all(20),
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(50),
                       color: AppColor.body),
