@@ -44,21 +44,21 @@ class SalesReport extends StatelessWidget {
           showUnselectedLabels: false,
           unselectedIconTheme: IconThemeData(color: Colors.grey),
         ),
-        floatingActionButtonTheme: FloatingActionButtonThemeData(
-            foregroundColor: Colors.white, backgroundColor: AppColor.green),
+        floatingActionButtonTheme:
+            FloatingActionButtonThemeData(foregroundColor: Colors.white),
         elevatedButtonTheme: ElevatedButtonThemeData(
           style: ButtonStyle(
-            backgroundColor: AppColor.button,
+            backgroundColor: AppColor.fabBtn,
             shape: MaterialStateProperty.all<RoundedRectangleBorder>(
               RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(20),
+                borderRadius: BorderRadius.circular(50),
               ),
             ),
           ),
         ),
         cardTheme: CardTheme(
-          margin: EdgeInsets.symmetric(horizontal: 20, vertical: 8),
-          // color: Colors.white,
+          // margin: EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+          color: Colors.transparent,
           elevation: 0,
           // shape:
           //     RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),

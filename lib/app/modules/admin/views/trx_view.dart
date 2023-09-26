@@ -14,11 +14,32 @@ class TrxView extends GetView<AdminTxController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Admin Transaction'),
-        centerTitle: true,
+      appBar: AppBar(),
+      drawer: Drawer(
+        child: ListView(
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(17.0),
+              child: Text(
+                'This is Admin page',
+                style: TextStyle(fontSize: 20),
+              ),
+            ),
+            Divider(),
+            ListTile(
+                title: const Text('User Page'),
+                leading: Icon(Icons.keyboard_backspace_outlined),
+                onTap: () => Get.offAllNamed(Routes.HOME)),
+            ListTile(
+                title:
+                    const Text('Log out', style: TextStyle(color: Colors.red)),
+                onTap: () => controller.signOut()),
+          ],
+        ),
       ),
       floatingActionButton: FloatingActionButton(
+        backgroundColor: Color.fromRGBO(102, 85, 184, 1),
+        child: Icon(Icons.add),
         onPressed: () {
           controller.weightC.clear();
           controller.priceC.clear();
@@ -28,29 +49,6 @@ class TrxView extends GetView<AdminTxController> {
 
           Get.toNamed(Routes.NEWTX);
         },
-        child: Icon(Icons.add),
-      ),
-      drawer: Drawer(
-        child: ListView(
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(17.0),
-              child: Text(
-                'Hi, Admin.',
-                style: TextStyle(fontSize: 20),
-              ),
-            ),
-            Divider(),
-            ListTile(
-                title: const Text('User Page'),
-                leading: Icon(Icons.supervisor_account_outlined),
-                onTap: () => Get.offAllNamed(Routes.HOME)),
-            ListTile(
-                title:
-                    const Text('Log out', style: TextStyle(color: Colors.red)),
-                onTap: () => controller.signOut()),
-          ],
-        ),
       ),
       body: StreamBuilder(
           stream: controller.streamTx(),
@@ -103,10 +101,31 @@ class TrxView extends GetView<AdminTxController> {
 
                   return Padding(
                     padding: const EdgeInsets.fromLTRB(19, 13, 19, 10),
-                    child: Row(
+                    child: Column(
                       children: [
-                        Expanded(child: HeaderText(text: value)),
-                        TitleText(text: formattedAmount),
+                        Row(
+                          children: [
+                            Expanded(
+                                flex: 2,
+                                child: Text(
+                                  value,
+                                  style: TextStyle(color: Colors.grey),
+                                )),
+                            ClipRRect(
+                                borderRadius: BorderRadius.circular(20),
+                                child: Container(
+                                    padding: EdgeInsets.symmetric(
+                                        horizontal: 10, vertical: 3),
+                                    color: Color.fromRGBO(85, 184, 179, 1),
+                                    child: Text(
+                                      formattedAmount,
+                                      style: TextStyle(color: Colors.white),
+                                    )))
+                          ],
+                        ),
+                        Divider(
+                          color: Colors.grey.shade200,
+                        )
                       ],
                     ),
                   );
@@ -120,7 +139,15 @@ class TrxView extends GetView<AdminTxController> {
                   return Card(
                     child: ListTile(
                         title: Text(element['name']),
-                        subtitle: Text('${element['weight']} kg'),
+                        subtitle: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text('${element['weight']} kg',
+                                style: TextStyle(color: Colors.grey)),
+                            Text(element['carNumber'],
+                                style: TextStyle(color: Colors.grey)),
+                          ],
+                        ),
                         leading: CircleAvatar(
                           backgroundColor: Colors.grey[300],
                           child: Icon(
@@ -130,7 +157,9 @@ class TrxView extends GetView<AdminTxController> {
                         ),
                         trailing: Text(
                           '+${formatCurrency.format(element['price'])}',
-                          style: TextStyle(fontSize: 14, color: Colors.green),
+                          style: TextStyle(
+                              fontSize: 14,
+                              color: Color.fromRGBO(85, 184, 179, 1)),
                         ),
                         onTap: () => Get.toNamed(Routes.ADMDETAILTX,
                             arguments: element['transactionID']),

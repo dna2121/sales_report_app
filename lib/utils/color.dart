@@ -15,9 +15,6 @@ class AppColor {
       const Color.fromRGBO(237, 237, 237, 1); //text, button.
   static const Color background = const Color.fromRGBO(245, 245, 245, 1);
 
-  static MaterialStateProperty<Color?> button =
-      MaterialStateProperty.all<Color>(const Color.fromRGBO(240, 241, 253, 1));
-
   static MaterialStateProperty<Color?> abuabu =
       MaterialStateProperty.all<Color>(const Color.fromRGBO(237, 237, 237, 1));
 
@@ -26,4 +23,7 @@ class AppColor {
 
   static MaterialStateProperty<Color?> putihBtn =
       MaterialStateProperty.all<Color>(Color.fromRGBO(255, 255, 255, 1));
+
+  static MaterialStateProperty<Color?> fabBtn =
+      MaterialStateProperty.all<Color>(Color.fromRGBO(102, 85, 184, 1));
 }
