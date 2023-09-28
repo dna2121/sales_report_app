@@ -41,7 +41,10 @@ class CarsEditView extends GetView<CarsController> {
                         ? controller.textEmpty
                         : controller.updateCarDoc();
                   },
-                  child: Text("Simpan"),
+                  child: Text(
+                    "Simpan",
+                    style: TextStyle(color: Colors.white),
+                  ),
                 ),
               ),
             ],

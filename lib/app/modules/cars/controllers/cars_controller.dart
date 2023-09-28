@@ -25,8 +25,8 @@ class CarsController extends GetxController {
 
   String? get textEmpty {
     Get.defaultDialog(
-      title: 'Failed',
-      middleText: "Text cannot be empty",
+      title: 'Gagal',
+      middleText: "Tidak boleh kosong!",
       onConfirm: () {
         Get.back(); //close dialog
       },
@@ -53,8 +53,8 @@ class CarsController extends GetxController {
       ));
 
       Get.defaultDialog(
-        title: 'Success',
-        middleText: "Data added.",
+        title: 'Berhasil',
+        middleText: "Data ditambahkan.",
         onConfirm: () {
           carsController.clear();
           Get.back(); //close dialog
@@ -71,20 +71,20 @@ class CarsController extends GetxController {
 
     try {
       Get.defaultDialog(
-          title: "Delete Data",
-          middleText: "Do you want to delete the data?",
+          title: "Hapus Data",
+          middleText: "Ingin menghapus data?",
           onConfirm: () async {
             await documentReference.delete();
             Get.back(); //close dialog
             Get.back(); //close the bottom sheet
           },
-          textConfirm: "Yes",
-          textCancel: "No",
+          textConfirm: "Ya",
+          textCancel: "Tidak",
           backgroundColor: AppColor.background);
     } catch (e) {
       Get.defaultDialog(
-        title: "Something's wrong.",
-        middleText: "Delete data failed.",
+        title: "Sesuatu bermasalah.",
+        middleText: "Gagal menghapus data.",
       );
     }
   }
@@ -113,8 +113,8 @@ class CarsController extends GetxController {
           .update({'carNumber': newCarNum});
 
       Get.defaultDialog(
-        title: 'Success',
-        middleText: "Data updated.",
+        title: 'Berhasil',
+        middleText: "Data berhasil diubah.",
         onConfirm: () {
           carsController.clear();
           Get.back(); //close dialog

@@ -30,7 +30,7 @@ class CarsView extends GetView<CarsController> {
                 children: [
                   Expanded(
                       child: InputField(
-                    hintText: "Search...",
+                    hintText: "Pencarian",
                     controller: controller.searchC,
                     onChanged: controller.onSearchTextChanged,
                     textCapitalization: TextCapitalization.characters,
@@ -54,12 +54,12 @@ class CarsView extends GetView<CarsController> {
                               padding: const EdgeInsets.all(17),
                               child: Column(
                                 children: [
-                                  HeaderText(text: "Add New Car Number"),
+                                  HeaderText(text: "Tambah Nomor Mobil"),
                                   SizedBox(height: 11),
                                   Form(
                                     key: controller.carsFormKey,
                                     child: InputField(
-                                        hintText: "ex: KB 1637 WT",
+                                        hintText: "cth: KB 1637 WT",
                                         textCapitalization:
                                             TextCapitalization.characters,
                                         controller: controller.carsController,
@@ -70,7 +70,7 @@ class CarsView extends GetView<CarsController> {
                                   ),
                                   StringButton(
                                     backgroundColor: AppColor.putihBtn,
-                                    text: "Save",
+                                    text: "Simpan",
                                     pressed: () {
                                       controller.carsController.text.isEmpty
                                           ? controller.textEmpty
