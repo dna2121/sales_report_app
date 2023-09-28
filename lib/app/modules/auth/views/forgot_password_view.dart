@@ -4,8 +4,6 @@ import 'package:get/get.dart';
 import 'package:sales_report_app/app/modules/auth/controllers/forgot_password_controller.dart';
 import 'package:sales_report_app/utils/widget.dart';
 
-import '../../../../utils/color.dart';
-
 class ForgotPasswordView extends GetView<ForgotPasswordController> {
   const ForgotPasswordView({Key? key}) : super(key: key);
   @override
@@ -17,16 +15,7 @@ class ForgotPasswordView extends GetView<ForgotPasswordController> {
       ),
       body: Column(
         children: [
-          Container(
-            padding: EdgeInsets.all(20),
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(50), color: AppColor.body),
-            child: Icon(
-              Icons.lock_person_outlined,
-              color: Colors.white,
-              size: 50,
-            ),
-          ),
+          Image(height: 200, image: AssetImage('asset/image/pw.png')),
           SizedBox(height: 55),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -44,7 +33,7 @@ class ForgotPasswordView extends GetView<ForgotPasswordController> {
           Padding(
             padding: const EdgeInsets.all(18.0),
             child: StringButton(
-                backgroundColor: AppColor.putihBtn,
+                color: Colors.white,
                 pressed: () {
                   controller.resetPassword();
                 },

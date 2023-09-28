@@ -14,7 +14,7 @@ class SigninView extends GetView<SigninController> {
     controller.passwordController.clear();
 
     return Scaffold(
-      backgroundColor: AppColor.boxShadow,
+      // backgroundColor: AppColor.boxShadow,
       body: SingleChildScrollView(
         child: Form(
           key: controller.loginFormKey,
@@ -22,17 +22,10 @@ class SigninView extends GetView<SigninController> {
             padding: const EdgeInsets.all(17),
             child: Column(
               children: [
-                SizedBox(height: 150),
-                Container(
-                  padding: EdgeInsets.all(20),
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(50),
-                      color: AppColor.body),
-                  child: Icon(
-                    Icons.person_outline,
-                    color: Colors.white,
-                    size: 50,
-                  ),
+                SizedBox(height: 100),
+                Image(
+                  height: 200,
+                  image: AssetImage('asset/image/login.png'),
                 ),
                 SizedBox(height: 35),
                 RegisterField(
@@ -75,7 +68,8 @@ class SigninView extends GetView<SigninController> {
                   height: 47,
                 ),
                 StringButton(
-                    backgroundColor: AppColor.putihBtn,
+                    color: Colors.white,
+                    backgroundColor: AppColor.fabBtn,
                     pressed: () => controller.signin(),
                     text: "Login")
               ],

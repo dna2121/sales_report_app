@@ -115,7 +115,7 @@ class RegisterField extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: AppColor.boxShadow,
         borderRadius: BorderRadius.circular(16),
         // border: Border.all(color: AppColor.green),
       ),
