@@ -14,7 +14,7 @@ class SupplierView extends GetView<SupplierController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Farmer'),
+        title: const Text('Petani'),
         centerTitle: true,
       ),
       body: Column(
@@ -24,7 +24,7 @@ class SupplierView extends GetView<SupplierController> {
               child: StringButton(
                   backgroundColor: AppColor.putihBtn,
                   pressed: () => Get.toNamed(Routes.SIGNUP),
-                  text: "Create a new account")),
+                  text: "Buat Akun Petani")),
           Expanded(
             child: StreamBuilder(
                 stream: controller.getUser(),
@@ -73,13 +73,13 @@ class SupplierView extends GetView<SupplierController> {
                                                 : '${data['name']}',
                                           ),
                                           SizedBox(height: 17),
-                                          TitleText(text: "Phone Number"),
+                                          TitleText(text: "Nomor Handphone"),
                                           Text(data['phoneNumber']),
                                           SizedBox(height: 17),
-                                          TitleText(text: "Address"),
+                                          TitleText(text: "Alamat"),
                                           Text(data['address']),
                                           SizedBox(height: 17),
-                                          TitleText(text: "Email address"),
+                                          TitleText(text: "Email"),
                                           Text(data['email']),
                                           SizedBox(height: 17),
                                         ],
@@ -101,7 +101,7 @@ class SupplierView extends GetView<SupplierController> {
                                             arguments: data['id']);
                                       }),
                                   DeleteButton(
-                                      text: "Delete",
+                                      text: "Hapus",
                                       Pressed: () {
                                         controller.deleteUser(data["id"]);
                                       })

@@ -35,29 +35,29 @@ class SupplierController extends GetxController {
 
     try {
       Get.defaultDialog(
-        title: "Delete Data",
-        middleText: "Do you want to delete the data?",
+        title: "Hapus Data",
+        middleText: "Data dihapus?",
         onConfirm: () async {
           Get.back();
           Get.defaultDialog(
-            title: "This action can't be undone",
-            middleText: "Are you sure?",
+            title: "Tindakan ini tidak dapat dibatalkan!",
+            middleText: "Yakin menghapus data?",
             onConfirm: () async {
               await documentReference.delete();
               Get.back();
               Get.back();
             },
-            textConfirm: "Yes",
-            textCancel: "No",
+            textConfirm: "Ya",
+            textCancel: "Kembali",
           );
         },
-        textConfirm: "Yes",
-        textCancel: "No",
+        textConfirm: "Ya",
+        textCancel: "Tidak",
       );
     } catch (e) {
       Get.defaultDialog(
-        title: "Something's wrong.",
-        middleText: "Delete data failed.",
+        title: "Sesuatu bermasalah",
+        middleText: "Gagal menghapus data.",
       );
     }
   }
@@ -100,8 +100,8 @@ class SupplierController extends GetxController {
       // newUser!.updateDisplayName(newName);
 
       Get.defaultDialog(
-        title: 'Success',
-        middleText: "Data updated.",
+        title: 'Berhasil',
+        middleText: "Data diubah.",
         onConfirm: () {
           emailC.clear();
           nameC.clear();

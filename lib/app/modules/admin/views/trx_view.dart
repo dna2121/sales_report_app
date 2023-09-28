@@ -21,13 +21,13 @@ class TrxView extends GetView<AdminTxController> {
             Padding(
               padding: const EdgeInsets.all(17.0),
               child: Text(
-                'This is Admin page',
+                'Halaman Admin',
                 style: TextStyle(fontSize: 20),
               ),
             ),
             Divider(),
             ListTile(
-                title: const Text('User Page'),
+                title: const Text('Halaman User'),
                 leading: Icon(Icons.keyboard_backspace_outlined),
                 onTap: () => Get.offAllNamed(Routes.HOME)),
             ListTile(
@@ -72,7 +72,7 @@ class TrxView extends GetView<AdminTxController> {
               documents.forEach((document) {
                 Timestamp timestamp = document['date'] as Timestamp;
                 DateTime date = timestamp.toDate();
-                String groupKey = DateFormat('d MMMM').format(date);
+                String groupKey = DateFormat('d MMMM yyy').format(date);
                 int price = document['price'] as int;
 
                 if (groupTotalPrices.containsKey(groupKey)) {
@@ -92,7 +92,7 @@ class TrxView extends GetView<AdminTxController> {
                 groupBy: (element) {
                   Timestamp timestamp = element['date'] as Timestamp;
                   DateTime date = timestamp.toDate();
-                  return DateFormat('d MMMM').format(date);
+                  return DateFormat('d MMMM yyy').format(date);
                 },
                 groupSeparatorBuilder: (value) {
                   String groupKey = value;
@@ -131,8 +131,8 @@ class TrxView extends GetView<AdminTxController> {
                   );
                 },
                 groupComparator: (group1, group2) {
-                  DateTime date1 = DateFormat('d MMMM').parse(group1, true);
-                  DateTime date2 = DateFormat('d MMMM').parse(group2, true);
+                  DateTime date1 = DateFormat('d MMMM yyy').parse(group1, true);
+                  DateTime date2 = DateFormat('d MMMM yyy').parse(group2, true);
                   return date1.compareTo(date2);
                 },
                 itemBuilder: (context, element) {
@@ -175,7 +175,7 @@ class TrxView extends GetView<AdminTxController> {
                                       arguments: element['transactionID']),
                                 ),
                                 DeleteButton(
-                                    text: "Delete",
+                                    text: "Hapus",
                                     Pressed: () => controller
                                         .deleteTx(element["transactionID"])),
                               ],

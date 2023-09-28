@@ -17,7 +17,7 @@ class UpdateSupplierView extends GetView<SupplierController> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Update Farmer'),
+        title: const Text('Ubah Data Petani'),
         centerTitle: true,
       ),
       body: SingleChildScrollView(
@@ -42,7 +42,7 @@ class UpdateSupplierView extends GetView<SupplierController> {
                 SizedBox(height: 24),
                 Row(
                   children: [
-                    Expanded(child: TitleText(text: "Name")),
+                    Expanded(child: TitleText(text: "Nama")),
                     Expanded(
                       flex: 3,
                       child: InputField(
@@ -57,7 +57,7 @@ class UpdateSupplierView extends GetView<SupplierController> {
                 SizedBox(height: 24),
                 Row(
                   children: [
-                    Expanded(child: TitleText(text: "Phone Number")),
+                    Expanded(child: TitleText(text: "Nomor Handphone")),
                     Expanded(
                       flex: 3,
                       child: InputField(
@@ -77,7 +77,7 @@ class UpdateSupplierView extends GetView<SupplierController> {
                 Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Expanded(child: TitleText(text: "Address")),
+                    Expanded(child: TitleText(text: "Alamat")),
                     Expanded(
                       flex: 3,
                       child: InputField(
@@ -96,7 +96,7 @@ class UpdateSupplierView extends GetView<SupplierController> {
                   pressed: () {
                     controller.updateUserDoc();
                   },
-                  text: "Save",
+                  text: "Simpan",
                 ),
               ],
             ),

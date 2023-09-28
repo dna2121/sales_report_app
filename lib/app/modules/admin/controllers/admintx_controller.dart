@@ -94,8 +94,8 @@ class AdminTxController extends GetxController {
 
   String? get textEmpty {
     Get.defaultDialog(
-      title: 'Failed',
-      middleText: "Text cannot be empty",
+      title: 'Gagal',
+      middleText: "Tidak boleh kosong!",
       onConfirm: () {
         Get.back(); //close dialog
       },
@@ -110,20 +110,20 @@ class AdminTxController extends GetxController {
 
     try {
       Get.defaultDialog(
-        title: "Delete Data",
-        middleText: "Do you want to delete the data?",
+        title: "Hapus Data",
+        middleText: "Data dihapus?",
         onConfirm: () async {
           await documentReference.delete();
           Get.back();
           Get.back();
         },
-        textConfirm: "Yes",
-        textCancel: "No",
+        textConfirm: "Ya",
+        textCancel: "Tidak",
       );
     } catch (e) {
       Get.defaultDialog(
-        title: "Something's wrong.",
-        middleText: "Delete data failed.",
+        title: "Sesuatu bermasalah",
+        middleText: "Gagal menghapus data.",
       );
     }
   }
@@ -176,8 +176,8 @@ class AdminTxController extends GetxController {
       });
 
       Get.defaultDialog(
-        title: 'Success',
-        middleText: "Data updated.",
+        title: 'Berhasil',
+        middleText: "Data diubah.",
         onConfirm: () {
           nameC.clear();
           priceC.clear();
@@ -215,8 +215,8 @@ class AdminTxController extends GetxController {
               carNumber: selectedCarnum.toString()),
         );
         Get.defaultDialog(
-          title: 'Success',
-          middleText: "Data added.",
+          title: 'Berhasil',
+          middleText: "Data ditambahkan.",
           onConfirm: () {
             // priceC.clear();
             // weightC.clear();
