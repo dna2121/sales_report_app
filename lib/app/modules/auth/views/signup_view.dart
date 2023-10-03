@@ -13,18 +13,21 @@ class SignupView extends GetView<SignupController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Sign Up'),
+        title: const Text('Daftar Akun Baru'),
         centerTitle: true,
       ),
       body: SingleChildScrollView(
         child: Form(
           key: controller.signupFormKey,
           child: Padding(
-            padding: const EdgeInsets.all(17),
+            padding:
+                const EdgeInsets.only(left: 17, right: 17, top: 7, bottom: 30),
             child: Column(
               children: [
+                Image(height: 200, image: AssetImage('asset/image/signup.png')),
+                SizedBox(height: 30),
                 RegisterField(
-                  hintText: "Name",
+                  hintText: "Nama",
                   textEditingController: controller.nameController,
                   validator: controller.validator,
                   textInputAction: TextInputAction.next,
@@ -44,7 +47,7 @@ class SignupView extends GetView<SignupController> {
                     FilteringTextInputFormatter.digitsOnly,
                     LengthLimitingTextInputFormatter(13)
                   ],
-                  hintText: "Phone Number",
+                  hintText: "Nomor Handphone",
                   textEditingController: controller.phoneNumberController,
                   validator: controller.validator,
                   keyboardType: TextInputType.phone,
@@ -52,7 +55,7 @@ class SignupView extends GetView<SignupController> {
                 ),
                 SizedBox(height: 27),
                 RegisterField(
-                  hintText: "Address",
+                  hintText: "Alamat",
                   textEditingController: controller.addressController,
                   validator: controller.validator,
                   textInputAction: TextInputAction.next,

@@ -64,7 +64,7 @@ class SalesReport extends StatelessWidget {
           //     RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
         ),
         drawerTheme: DrawerThemeData(backgroundColor: Colors.grey.shade200),
-        dialogBackgroundColor: AppColor.background,
+        dialogBackgroundColor: Colors.white,
       ),
       initialBinding: AppBinding(),
     );

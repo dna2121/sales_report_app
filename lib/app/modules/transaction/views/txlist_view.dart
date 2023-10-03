@@ -40,7 +40,7 @@ class TxlistView extends GetView<TransactionController> {
               documents.forEach((document) {
                 Timestamp timestamp = document['date'] as Timestamp;
                 DateTime date = timestamp.toDate();
-                String groupKey = DateFormat('d MMMM yyy').format(date);
+                String groupKey = DateFormat('d MMM yyy').format(date);
                 int price = document['price'] as int;
 
                 if (groupTotalPrices.containsKey(groupKey)) {
@@ -60,7 +60,7 @@ class TxlistView extends GetView<TransactionController> {
                 groupBy: (element) {
                   Timestamp timestamp = element['date'] as Timestamp;
                   DateTime date = timestamp.toDate();
-                  return DateFormat('d MMMM yyy').format(date);
+                  return DateFormat('d MMM yyy').format(date);
                 },
                 groupSeparatorBuilder: (value) {
                   String groupKey = value;
@@ -78,13 +78,14 @@ class TxlistView extends GetView<TransactionController> {
                   );
                 },
                 groupComparator: (group1, group2) {
-                  DateTime date1 = DateFormat('d MMMM yyy').parse(group1, true);
-                  DateTime date2 = DateFormat('d MMMM yyy').parse(group2, true);
+                  DateTime date1 = DateFormat('d MMM yyy').parse(group1, true);
+                  DateTime date2 = DateFormat('d MMM yyy').parse(group2, true);
                   return date1.compareTo(date2);
                 },
                 itemBuilder: (context, element) {
                   return Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 9),
+                    padding:
+                        const EdgeInsets.symmetric(vertical: 9, horizontal: 10),
                     child: Card(
                       child: InkWell(
                         onTap: () {

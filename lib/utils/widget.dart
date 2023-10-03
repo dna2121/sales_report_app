@@ -62,7 +62,66 @@ class InputField extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-          color: AppColor.grey2, borderRadius: BorderRadius.circular(7)),
+          color: AppColor.grey, borderRadius: BorderRadius.circular(7)),
+      child: TextFormField(
+        inputFormatters: inputFormatters,
+        decoration: InputDecoration(
+            hintText: hintText,
+            border: InputBorder.none,
+            contentPadding: EdgeInsets.symmetric(horizontal: 11),
+            prefixText: prefixText,
+            suffixText: suffixText),
+        controller: controller,
+        validator: validator,
+        onChanged: onChanged,
+        textCapitalization: TextCapitalization.characters,
+        readOnly: readOnly,
+        maxLines: maxLines,
+        keyboardType: keyboardType,
+        onTap: onTap,
+        textInputAction: textInputAction,
+      ),
+    );
+  }
+}
+
+class TxField extends StatelessWidget {
+  TxField({
+    super.key,
+    this.hintText,
+    this.controller,
+    this.validator,
+    this.onChanged,
+    this.textCapitalization = TextCapitalization.none,
+    this.readOnly = false,
+    this.maxLines = 1,
+    this.keyboardType,
+    this.prefixText,
+    this.suffixText,
+    this.onTap,
+    this.textInputAction,
+    this.inputFormatters,
+  });
+
+  final TextEditingController? controller;
+  String? Function(String?)? validator;
+  String? hintText;
+  void Function(String)? onChanged;
+  TextCapitalization textCapitalization;
+  final bool readOnly;
+  int maxLines;
+  TextInputType? keyboardType;
+  String? prefixText;
+  String? suffixText;
+  void Function()? onTap;
+  TextInputAction? textInputAction;
+  List<TextInputFormatter>? inputFormatters;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+          color: AppColor.boxShadow, borderRadius: BorderRadius.circular(7)),
       child: TextFormField(
         inputFormatters: inputFormatters,
         decoration: InputDecoration(
@@ -157,13 +216,13 @@ class StringButton extends StatelessWidget {
     return Container(
       width: double.infinity,
       decoration: BoxDecoration(
-        boxShadow: [
-          BoxShadow(
-            color: AppColor.grey,
-            blurRadius: 18,
+          // boxShadow: [
+          //   BoxShadow(
+          //     color: AppColor.grey,
+          //     blurRadius: 18,
+          //   ),
+          // ],
           ),
-        ],
-      ),
       child: ElevatedButton(
         onPressed: pressed,
         style: ButtonStyle(backgroundColor: backgroundColor),
@@ -189,7 +248,7 @@ class EditButton extends StatelessWidget {
       padding: EdgeInsets.fromLTRB(17, 17, 17, 2),
       width: double.infinity,
       child: ElevatedButton(
-        style: ButtonStyle(backgroundColor: AppColor.abuabu),
+        style: ButtonStyle(backgroundColor: AppColor.greyBtn),
         onPressed: Pressed,
         child: Text(
           text,
@@ -213,7 +272,7 @@ class DeleteButton extends StatelessWidget {
       padding: EdgeInsets.fromLTRB(17, 2, 17, 17),
       width: double.infinity,
       child: ElevatedButton(
-        style: ButtonStyle(backgroundColor: AppColor.merah),
+        style: ButtonStyle(backgroundColor: AppColor.redBtn),
         onPressed: Pressed,
         child: Text(
           text,
@@ -257,14 +316,15 @@ class StringField extends StatelessWidget {
         width: double.infinity,
         padding: EdgeInsets.all(13),
         decoration: BoxDecoration(
-            color: AppColor.grey2, borderRadius: BorderRadius.circular(8)),
+            color: AppColor.grey, borderRadius: BorderRadius.circular(8)),
         child: TitleText(text: text));
   }
 }
 
 BoxDecoration whiteboxDecor() {
   return BoxDecoration(
-    color: Colors.white,
+    color: Color.fromRGBO(112, 103, 229, 1),
+    // color: Colors.white,
     borderRadius: BorderRadius.circular(15),
     boxShadow: [
       BoxShadow(

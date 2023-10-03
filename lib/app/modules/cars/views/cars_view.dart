@@ -17,7 +17,7 @@ class CarsView extends GetView<CarsController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Nomor Mobil'),
+        title: const Text('Nomor Kendaraan'),
         centerTitle: true,
       ),
       body: Column(
@@ -39,7 +39,7 @@ class CarsView extends GetView<CarsController> {
                   Container(
                     decoration: BoxDecoration(
                         shape: BoxShape.rectangle,
-                        color: AppColor.grey2,
+                        color: AppColor.grey,
                         borderRadius: BorderRadius.circular(8)),
                     child: IconButton(
                       highlightColor: Colors.transparent,
@@ -69,8 +69,8 @@ class CarsView extends GetView<CarsController> {
                                     height: 27,
                                   ),
                                   StringButton(
-                                    backgroundColor: AppColor.putihBtn,
                                     text: "Simpan",
+                                    color: Colors.white,
                                     pressed: () {
                                       controller.carsController.text.isEmpty
                                           ? controller.textEmpty

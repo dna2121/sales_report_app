@@ -71,7 +71,7 @@ class ProfileView extends GetView<ProfileController> {
                       ),
                       SizedBox(height: 22),
                       StringButton(
-                        backgroundColor: AppColor.merah,
+                        backgroundColor: AppColor.redBtn,
                         pressed: () {
                           controller.signOut();
                         },

@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sales_report_app/utils/widget.dart';
 
-import '../../../../utils/color.dart';
 import '../../../routes/app_pages.dart';
 import '../controllers/supplier_controller.dart';
 
@@ -14,7 +13,7 @@ class SupplierView extends GetView<SupplierController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Petani'),
+        title: const Text('Daftar Petani'),
         centerTitle: true,
       ),
       body: Column(
@@ -22,7 +21,7 @@ class SupplierView extends GetView<SupplierController> {
           Padding(
               padding: const EdgeInsets.fromLTRB(17, 17, 17, 1),
               child: StringButton(
-                  backgroundColor: AppColor.putihBtn,
+                  color: Colors.white,
                   pressed: () => Get.toNamed(Routes.SIGNUP),
                   text: "Buat Akun Petani")),
           Expanded(

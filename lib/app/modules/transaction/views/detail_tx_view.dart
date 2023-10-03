@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:sales_report_app/app/modules/transaction/controllers/transaction_controller.dart';
+import 'package:sales_report_app/utils/color.dart';
 
 class DetailTxView extends GetView<TransactionController> {
   const DetailTxView({Key? key}) : super(key: key);
@@ -39,7 +40,7 @@ class DetailTxView extends GetView<TransactionController> {
 
               Timestamp timestamp = userData['date'] as Timestamp;
               DateTime date = timestamp.toDate();
-              String tanggal = DateFormat('d MMMM yyyy').format(date);
+              String tanggal = DateFormat('d MMM yyyy').format(date);
 
               return Center(
                 child: Container(
@@ -70,7 +71,7 @@ class DetailTxView extends GetView<TransactionController> {
                           width: double.infinity,
                           padding: EdgeInsets.all(13),
                           decoration: BoxDecoration(
-                              color: Color.fromRGBO(247, 248, 252, 1),
+                              color: AppColor.boxShadow,
                               borderRadius: BorderRadius.circular(8)),
                           child: Text(
                             userData['name'],

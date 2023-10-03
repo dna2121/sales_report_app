@@ -6,6 +6,7 @@ import 'package:grouped_list/grouped_list.dart';
 import 'package:intl/intl.dart';
 import 'package:sales_report_app/app/modules/admin/controllers/admintx_controller.dart';
 
+import '../../../../utils/color.dart';
 import '../../../../utils/widget.dart';
 import '../../../routes/app_pages.dart';
 
@@ -149,10 +150,10 @@ class TrxView extends GetView<AdminTxController> {
                           ],
                         ),
                         leading: CircleAvatar(
-                          backgroundColor: Colors.grey[300],
+                          backgroundColor: AppColor.tosca,
                           child: Icon(
                             Icons.person,
-                            color: Colors.grey,
+                            color: Colors.white,
                           ),
                         ),
                         trailing: Text(

@@ -135,7 +135,10 @@ class TransactionView extends GetView<TransactionController> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  HeaderText(text: "Transaksi Terbaru"),
+                  HeaderText(
+                    text: "Transaksi Terbaru",
+                    color: Colors.white,
+                  ),
                   SizedBox(height: 7),
                   StreamBuilder(
                     stream: controller.stream3TxById(),
@@ -180,16 +183,19 @@ class TransactionView extends GetView<TransactionController> {
                             trailing: Text(
                               formattedAmount,
                               style:
-                                  TextStyle(fontSize: 14, color: AppColor.body),
+                                  TextStyle(fontSize: 14, color: Colors.white),
                             ),
-                            title: Text('${data['weight']} kg'),
+                            title: Text(
+                              '${data['weight']} kg',
+                              style: TextStyle(color: Colors.white),
+                            ),
                             subtitle: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(data['carNumber'],
-                                    style: TextStyle(color: Colors.grey)),
+                                    style: TextStyle(color: Colors.white)),
                                 Text(tanggal,
-                                    style: TextStyle(color: Colors.grey)),
+                                    style: TextStyle(color: Colors.white)),
                               ],
                             ),
                           );
