@@ -157,6 +157,7 @@ class RegisterField extends StatelessWidget {
       this.prefixIcon,
       this.obscureText = false,
       this.textCapitalization = TextCapitalization.none,
+      this.maxLines = 1,
       this.inputFormatters});
 
   String? hintText;
@@ -169,6 +170,7 @@ class RegisterField extends StatelessWidget {
   bool obscureText;
   TextCapitalization textCapitalization;
   List<TextInputFormatter>? inputFormatters;
+  int? maxLines;
 
   @override
   Widget build(BuildContext context) {
@@ -180,6 +182,7 @@ class RegisterField extends StatelessWidget {
       ),
       child: TextFormField(
         inputFormatters: inputFormatters,
+        maxLines: maxLines,
         decoration: InputDecoration(
             prefixIcon: prefixIcon,
             contentPadding: EdgeInsets.all(16),

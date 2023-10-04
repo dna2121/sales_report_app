@@ -72,7 +72,7 @@ class SupplierView extends GetView<SupplierController> {
                                                 : '${data['name']}',
                                           ),
                                           SizedBox(height: 17),
-                                          TitleText(text: "Nomor Handphone"),
+                                          TitleText(text: "Nomor Ponsel"),
                                           Text(data['phoneNumber']),
                                           SizedBox(height: 17),
                                           TitleText(text: "Alamat"),
@@ -94,7 +94,7 @@ class SupplierView extends GetView<SupplierController> {
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
                                   EditButton(
-                                      text: "Edit",
+                                      text: "Ubah",
                                       Pressed: () {
                                         Get.toNamed(Routes.UPDATESUPPLIER,
                                             arguments: data['id']);

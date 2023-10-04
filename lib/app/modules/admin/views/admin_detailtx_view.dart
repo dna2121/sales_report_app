@@ -17,7 +17,6 @@ class AdminDetailtxView extends GetView<AdminTxController> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Detail Transaksi'),
-        centerTitle: true,
       ),
       body: SingleChildScrollView(
         child: StreamBuilder(

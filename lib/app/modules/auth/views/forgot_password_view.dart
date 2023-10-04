@@ -11,7 +11,6 @@ class ForgotPasswordView extends GetView<ForgotPasswordController> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Forgot Password'),
-        centerTitle: true,
       ),
       body: Column(
         children: [

@@ -5,8 +5,6 @@ import 'package:get/get.dart';
 import 'package:sales_report_app/app/modules/auth/controllers/signup_controller.dart';
 import 'package:sales_report_app/utils/widget.dart';
 
-import '../../../../utils/color.dart';
-
 class SignupView extends GetView<SignupController> {
   const SignupView({Key? key}) : super(key: key);
   @override
@@ -14,7 +12,6 @@ class SignupView extends GetView<SignupController> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Daftar Akun Baru'),
-        centerTitle: true,
       ),
       body: SingleChildScrollView(
         child: Form(
@@ -47,7 +44,7 @@ class SignupView extends GetView<SignupController> {
                     FilteringTextInputFormatter.digitsOnly,
                     LengthLimitingTextInputFormatter(13)
                   ],
-                  hintText: "Nomor Handphone",
+                  hintText: "Nomor Ponsel",
                   textEditingController: controller.phoneNumberController,
                   validator: controller.validator,
                   keyboardType: TextInputType.phone,
@@ -56,9 +53,10 @@ class SignupView extends GetView<SignupController> {
                 SizedBox(height: 27),
                 RegisterField(
                   hintText: "Alamat",
+                  maxLines: 4,
                   textEditingController: controller.addressController,
                   validator: controller.validator,
-                  textInputAction: TextInputAction.next,
+                  textInputAction: TextInputAction.newline,
                   keyboardType: TextInputType.streetAddress,
                 ),
                 SizedBox(height: 27),
@@ -81,7 +79,7 @@ class SignupView extends GetView<SignupController> {
                   height: 37,
                 ),
                 StringButton(
-                    backgroundColor: AppColor.putihBtn,
+                    color: Colors.white,
                     pressed: () => controller.signUp(),
                     text: "Sign up")
               ],

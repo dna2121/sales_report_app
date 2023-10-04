@@ -13,8 +13,7 @@ class ProfileView extends GetView<ProfileController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Profile'),
-        centerTitle: true,
+        title: const Text('Profil'),
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -40,14 +39,14 @@ class ProfileView extends GetView<ProfileController> {
                       SizedBox(height: 24),
                       Row(
                         children: [
-                          Expanded(child: TitleText(text: "Name")),
+                          Expanded(child: TitleText(text: "Nama")),
                           Expanded(flex: 3, child: Text(userData['name'])),
                         ],
                       ),
                       SizedBox(height: 24),
                       Row(
                         children: [
-                          Expanded(child: TitleText(text: "Phone Number")),
+                          Expanded(child: TitleText(text: "Nomor Ponsel")),
                           Expanded(
                               flex: 3, child: Text(userData['phoneNumber'])),
                         ],
@@ -56,20 +55,20 @@ class ProfileView extends GetView<ProfileController> {
                       Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Expanded(child: TitleText(text: "Address")),
+                          Expanded(child: TitleText(text: "Alamat")),
                           Expanded(flex: 3, child: Text(userData['address'])),
                         ],
                       ),
-                      SizedBox(height: 22),
+                      SizedBox(height: 50),
                       StringButton(
                         backgroundColor: AppColor.putihBtn,
                         pressed: () {
                           Get.toNamed(Routes.UPDATEPROFILE,
                               arguments: userData['id']);
                         },
-                        text: "Edit Profile",
+                        text: "Ubah Profil",
                       ),
-                      SizedBox(height: 22),
+                      SizedBox(height: 17),
                       StringButton(
                         backgroundColor: AppColor.redBtn,
                         pressed: () {

@@ -8,10 +8,8 @@ class AppColor {
   static const Color boxShadow = Color.fromRGBO(241, 240, 254, 1);
   static const Color tosca = Color.fromRGBO(85, 184, 179, 1);
 
-  static const Color adminBody = Color.fromRGBO(22, 93, 45, 1);
-  static const Color adminBoxShadow = Color.fromARGB(255, 236, 255, 242);
-
-  static const Color grey = 
+ 
+  static const Color grey =
       const Color.fromRGBO(237, 237, 237, 1); //text, button.
   static const Color background = const Color.fromRGBO(245, 245, 245, 1);
 
