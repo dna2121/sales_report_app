@@ -67,7 +67,7 @@ class UpdateTxView extends GetView<AdminTxController> {
                           return DropdownSearch<String>(
                             dropdownDecoratorProps: DropDownDecoratorProps(
                               dropdownSearchDecoration: InputDecoration(
-                                  hintText: "Select a name",
+                                  hintText: "Nama",
                                   border: InputBorder.none,
                                   contentPadding: EdgeInsets.all(11)),
                             ),
@@ -84,7 +84,7 @@ class UpdateTxView extends GetView<AdminTxController> {
                                 padding: EdgeInsets.symmetric(
                                     horizontal: 17, vertical: 12),
                                 decoration: InputDecoration(
-                                    hintText: "Search...",
+                                    hintText: "Pencarian",
                                     contentPadding: EdgeInsets.all(11)),
                               ),
                             ),
@@ -109,7 +109,7 @@ class UpdateTxView extends GetView<AdminTxController> {
                 TxField(
                   keyboardType: TextInputType.number,
                   prefixText: "Rp. ",
-                  hintText: "Enter price",
+                  hintText: "0",
                   controller: controller.priceC,
                   validator: controller.validator,
                 ),
@@ -120,7 +120,7 @@ class UpdateTxView extends GetView<AdminTxController> {
                   children: [
                     Expanded(
                         child: Text(
-                      "Berat",
+                      "Berat *",
                       style: TextStyle(color: Color.fromRGBO(127, 132, 143, 1)),
                     )),
                     Expanded(
@@ -128,7 +128,7 @@ class UpdateTxView extends GetView<AdminTxController> {
                       child: TxField(
                         keyboardType: TextInputType.number,
                         suffixText: "kg",
-                        hintText: "Enter weight in kilogram",
+                        hintText: "kilogram",
                         controller: controller.weightC,
                         validator: controller.validator,
                       ),
@@ -140,7 +140,7 @@ class UpdateTxView extends GetView<AdminTxController> {
                   children: [
                     Expanded(
                         child: Text(
-                      "Tanggal",
+                      "Tanggal *",
                       style: TextStyle(color: Color.fromRGBO(127, 132, 143, 1)),
                     )),
                     Expanded(

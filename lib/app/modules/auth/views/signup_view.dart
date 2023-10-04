@@ -47,7 +47,7 @@ class SignupView extends GetView<SignupController> {
                     FilteringTextInputFormatter.digitsOnly,
                     LengthLimitingTextInputFormatter(13)
                   ],
-                  hintText: "Nomor Handphone",
+                  hintText: "Nomor Ponsel",
                   textEditingController: controller.phoneNumberController,
                   validator: controller.validator,
                   keyboardType: TextInputType.phone,
