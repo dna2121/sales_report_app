@@ -171,7 +171,7 @@ class TrxView extends GetView<AdminTxController> {
                               mainAxisSize: MainAxisSize.min,
                               children: [
                                 EditButton(
-                                  text: "Edit",
+                                  text: "Ubah",
                                   Pressed: () => Get.toNamed(Routes.UPDATETX,
                                       arguments: element['transactionID']),
                                 ),

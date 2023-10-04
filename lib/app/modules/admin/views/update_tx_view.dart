@@ -22,7 +22,6 @@ class UpdateTxView extends GetView<AdminTxController> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Ubah Transaksi'),
-        centerTitle: true,
       ),
       body: SingleChildScrollView(
         child: Center(
@@ -204,7 +203,7 @@ class UpdateTxView extends GetView<AdminTxController> {
                           ? controller.textEmpty
                           : controller.updateTxDoc();
                     },
-                    text: "Save"),
+                    text: "Simpan"),
                 SizedBox(height: 50),
               ],
             ),

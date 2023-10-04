@@ -17,7 +17,6 @@ class UpdateSupplierView extends GetView<SupplierController> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Ubah Data Petani'),
-        centerTitle: true,
       ),
       body: SingleChildScrollView(
         child: Form(

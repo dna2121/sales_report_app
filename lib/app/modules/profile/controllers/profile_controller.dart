@@ -70,8 +70,8 @@ class ProfileController extends GetxController {
           {'name': newName, 'address': newAddress, 'phoneNumber': newPhone});
 
       Get.defaultDialog(
-        title: 'Success',
-        middleText: "Data updated.",
+        title: 'Berhasil',
+        middleText: "Data diubah.",
         onConfirm: () {
           emailC.clear();
           nameC.clear();

@@ -135,7 +135,7 @@ class CarsView extends GetView<CarsController> {
                               mainAxisSize: MainAxisSize.min,
                               children: [
                                 EditButton(
-                                  text: "Edit",
+                                  text: "Ubah",
                                   Pressed: () => Get.toNamed(Routes.CARSEDIT,
                                       arguments: data['carID']),
                                 ),

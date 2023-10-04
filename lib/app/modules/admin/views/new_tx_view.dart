@@ -13,7 +13,6 @@ class NewTxView extends GetView<AdminTxController> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Transaksi Baru'),
-        centerTitle: true,
       ),
       body: SingleChildScrollView(
         child: StreamBuilder(
@@ -252,7 +251,7 @@ class NewTxView extends GetView<AdminTxController> {
                                     ? controller.textEmpty
                                     : controller.addNewTx();
                               },
-                              text: "Save"),
+                              text: "Simpan"),
                           SizedBox(height: 50),
                         ],
                       ),

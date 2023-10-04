@@ -15,8 +15,7 @@ class CarsEditView extends GetView<CarsController> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Edit'),
-        centerTitle: true,
+        title: const Text('Ubah Nomor'),
       ),
       body: Center(
         child: Form(

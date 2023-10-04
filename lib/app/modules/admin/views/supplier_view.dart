@@ -94,7 +94,7 @@ class SupplierView extends GetView<SupplierController> {
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
                                   EditButton(
-                                      text: "Edit",
+                                      text: "Ubah",
                                       Pressed: () {
                                         Get.toNamed(Routes.UPDATESUPPLIER,
                                             arguments: data['id']);

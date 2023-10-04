@@ -5,8 +5,6 @@ import 'package:get/get.dart';
 import 'package:sales_report_app/app/modules/profile/controllers/profile_controller.dart';
 import 'package:sales_report_app/utils/widget.dart';
 
-import '../../../../utils/color.dart';
-
 class UpdateProfileView extends GetView<ProfileController> {
   const UpdateProfileView({Key? key}) : super(key: key);
   @override
@@ -17,8 +15,7 @@ class UpdateProfileView extends GetView<ProfileController> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Edit profile'),
-        centerTitle: true,
+        title: const Text('Ubah Profil'),
       ),
       body: SingleChildScrollView(
         child: Form(
@@ -43,7 +40,7 @@ class UpdateProfileView extends GetView<ProfileController> {
                 SizedBox(height: 24),
                 Row(
                   children: [
-                    Expanded(child: TitleText(text: "Name")),
+                    Expanded(child: TitleText(text: "Nama")),
                     Expanded(
                       flex: 3,
                       child: InputField(
@@ -58,7 +55,7 @@ class UpdateProfileView extends GetView<ProfileController> {
                 SizedBox(height: 24),
                 Row(
                   children: [
-                    Expanded(child: TitleText(text: "Phone Number")),
+                    Expanded(child: TitleText(text: "Nomor Ponsel")),
                     Expanded(
                       flex: 3,
                       child: InputField(
@@ -78,26 +75,26 @@ class UpdateProfileView extends GetView<ProfileController> {
                 Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Expanded(child: TitleText(text: "Address")),
+                    Expanded(child: TitleText(text: "Alamat")),
                     Expanded(
                       flex: 3,
                       child: InputField(
                         controller: controller.addressC,
                         validator: controller.validator,
                         maxLines: 4,
-                        textInputAction: TextInputAction.next,
+                        textInputAction: TextInputAction.newline,
                         keyboardType: TextInputType.streetAddress,
                       ),
                     ),
                   ],
                 ),
-                SizedBox(height: 26),
+                SizedBox(height: 50),
                 StringButton(
-                  backgroundColor: AppColor.putihBtn,
+                  color: Colors.white,
                   pressed: () {
                     controller.updateUserDoc();
                   },
-                  text: "Save",
+                  text: "Simpan",
                 ),
               ],
             ),
