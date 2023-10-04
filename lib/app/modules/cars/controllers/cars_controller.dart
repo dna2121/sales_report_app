@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sales_report_app/app/data/models/car.dart';
+import 'package:sales_report_app/utils/color.dart';
 
 import '../../../data/repositories/user_repositories.dart';
 import '../../auth/controllers/auth_controller.dart';
@@ -24,8 +25,8 @@ class CarsController extends GetxController {
 
   String? get textEmpty {
     Get.defaultDialog(
-      title: 'Failed',
-      middleText: "Text cannot be empty",
+      title: 'Gagal',
+      middleText: "Tidak boleh kosong!",
       onConfirm: () {
         Get.back(); //close dialog
       },
@@ -41,28 +42,62 @@ class CarsController extends GetxController {
         .snapshots();
   }
 
-  void addCar() {
+  void addCar() async {
     if (carsFormKey.currentState!.validate()) {
       String carNumber = carsController.text;
 
-      userRepo.addTruck(Car(
-        carID: userRepo.carCollection.doc().id,
-        userID: '${AuthController.instance.firebaseAuth.currentUser!.uid}',
-        carNumber: carNumber,
-      ));
+      // Fetch the user's name from the userCollection
+      String userID = AuthController.instance.firebaseAuth.currentUser!.uid;
+      DocumentSnapshot userSnapshot =
+          await userRepo.userCollection.doc(userID).get();
 
-      Get.defaultDialog(
-        title: 'Success',
-        middleText: "Data added.",
-        onConfirm: () {
-          carsController.clear();
-          Get.back(); //close dialog
-          Get.back(); //closs bottom sheet
-        },
-        textConfirm: 'Okay',
-      );
+      if (userSnapshot.exists) {
+        String userName = userSnapshot.get('name');
+
+        // Create the Car object with the user's name
+        userRepo.addTruck(Car(
+          carID: userRepo.carCollection.doc().id,
+          userID: userID,
+          carNumber: carNumber,
+          name: userName, // Use the user's name here
+        ));
+
+        Get.defaultDialog(
+          title: 'Berhasil',
+          middleText: "Data ditambahkan.",
+          onConfirm: () {
+            carsController.clear();
+            Get.back(); // Close dialog
+            Get.back(); // Close bottom sheet
+          },
+          textConfirm: 'Okay',
+        );
+      }
     }
   }
+
+  // void addCar() {
+  //   if (carsFormKey.currentState!.validate()) {
+  //     String carNumber = carsController.text;
+
+  //     userRepo.addTruck(Car(
+  //       carID: userRepo.carCollection.doc().id,
+  //       userID: '${AuthController.instance.firebaseAuth.currentUser!.uid}',
+  //       carNumber: carNumber,
+  //     ));
+
+  //     Get.defaultDialog(
+  //       title: 'Berhasil',
+  //       middleText: "Data ditambahkan.",
+  //       onConfirm: () {
+  //         carsController.clear();
+  //         Get.back(); //close dialog
+  //         Get.back(); //closs bottom sheet
+  //       },
+  //       textConfirm: 'Okay',
+  //     );
+  //   }
+  // }
 
   void deleteCar(String keyid) {
     DocumentReference<Object?> documentReference =
@@ -70,20 +105,20 @@ class CarsController extends GetxController {
 
     try {
       Get.defaultDialog(
-        title: "Delete Data",
-        middleText: "Do you want to delete the data?",
-        onConfirm: () async {
-          await documentReference.delete();
-          Get.back(); //close dialog
-          Get.back(); //close the bottom sheet
-        },
-        textConfirm: "Yes",
-        textCancel: "No",
-      );
+          title: "Hapus Data",
+          middleText: "Ingin menghapus data?",
+          onConfirm: () async {
+            await documentReference.delete();
+            Get.back(); //close dialog
+            Get.back(); //close the bottom sheet
+          },
+          textConfirm: "Ya",
+          textCancel: "Tidak",
+          backgroundColor: AppColor.background);
     } catch (e) {
       Get.defaultDialog(
-        title: "Something's wrong.",
-        middleText: "Delete data failed.",
+        title: "Sesuatu bermasalah.",
+        middleText: "Gagal menghapus data.",
       );
     }
   }
@@ -112,8 +147,8 @@ class CarsController extends GetxController {
           .update({'carNumber': newCarNum});
 
       Get.defaultDialog(
-        title: 'Success',
-        middleText: "Data updated.",
+        title: 'Berhasil',
+        middleText: "Data berhasil diubah.",
         onConfirm: () {
           carsController.clear();
           Get.back(); //close dialog

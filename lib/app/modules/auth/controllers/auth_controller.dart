@@ -1,5 +1,4 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import 'package:sales_report_app/app/data/models/user_profile.dart';
 import 'package:sales_report_app/app/data/repositories/user_repositories.dart';
@@ -55,9 +54,11 @@ class AuthController extends GetxController {
         duration: Duration(seconds: 3),
       ));
     } catch (e) {
-      if (kDebugMode) {
-        print(e);
-      }
+      Get.showSnackbar(GetSnackBar(
+        title: 'Error',
+        message: e.toString(),
+        duration: Duration(seconds: 3),
+      ));
     }
   }
 
@@ -73,7 +74,17 @@ class AuthController extends GetxController {
 
       var newUser = firebaseAuth.currentUser; //untuk dapat uid account
 
-      newUser!.updateDisplayName(name);
+      if (newUser == null) {
+        // Jika pengguna tidak berhasil dibuat, munculkan pesan peringatan
+        Get.showSnackbar(GetSnackBar(
+          title: 'Error',
+          message: 'Failed to create user. Please try again later.',
+          duration: Duration(seconds: 3),
+        ));
+        return;
+      }
+
+      newUser.updateDisplayName(name);
 
       userRepo.addUser(UserProfile(
           id: newUser.uid,
@@ -89,9 +100,58 @@ class AuthController extends GetxController {
         duration: Duration(seconds: 2),
       ));
     } catch (e) {
-      if (kDebugMode) {
-        print(e);
+      if (e is FirebaseAuthException) {
+        if (e.code == 'email-already-in-use') {
+          // Jika email sudah digunakan
+          Get.showSnackbar(GetSnackBar(
+            title: 'Error',
+            message: 'Email already in use. Please use a different email.',
+            duration: Duration(seconds: 3),
+          ));
+        } else if (e.code == 'invalid-email') {
+          // Jika email tidak valid
+          Get.showSnackbar(GetSnackBar(
+            title: 'Error',
+            message: 'Invalid email. Please use a valid email address.',
+            duration: Duration(seconds: 3),
+          ));
+        } else {
+          // lainnya
+          Get.showSnackbar(GetSnackBar(
+            title: 'Error',
+            message: 'Something went wrong. Please try again later.',
+            duration: Duration(seconds: 3),
+          ));
+        }
+      } else {
+        // Jika terjadi error yang tidak terkait dengan Firebase Authentication
+        Get.showSnackbar(GetSnackBar(
+          title: 'Error',
+          message: e.toString(),
+          duration: Duration(seconds: 3),
+        ));
       }
     }
   }
 }
+
+  // late bool isEmailVerified;
+
+  // Check if the user's email is verified
+      // bool isEmailVerified = user.emailVerified;
+      // if (isEmailVerified) {
+      //   Get.offAllNamed(Routes.HOME);
+      // } else {
+      //   Get.offAllNamed(Routes.VERIFYEMAIL);
+      // }
+
+// Future sendVerificationEmail() async {
+  //   final user = firebaseAuth.currentUser!;
+  //   await user.sendEmailVerification();
+  // }
+
+  // Future checkEmailVerified() async {
+  //   await firebaseAuth.currentUser!.reload();
+
+  //   isEmailVerified = firebaseAuth.currentUser!.emailVerified;
+  // }

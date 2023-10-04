@@ -19,6 +19,7 @@ dependencies:
   intl: ^0.18.1
   date_field: ^3.0.5
   grouped_list: ^5.1.2
+  font_awesome_flutter: ^10.5.0
 
 dev_dependencies: 
   build_runner: ^2.3.3
@@ -29,11 +30,15 @@ dev_dependencies:
 
 flutter: 
   uses-material-design: true
+
+  assets:
+    - asset/image/
+
   fonts:
-    - family: Krub
+    - family: Poppins
       fonts:
-        - asset: asset/font/Krub-Regular.ttf
-        - asset: asset/font/Krub-Medium.ttf
+        - asset: asset/font/Poppins-Regular.ttf
+        - asset: asset/font/Poppins-Medium.ttf
           weight: 500
-        - asset: asset/font/Krub-SemiBold.ttf
+        - asset: asset/font/Poppins-SemiBold.ttf
           weight: 600

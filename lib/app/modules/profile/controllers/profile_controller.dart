@@ -12,6 +12,7 @@ class ProfileController extends GetxController {
   final nameC = TextEditingController();
   final phoneC = TextEditingController();
   final addressC = TextEditingController();
+  final AuthController authController = Get.find();
 
   late String documentId;
 
@@ -26,6 +27,10 @@ class ProfileController extends GetxController {
 
   String? validator(String? value) {
     return null;
+  }
+
+  void signOut() {
+    authController.signOut();
   }
 
   Stream<DocumentSnapshot<Object?>> getData() {
@@ -63,11 +68,6 @@ class ProfileController extends GetxController {
     try {
       await userRepo.userCollection.doc(documentId).update(
           {'name': newName, 'address': newAddress, 'phoneNumber': newPhone});
-
-      var newUser = AuthController
-          .instance.firebaseAuth.currentUser; //untuk dapat uid account
-
-      newUser!.updateDisplayName(newName);
 
       Get.defaultDialog(
         title: 'Success',

@@ -2,13 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import 'package:get/get.dart';
-import 'package:sales_report_app/app/modules/profile/controllers/profile_controller.dart';
-import 'package:sales_report_app/utils/widget.dart';
+import 'package:sales_report_app/app/modules/admin/controllers/supplier_controller.dart';
 
-import '../../../../utils/color.dart';
+import '../../../../utils/widget.dart';
 
-class UpdateProfileView extends GetView<ProfileController> {
-  const UpdateProfileView({Key? key}) : super(key: key);
+class UpdateSupplierView extends GetView<SupplierController> {
+  const UpdateSupplierView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     final String documentId = Get.arguments;
@@ -17,12 +16,11 @@ class UpdateProfileView extends GetView<ProfileController> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Edit profile'),
+        title: const Text('Ubah Data Petani'),
         centerTitle: true,
       ),
       body: SingleChildScrollView(
         child: Form(
-          key: controller.userFormKey,
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 24),
             child: Column(
@@ -43,14 +41,14 @@ class UpdateProfileView extends GetView<ProfileController> {
                 SizedBox(height: 24),
                 Row(
                   children: [
-                    Expanded(child: TitleText(text: "Name")),
+                    Expanded(child: TitleText(text: "Nama")),
                     Expanded(
                       flex: 3,
                       child: InputField(
                         controller: controller.nameC,
                         validator: controller.validator,
-                        textInputAction: TextInputAction.next,
                         textCapitalization: TextCapitalization.words,
+                        textInputAction: TextInputAction.next,
                       ),
                     )
                   ],
@@ -58,7 +56,7 @@ class UpdateProfileView extends GetView<ProfileController> {
                 SizedBox(height: 24),
                 Row(
                   children: [
-                    Expanded(child: TitleText(text: "Phone Number")),
+                    Expanded(child: TitleText(text: "Nomor Ponsel")),
                     Expanded(
                       flex: 3,
                       child: InputField(
@@ -78,7 +76,7 @@ class UpdateProfileView extends GetView<ProfileController> {
                 Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Expanded(child: TitleText(text: "Address")),
+                    Expanded(child: TitleText(text: "Alamat")),
                     Expanded(
                       flex: 3,
                       child: InputField(
@@ -93,11 +91,11 @@ class UpdateProfileView extends GetView<ProfileController> {
                 ),
                 SizedBox(height: 26),
                 StringButton(
-                  backgroundColor: AppColor.putihBtn,
+                  color: Colors.white,
                   pressed: () {
                     controller.updateUserDoc();
                   },
-                  text: "Save",
+                  text: "Simpan",
                 ),
               ],
             ),

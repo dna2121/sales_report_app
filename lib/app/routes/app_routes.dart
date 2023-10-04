@@ -11,6 +11,7 @@ abstract class Routes {
   static const CARS = _Paths.CARS;
   static const CARSEDIT = _Paths.CARSEDIT;
   static const TRANSACTION = _Paths.TRANSACTION;
+  static const TXLIST = _Paths.TXLIST;
   static const DETAILTX = _Paths.DETAILTX;
   static const ADMIN = _Paths.ADMIN;
   static const TRX = _Paths.TRX;
@@ -19,6 +20,8 @@ abstract class Routes {
   static const UPDATETX = _Paths.UPDATETX;
   static const PROFILE = _Paths.PROFILE;
   static const UPDATEPROFILE = _Paths.UPDATEPROFILE;
+  static const UPDATESUPPLIER = _Paths.UPDATESUPPLIER;
+  static const FORGOTPASSWORD = _Paths.FORGOTPASSWORD;
 }
 
 abstract class _Paths {
@@ -28,9 +31,11 @@ abstract class _Paths {
   static const SIGNIN = '/signin';
   static const SPLASH = '/splash';
   static const SIGNUP = '/signup';
+  static const FORGOTPASSWORD = '/forgot-password';
   static const CARS = '/cars';
   static const CARSEDIT = '/cars-edit';
   static const TRANSACTION = '/transaction';
+  static const TXLIST = '/txlist';
   static const DETAILTX = '/detail-tx';
   static const ADMIN = '/admin';
   static const TRX = '/trx';
@@ -39,4 +44,5 @@ abstract class _Paths {
   static const UPDATETX = '/update-tx';
   static const PROFILE = '/profile';
   static const UPDATEPROFILE = '/update-profile';
+  static const UPDATESUPPLIER = '/update-supplier';
 }

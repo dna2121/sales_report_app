@@ -6,6 +6,8 @@ import 'package:grouped_list/grouped_list.dart';
 import 'package:intl/intl.dart';
 import 'package:sales_report_app/app/modules/admin/controllers/admintx_controller.dart';
 
+import '../../../../utils/color.dart';
+import '../../../../utils/widget.dart';
 import '../../../routes/app_pages.dart';
 
 class TrxView extends GetView<AdminTxController> {
@@ -13,11 +15,32 @@ class TrxView extends GetView<AdminTxController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Transaction'),
-        centerTitle: true,
+      appBar: AppBar(),
+      drawer: Drawer(
+        child: ListView(
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(17.0),
+              child: Text(
+                'Halaman Admin',
+                style: TextStyle(fontSize: 20),
+              ),
+            ),
+            Divider(),
+            ListTile(
+                title: const Text('Halaman User'),
+                leading: Icon(Icons.keyboard_backspace_outlined),
+                onTap: () => Get.offAllNamed(Routes.HOME)),
+            ListTile(
+                title:
+                    const Text('Log out', style: TextStyle(color: Colors.red)),
+                onTap: () => controller.signOut()),
+          ],
+        ),
       ),
       floatingActionButton: FloatingActionButton(
+        backgroundColor: Color.fromRGBO(102, 85, 184, 1),
+        child: Icon(Icons.add),
         onPressed: () {
           controller.weightC.clear();
           controller.priceC.clear();
@@ -27,42 +50,20 @@ class TrxView extends GetView<AdminTxController> {
 
           Get.toNamed(Routes.NEWTX);
         },
-        child: Icon(Icons.add),
-      ),
-      drawer: Drawer(
-        child: ListView(
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(17.0),
-              child: Text(
-                'Hi, Admin.',
-                style: TextStyle(fontSize: 20),
-              ),
-            ),
-            Divider(),
-            ListTile(
-                title: const Text('User Form'),
-                onTap: () => Get.offAllNamed(Routes.HOME)),
-            ListTile(
-                title:
-                    const Text('Log out', style: TextStyle(color: Colors.red)),
-                onTap: () => controller.signOut()),
-          ],
-        ),
       ),
       body: StreamBuilder(
           stream: controller.streamTx(),
           builder: (context, snapshot) {
             if (snapshot.hasError) {
-              return Text('Something went wrong');
+              return Center(child: Text('Something went wrong'));
             }
 
             if (snapshot.connectionState == ConnectionState.waiting) {
-              return Text("Loading");
+              return Center(child: Text("Loading"));
             }
 
             if (!snapshot.hasData) {
-              return Text("Loading...");
+              return Center(child: Text("There is no data"));
             }
 
             if (snapshot.hasData) {
@@ -72,7 +73,7 @@ class TrxView extends GetView<AdminTxController> {
               documents.forEach((document) {
                 Timestamp timestamp = document['date'] as Timestamp;
                 DateTime date = timestamp.toDate();
-                String groupKey = DateFormat('d MMMM').format(date);
+                String groupKey = DateFormat('d MMMM yyy').format(date);
                 int price = document['price'] as int;
 
                 if (groupTotalPrices.containsKey(groupKey)) {
@@ -92,7 +93,7 @@ class TrxView extends GetView<AdminTxController> {
                 groupBy: (element) {
                   Timestamp timestamp = element['date'] as Timestamp;
                   DateTime date = timestamp.toDate();
-                  return DateFormat('d MMMM').format(date);
+                  return DateFormat('d MMMM yyy').format(date);
                 },
                 groupSeparatorBuilder: (value) {
                   String groupKey = value;
@@ -100,75 +101,89 @@ class TrxView extends GetView<AdminTxController> {
                   String formattedAmount = formatCurrency.format(totalPrice);
 
                   return Padding(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 17, vertical: 5),
-                    child: Row(
+                    padding: const EdgeInsets.fromLTRB(19, 13, 19, 10),
+                    child: Column(
                       children: [
-                        Expanded(
-                          child: Text(
-                            value,
-                            style: TextStyle(
-                                fontSize: 16, fontWeight: FontWeight.w500),
-                          ),
+                        Row(
+                          children: [
+                            Expanded(
+                                flex: 2,
+                                child: Text(
+                                  value,
+                                  style: TextStyle(color: Colors.grey),
+                                )),
+                            ClipRRect(
+                                borderRadius: BorderRadius.circular(20),
+                                child: Container(
+                                    padding: EdgeInsets.symmetric(
+                                        horizontal: 10, vertical: 3),
+                                    color: Color.fromRGBO(85, 184, 179, 1),
+                                    child: Text(
+                                      formattedAmount,
+                                      style: TextStyle(color: Colors.white),
+                                    )))
+                          ],
                         ),
-                        Text(
-                          formattedAmount,
-                          style: TextStyle(fontSize: 16),
-                        ),
+                        Divider(
+                          color: Colors.grey.shade200,
+                        )
                       ],
                     ),
                   );
                 },
                 groupComparator: (group1, group2) {
-                  DateTime date1 = DateFormat('d MMMM').parse(group1, true);
-                  DateTime date2 = DateFormat('d MMMM').parse(group2, true);
+                  DateTime date1 = DateFormat('d MMMM yyy').parse(group1, true);
+                  DateTime date2 = DateFormat('d MMMM yyy').parse(group2, true);
                   return date1.compareTo(date2);
                 },
                 itemBuilder: (context, element) {
-                  return ListTile(
-                      title: Text(element['name']),
-                      subtitle: Text('${element['weight']} kg'),
-                      leading: CircleAvatar(
-                        backgroundColor: Colors.grey[300],
-                        child: Icon(
-                          Icons.person,
-                          color: Colors.grey,
+                  return Card(
+                    child: ListTile(
+                        title: Text(element['name']),
+                        subtitle: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text('${element['weight']} kg',
+                                style: TextStyle(color: Colors.grey)),
+                            Text(element['carNumber'],
+                                style: TextStyle(color: Colors.grey)),
+                          ],
                         ),
-                      ),
-                      trailing: Text(
-                        '+${formatCurrency.format(element['price'])}',
-                        style: TextStyle(fontSize: 14, color: Colors.green),
-                      ),
-                      onTap: () => Get.toNamed(Routes.ADMDETAILTX,
-                          arguments: element['transactionID']),
-                      onLongPress: () {
-                        Get.bottomSheet(
-                          backgroundColor: Colors.white,
-                          Column(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              Container(
-                                padding: EdgeInsets.fromLTRB(17, 17, 17, 2),
-                                width: double.infinity,
-                                child: ElevatedButton(
-                                  onPressed: () => Get.toNamed(Routes.UPDATETX,
-                                      arguments: element['transactionID']),
-                                  child: Text("Edit"),
-                                ),
-                              ),
-                              Container(
-                                padding: EdgeInsets.fromLTRB(17, 2, 17, 17),
-                                width: double.infinity,
-                                child: ElevatedButton(
-                                  onPressed: () => controller
-                                      .deleteTx(element["transactionID"]),
-                                  child: Text("Delete"),
-                                ),
-                              ),
-                            ],
+                        leading: CircleAvatar(
+                          backgroundColor: AppColor.tosca,
+                          child: Icon(
+                            Icons.person,
+                            color: Colors.white,
                           ),
-                        );
-                      });
+                        ),
+                        trailing: Text(
+                          '+${formatCurrency.format(element['price'])}',
+                          style: TextStyle(
+                              fontSize: 14,
+                              color: Color.fromRGBO(85, 184, 179, 1)),
+                        ),
+                        onTap: () => Get.toNamed(Routes.ADMDETAILTX,
+                            arguments: element['transactionID']),
+                        onLongPress: () {
+                          Get.bottomSheet(
+                            backgroundColor: Colors.white,
+                            Column(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                EditButton(
+                                  text: "Edit",
+                                  Pressed: () => Get.toNamed(Routes.UPDATETX,
+                                      arguments: element['transactionID']),
+                                ),
+                                DeleteButton(
+                                    text: "Hapus",
+                                    Pressed: () => controller
+                                        .deleteTx(element["transactionID"])),
+                              ],
+                            ),
+                          );
+                        }),
+                  );
                 },
               );
             }

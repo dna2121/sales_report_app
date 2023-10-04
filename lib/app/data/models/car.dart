@@ -4,21 +4,25 @@ class Car {
   String carID;
   String userID;
   String carNumber;
+  String name;
   Car({
     required this.carID,
     required this.userID,
     required this.carNumber,
+    required this.name,
   });
 
   Car copyWith({
     String? carID,
     String? userID,
     String? carNumber,
+    String? name,
   }) {
     return Car(
       carID: carID ?? this.carID,
       userID: userID ?? this.userID,
       carNumber: carNumber ?? this.carNumber,
+      name: name ?? this.name,
     );
   }
 
@@ -27,6 +31,7 @@ class Car {
       'carID': carID,
       'userID': userID,
       'carNumber': carNumber,
+      'name': name,
     };
   }
 
@@ -35,6 +40,7 @@ class Car {
       carID: map['carID'] ?? '',
       userID: map['userID'] ?? '',
       carNumber: map['carNumber'] ?? '',
+      name: map['name'] ?? '',
     );
   }
 
@@ -43,7 +49,9 @@ class Car {
   factory Car.fromJson(String source) => Car.fromMap(json.decode(source));
 
   @override
-  String toString() => 'Car(carID: $carID, userID: $userID, carNumber: $carNumber)';
+  String toString() {
+    return 'Car(carID: $carID, userID: $userID, carNumber: $carNumber, name: $name)';
+  }
 
   @override
   bool operator ==(Object other) {
@@ -52,9 +60,15 @@ class Car {
     return other is Car &&
       other.carID == carID &&
       other.userID == userID &&
-      other.carNumber == carNumber;
+      other.carNumber == carNumber &&
+      other.name == name;
   }
 
   @override
-  int get hashCode => carID.hashCode ^ userID.hashCode ^ carNumber.hashCode;
+  int get hashCode {
+    return carID.hashCode ^
+      userID.hashCode ^
+      carNumber.hashCode ^
+      name.hashCode;
+  }
 }

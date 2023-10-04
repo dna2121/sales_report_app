@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:sales_report_app/app/modules/admin/controllers/admintx_controller.dart';
+import 'package:sales_report_app/utils/color.dart';
+import 'package:sales_report_app/utils/widget.dart';
 
 class NewTxView extends GetView<AdminTxController> {
   const NewTxView({Key? key}) : super(key: key);
@@ -13,14 +15,17 @@ class NewTxView extends GetView<AdminTxController> {
         title: const Text('Add New Transaction'),
         centerTitle: true,
       ),
-      body: Form(
-        key: controller.trxFormKey,
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: StreamBuilder(
+      body: SingleChildScrollView(
+        child: Form(
+          key: controller.trxFormKey,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 24),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                TitleText(text: "Name"),
+                SizedBox(height: 7),
+                StreamBuilder(
                     stream: controller.streamName(),
                     builder: (context, snapshot) {
                       if (snapshot.connectionState == ConnectionState.waiting) {
@@ -28,50 +33,66 @@ class NewTxView extends GetView<AdminTxController> {
                       }
 
                       if (snapshot.hasData) {
-                        return DropdownSearch<String>(
-                          dropdownDecoratorProps: DropDownDecoratorProps(
-                              dropdownSearchDecoration:
-                                  InputDecoration(labelText: "Name")),
-                          clearButtonProps: ClearButtonProps(isVisible: true),
-                          popupProps: PopupProps.menu(
+                        return Container(
+                          decoration: BoxDecoration(
+                              color: AppColor.grey2,
+                              borderRadius: BorderRadius.circular(7)),
+                          child: DropdownSearch<String>(
+                            dropdownDecoratorProps: DropDownDecoratorProps(
+                              dropdownSearchDecoration: InputDecoration(
+                                  hintText: "Select a name",
+                                  border: InputBorder.none,
+                                  contentPadding: EdgeInsets.all(11)),
+                            ),
+                            clearButtonProps: ClearButtonProps(isVisible: true),
+                            popupProps: PopupProps.dialog(
                               showSearchBox: true,
                               showSelectedItems: true,
+                              dialogProps: DialogProps(
+                                backgroundColor: AppColor.background,
+                                contentPadding: EdgeInsetsDirectional.symmetric(
+                                    vertical: 11),
+                              ),
                               searchFieldProps: TextFieldProps(
-                                  decoration:
-                                      InputDecoration(labelText: "Search..."))),
-                          items: snapshot.data!,
-                          selectedItem: controller.selectedName,
-                          validator: controller.validator,
-                          onChanged: (value) async {
-                            controller.selectedName = value;
-                            String? userId =
-                                await controller.getUserIdFromName(value!);
+                                padding: EdgeInsets.symmetric(
+                                    horizontal: 17, vertical: 12),
+                                decoration: InputDecoration(
+                                    hintText: "Search...",
+                                    contentPadding: EdgeInsets.all(11)),
+                              ),
+                            ),
+                            items: snapshot.data!,
+                            selectedItem: controller.selectedName,
+                            validator: controller.validator,
+                            onChanged: (value) async {
+                              controller.selectedName = value;
+                              String? userId =
+                                  await controller.getUserIdFromName(value!);
 
-                            controller.carNumberStream =
-                                controller.streamCarNumber(userId!);
-                          },
+                              controller.carNumberStream =
+                                  controller.streamCarNumber(userId!);
+                            },
+                          ),
                         );
                       } else {
                         return CircularProgressIndicator();
                       }
                     }),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: TextFormField(
+                SizedBox(height: 17),
+                TitleText(text: "Price"),
+                SizedBox(height: 7),
+                InputField(
                   keyboardType: TextInputType.number,
-                  decoration: InputDecoration(
-                    prefixText: "Rp. ",
-                    label: Text("Harga"),
-                  ),
+                  prefixText: "Rp. ",
+                  hintText: "Enter price",
                   controller: controller.priceC,
                   validator: controller.validator,
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: TextFormField(
-                  decoration: InputDecoration(labelText: "Tanggal"),
+                SizedBox(height: 17),
+                TitleText(text: "Date"),
+                SizedBox(height: 7),
+                InputField(
+                  hintText: "Select date",
                   controller: controller.dateC,
                   validator: controller.validator,
                   onTap: () async {
@@ -79,71 +100,93 @@ class NewTxView extends GetView<AdminTxController> {
                     await controller.chooseDate();
                   },
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: TextFormField(
+                SizedBox(height: 17),
+                TitleText(text: "Weight"),
+                SizedBox(height: 7),
+                InputField(
                   keyboardType: TextInputType.number,
-                  decoration: InputDecoration(
-                    suffixText: " kilogram",
-                    label: Text("Berat"),
-                  ),
+                  suffixText: "kilogram",
+                  hintText: "Enter weight in kilogram",
                   controller: controller.weightC,
                   validator: controller.validator,
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: StreamBuilder<List<String>>(
+                SizedBox(height: 17),
+                TitleText(text: "Car Number"),
+                SizedBox(height: 7),
+                StreamBuilder<List<String>>(
                     stream: controller.carNumberStream,
                     builder: (context, snapshot) {
                       if (!snapshot.hasData) {
-                        return DropdownSearch<String>(
-                          dropdownDecoratorProps: DropDownDecoratorProps(
-                            dropdownSearchDecoration:
-                                InputDecoration(labelText: "Car Number"),
+                        return Container(
+                          decoration: BoxDecoration(
+                              color: AppColor.grey2,
+                              borderRadius: BorderRadius.circular(7)),
+                          child: DropdownSearch<String>(
+                            dropdownDecoratorProps: DropDownDecoratorProps(
+                              dropdownSearchDecoration: InputDecoration(
+                                  hintText: "Select a car number",
+                                  border: InputBorder.none,
+                                  contentPadding: EdgeInsets.all(11)),
+                            ),
                           ),
-                          // items: [],
                         );
                       }
 
                       if (snapshot.hasData) {
-                        return DropdownSearch<String>(
-                          dropdownDecoratorProps: DropDownDecoratorProps(
-                            dropdownSearchDecoration:
-                                InputDecoration(labelText: "Car Number"),
+                        return Container(
+                          decoration: BoxDecoration(
+                              color: AppColor.grey2,
+                              borderRadius: BorderRadius.circular(7)),
+                          child: DropdownSearch<String>(
+                            dropdownDecoratorProps: DropDownDecoratorProps(
+                              dropdownSearchDecoration: InputDecoration(
+                                  hintText: "Select a car number",
+                                  border: InputBorder.none,
+                                  contentPadding: EdgeInsets.all(11)),
+                            ),
+                            clearButtonProps: ClearButtonProps(isVisible: true),
+                            popupProps: PopupProps.dialog(
+                              showSearchBox: true,
+                              showSelectedItems: true,
+                              dialogProps: DialogProps(
+                                backgroundColor: AppColor.background,
+                                contentPadding: EdgeInsetsDirectional.symmetric(
+                                    vertical: 11),
+                              ),
+                              searchFieldProps: TextFieldProps(
+                                padding: EdgeInsets.symmetric(
+                                    horizontal: 17, vertical: 12),
+                                decoration: InputDecoration(
+                                    hintText: "Search...",
+                                    contentPadding: EdgeInsets.all(11)),
+                              ),
+                            ),
+                            items: snapshot.data!,
+                            selectedItem: controller.selectedCarnum,
+                            // validator: controller.validator,
+                            onChanged: (value) async {
+                              controller.selectedCarnum = value;
+                            },
                           ),
-                          clearButtonProps: ClearButtonProps(isVisible: true),
-                          popupProps: PopupProps.menu(
-                            showSelectedItems: true,
-                          ),
-                          items: snapshot.data!,
-                          selectedItem: controller.selectedCarnum,
-                          validator: controller.validator,
-                          onChanged: (value) async {
-                            controller.selectedCarnum = value;
-                          },
                         );
                       } else {
                         return CircularProgressIndicator();
                       }
                     }),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: ElevatedButton(
-                  onPressed: () {
-                    controller.priceC.text.isEmpty &&
-                            controller.dateC.text.isEmpty &&
-                            controller.weightC.text.isEmpty
-                        ? controller.textEmpty
-                        : controller.addNewTx();
-                  },
-                  child: Text("Save"),
-                ),
-              ),
-              SizedBox(height: 20),
-            ],
+                SizedBox(height: 25),
+                StringButton(
+                    backgroundColor: AppColor.putihBtn,
+                    pressed: () {
+                      controller.priceC.text.isEmpty &&
+                              controller.dateC.text.isEmpty &&
+                              controller.weightC.text.isEmpty
+                          ? controller.textEmpty
+                          : controller.addNewTx();
+                    },
+                    text: "Save"),
+                SizedBox(height: 20),
+              ],
+            ),
           ),
         ),
       ),

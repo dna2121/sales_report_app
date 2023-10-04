@@ -9,10 +9,6 @@ class SplashView extends GetView<SplashController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('SplashView'),
-        centerTitle: true,
-      ),
       body: const Center(
           child: Padding(
         padding: EdgeInsets.all(8.0),

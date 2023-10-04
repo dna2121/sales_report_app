@@ -23,29 +23,48 @@ class SalesReport extends StatelessWidget {
       title: "Application",
       initialRoute: AppPages.INITIAL,
       getPages: AppPages.routes,
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         useMaterial3: true,
-        fontFamily: 'Krub',
+        fontFamily: 'Poppins',
+        textTheme: TextTheme(
+            bodyMedium: TextStyle(color: AppColor.body),
+            bodyLarge:
+                TextStyle(color: AppColor.title, fontWeight: FontWeight.w500)),
+        scaffoldBackgroundColor: Colors.white,
         appBarTheme: AppBarTheme(
-          backgroundColor: Colors.transparent,
-          titleTextStyle: TextStyle(color: Colors.black, fontSize: 24),
+          backgroundColor: Colors.white,
+          actionsIconTheme: IconThemeData(color: AppColor.iconColor),
+          toolbarHeight: 100,
+          titleTextStyle: TextStyle(
+              color: AppColor.title, fontSize: 22, fontFamily: 'Poppins'),
         ),
         bottomNavigationBarTheme: BottomNavigationBarThemeData(
-          backgroundColor: AppColor.grey,
-          selectedItemColor: AppColor.green,
+          selectedItemColor: AppColor.body,
+          showUnselectedLabels: false,
+          unselectedIconTheme: IconThemeData(color: Colors.grey),
         ),
-        floatingActionButtonTheme: FloatingActionButtonThemeData(
-            foregroundColor: Colors.white, backgroundColor: AppColor.green),
+        floatingActionButtonTheme:
+            FloatingActionButtonThemeData(foregroundColor: Colors.white),
         elevatedButtonTheme: ElevatedButtonThemeData(
           style: ButtonStyle(
-            backgroundColor: AppColor.hijau,
+            backgroundColor: AppColor.fabBtn,
             shape: MaterialStateProperty.all<RoundedRectangleBorder>(
               RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(8),
+                borderRadius: BorderRadius.circular(50),
               ),
             ),
           ),
         ),
+        cardTheme: CardTheme(
+          // margin: EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+          color: Colors.transparent,
+          elevation: 0,
+          // shape:
+          //     RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+        ),
+        drawerTheme: DrawerThemeData(backgroundColor: Colors.grey.shade200),
+        dialogBackgroundColor: Colors.white,
       ),
       initialBinding: AppBinding(),
     );

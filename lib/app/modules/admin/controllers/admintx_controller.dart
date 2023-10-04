@@ -16,6 +16,8 @@ class AdminTxController extends GetxController {
   final carC = TextEditingController();
   final weightC = TextEditingController();
   final dateC = TextEditingController();
+  final trxidC = TextEditingController();
+  final uidC = TextEditingController();
 
   var selectedDate = DateTime.now().obs;
   late String documentId;
@@ -37,6 +39,10 @@ class AdminTxController extends GetxController {
 
   Stream<QuerySnapshot<Object?>> streamTx() {
     return txRepo.txCollection.snapshots();
+  }
+
+  Stream<DocumentSnapshot<Object?>> getDetailTx() {
+    return txRepo.txCollection.doc(documentId).snapshots();
   }
 
   Stream<List<String>> streamName() {
@@ -88,8 +94,8 @@ class AdminTxController extends GetxController {
 
   String? get textEmpty {
     Get.defaultDialog(
-      title: 'Failed',
-      middleText: "Text cannot be empty",
+      title: 'Gagal',
+      middleText: "Tidak boleh kosong!",
       onConfirm: () {
         Get.back(); //close dialog
       },
@@ -104,20 +110,20 @@ class AdminTxController extends GetxController {
 
     try {
       Get.defaultDialog(
-        title: "Delete Data",
-        middleText: "Do you want to delete the data?",
+        title: "Hapus Data",
+        middleText: "Data dihapus?",
         onConfirm: () async {
           await documentReference.delete();
           Get.back();
           Get.back();
         },
-        textConfirm: "Yes",
-        textCancel: "No",
+        textConfirm: "Ya",
+        textCancel: "Tidak",
       );
     } catch (e) {
       Get.defaultDialog(
-        title: "Something's wrong.",
-        middleText: "Delete data failed.",
+        title: "Sesuatu bermasalah",
+        middleText: "Gagal menghapus data.",
       );
     }
   }
@@ -134,12 +140,16 @@ class AdminTxController extends GetxController {
         int weight = data['weight'] as int;
         Timestamp timestamp = data['date'] as Timestamp;
         String carnum = data['carNumber'] as String;
+        String trxId = data['transactionID'] as String;
+        String uID = data['userID'] as String;
 
         priceC.text = price.toString();
         selectedName = name;
         weightC.text = weight.toString();
         dateC.text = DateFormat('yyyy-MM-dd').format(timestamp.toDate());
         carC.text = carnum;
+        trxidC.text = trxId;
+        uidC.text = uID;
       }
     } catch (error) {
       print('Failed to fetch document data: $error');
@@ -166,8 +176,8 @@ class AdminTxController extends GetxController {
       });
 
       Get.defaultDialog(
-        title: 'Success',
-        middleText: "Data updated.",
+        title: 'Berhasil',
+        middleText: "Data diubah.",
         onConfirm: () {
           nameC.clear();
           priceC.clear();
@@ -205,8 +215,8 @@ class AdminTxController extends GetxController {
               carNumber: selectedCarnum.toString()),
         );
         Get.defaultDialog(
-          title: 'Success',
-          middleText: "Data added.",
+          title: 'Berhasil',
+          middleText: "Data ditambahkan.",
           onConfirm: () {
             // priceC.clear();
             // weightC.clear();

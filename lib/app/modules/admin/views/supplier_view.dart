@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:sales_report_app/utils/widget.dart';
 
 import '../../../routes/app_pages.dart';
 import '../controllers/supplier_controller.dart';
@@ -12,34 +13,27 @@ class SupplierView extends GetView<SupplierController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Farmer'),
+        title: const Text('Daftar Petani'),
         centerTitle: true,
       ),
       body: Column(
         children: [
           Padding(
-            padding: const EdgeInsets.fromLTRB(17, 17, 17, 1),
-            child: Row(
-              children: [
-                Expanded(
-                  child: ElevatedButton(
-                    onPressed: () => Get.toNamed(Routes.SIGNUP),
-                    child: Text("Create a new account"),
-                  ),
-                ),
-              ],
-            ),
-          ),
+              padding: const EdgeInsets.fromLTRB(17, 17, 17, 1),
+              child: StringButton(
+                  color: Colors.white,
+                  pressed: () => Get.toNamed(Routes.SIGNUP),
+                  text: "Buat Akun Petani")),
           Expanded(
             child: StreamBuilder(
                 stream: controller.getUser(),
                 builder: (context, snapshot) {
                   if (snapshot.hasError) {
-                    return Text('Something went wrong');
+                    return Center(child: Text('Something went wrong'));
                   }
 
                   if (snapshot.connectionState == ConnectionState.waiting) {
-                    return Text("Loading");
+                    return Center(child: Text("Loading"));
                   }
 
                   return ListView(
@@ -66,24 +60,27 @@ class SupplierView extends GetView<SupplierController> {
                                   child: Container(
                                     width: double.infinity,
                                     child: Padding(
-                                      padding: const EdgeInsets.all(17.0),
+                                      padding: const EdgeInsets.symmetric(
+                                          vertical: 26, horizontal: 18),
                                       child: Column(
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,
                                         children: [
-                                          Text(
-                                              roles.contains('admin')
-                                                  ? '${data['name']} (Admin)'
-                                                  : '${data['name']}',
-                                              style: TextStyle(fontSize: 21)),
+                                          HeaderText(
+                                            text: roles.contains('admin')
+                                                ? '${data['name']} (Admin)'
+                                                : '${data['name']}',
+                                          ),
                                           SizedBox(height: 17),
-                                          Text("Phone Number"),
+                                          TitleText(text: "Nomor Handphone"),
                                           Text(data['phoneNumber']),
                                           SizedBox(height: 17),
-                                          Text("Address"),
+                                          TitleText(text: "Alamat"),
                                           Text(data['address']),
                                           SizedBox(height: 17),
-                                          Text("Cars"),
+                                          TitleText(text: "Email"),
+                                          Text(data['email']),
+                                          SizedBox(height: 17),
                                         ],
                                       ),
                                     ),
@@ -96,28 +93,17 @@ class SupplierView extends GetView<SupplierController> {
                               Column(
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
-                                  // Container(
-                                  //   padding:
-                                  //       EdgeInsets.fromLTRB(17, 17, 17, 2),
-                                  //   width: double.infinity,
-                                  //   child: ElevatedButton(
-                                  //     onPressed: () {
-                                  //       Get.toNamed(Routes.UPDATETX,
-                                  //           arguments: data['transactionID']);
-                                  //     },
-                                  //     child: Text("Edit"),
-                                  //   ),
-                                  // ),
-                                  Container(
-                                    padding: EdgeInsets.fromLTRB(17, 2, 17, 17),
-                                    width: double.infinity,
-                                    child: ElevatedButton(
-                                      onPressed: () {
+                                  EditButton(
+                                      text: "Edit",
+                                      Pressed: () {
+                                        Get.toNamed(Routes.UPDATESUPPLIER,
+                                            arguments: data['id']);
+                                      }),
+                                  DeleteButton(
+                                      text: "Hapus",
+                                      Pressed: () {
                                         controller.deleteUser(data["id"]);
-                                      },
-                                      child: Text("Delete"),
-                                    ),
-                                  ),
+                                      })
                                 ],
                               ),
                             );

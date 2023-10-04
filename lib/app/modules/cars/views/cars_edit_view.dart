@@ -26,7 +26,7 @@ class CarsEditView extends GetView<CarsController> {
               Padding(
                 padding: const EdgeInsets.all(18.0),
                 child: TextFormField(
-                  decoration: InputDecoration(labelText: "Car Number"),
+                  decoration: InputDecoration(labelText: "Nomor Mobil"),
                   controller: controller.carsController,
                   validator: controller.validator,
                   textCapitalization: TextCapitalization.characters,
@@ -41,7 +41,10 @@ class CarsEditView extends GetView<CarsController> {
                         ? controller.textEmpty
                         : controller.updateCarDoc();
                   },
-                  child: Text("Save"),
+                  child: Text(
+                    "Simpan",
+                    style: TextStyle(color: Colors.white),
+                  ),
                 ),
               ),
             ],
