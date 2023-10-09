@@ -10,6 +10,7 @@ import 'app/routes/app_pages.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
+      name: 'sales report app',
       options: FirebaseOptions(
           apiKey: "AIzaSyBP6R-El-rAwuhMs3KHkdefrhgn6XxZA-k",
           appId: "1:244691395214:web:6b734d65e706a32f8a5fdf",
