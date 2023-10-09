@@ -46,7 +46,7 @@ class DetailTxView extends GetView<TransactionController> {
                 child: Container(
                     margin: EdgeInsets.fromLTRB(19, 50, 19, 50),
                     padding: EdgeInsets.symmetric(horizontal: 20),
-                    width: double.infinity,
+                    width: 500,
                     decoration: BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(15),

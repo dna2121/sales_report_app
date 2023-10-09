@@ -9,10 +9,13 @@ class SplashView extends GetView<SplashController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: const Center(
+      body: Center(
           child: Padding(
         padding: EdgeInsets.all(8.0),
-        child: CircularProgressIndicator(),
+        child: Image.asset(
+          'asset/image/hat.jpg',
+          height: 100,
+        ),
       )),
     );
   }

@@ -1,7 +1,7 @@
 name: sales_report_app
 version: 1.0.0+1
 publish_to: none
-description: A new Flutter project.
+description: Sales Report Application.
 environment: 
   sdk: '>=2.19.5 <3.0.0'
 

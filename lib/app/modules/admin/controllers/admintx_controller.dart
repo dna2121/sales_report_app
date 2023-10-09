@@ -251,4 +251,19 @@ class AdminTxController extends GetxController {
       dateC.text = DateFormat('yyyy-MM-dd').format(selectedDate.value);
     }
   }
+
+  void showCustomDialog()async  {
+  await Get.defaultDialog(
+    title: "Dialog Title",
+    content: Text("Dialog Content"),
+    confirm: ElevatedButton(
+      onPressed: () {
+        // Handle the confirm button action here
+        Get.back(); // Close the dialog
+      },
+      child: Text("Confirm"),
+    ),
+  );
+}
+
 }

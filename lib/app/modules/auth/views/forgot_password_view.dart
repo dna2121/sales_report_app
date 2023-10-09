@@ -12,33 +12,40 @@ class ForgotPasswordView extends GetView<ForgotPasswordController> {
       appBar: AppBar(
         title: const Text('Forgot Password'),
       ),
-      body: Column(
-        children: [
-          Image(height: 200, image: AssetImage('asset/image/pw.png')),
-          SizedBox(height: 55),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
-            child: TextFormField(
-              decoration: InputDecoration(hintText: "Email"),
-              autovalidateMode: AutovalidateMode.onUserInteraction,
-              validator: (email) =>
-                  email == null ? 'Enter a valid email' : null,
-              textInputAction: TextInputAction.done,
-              keyboardType: TextInputType.emailAddress,
-              controller: controller.emailController,
-            ),
+      body: Center(
+        child: SizedBox(
+          width: 500,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Image(height: 200, image: AssetImage('asset/image/pw.png')),
+              SizedBox(height: 55),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: TextFormField(
+                  decoration: InputDecoration(hintText: "Email"),
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
+                  validator: (email) =>
+                      email == null ? 'Enter a valid email' : null,
+                  textInputAction: TextInputAction.done,
+                  keyboardType: TextInputType.emailAddress,
+                  controller: controller.emailController,
+                ),
+              ),
+              SizedBox(height: 35),
+              Padding(
+                padding: const EdgeInsets.all(18.0),
+                child: StringButton(
+                    color: Colors.white,
+                    pressed: () {
+                      controller.resetPassword();
+                    },
+                    text: "Send"),
+              )
+            ],
           ),
-          SizedBox(height: 35),
-          Padding(
-            padding: const EdgeInsets.all(18.0),
-            child: StringButton(
-                color: Colors.white,
-                pressed: () {
-                  controller.resetPassword();
-                },
-                text: "Send"),
-          )
-        ],
+        ),
       ),
     );
   }

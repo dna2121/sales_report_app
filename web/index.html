@@ -18,18 +18,18 @@
 
   <meta charset="UTF-8">
   <meta content="IE=Edge" http-equiv="X-UA-Compatible">
-  <meta name="description" content="A new Flutter project.">
+  <meta name="description" content="Sales Report Application.">
 
   <!-- iOS meta tags & icons -->
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   <meta name="apple-mobile-web-app-title" content="sales_report_app">
-  <link rel="apple-touch-icon" href="icons/Icon-192.png">
+  <link rel="apple-touch-icon" href="hat.jpg">
 
   <!-- Favicon -->
-  <link rel="icon" type="image/png" href="favicon.png"/>
+  <link rel="icon" type="image/png" href="hat.jpg"/>
 
-  <title>sales_report_app</title>
+  <title>Sales Report</title>
   <link rel="manifest" href="manifest.json">
 
   <script>
@@ -40,6 +40,26 @@
   <script src="flutter.js" defer></script>
 </head>
 <body>
+  <script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-app.js";
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
+  
+    // Your web app's Firebase configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyBP6R-El-rAwuhMs3KHkdefrhgn6XxZA-k",
+      authDomain: "sales-report-app-cb6ca.firebaseapp.com",
+      databaseURL: "https://sales-report-app-cb6ca-default-rtdb.asia-southeast1.firebasedatabase.app",
+      projectId: "sales-report-app-cb6ca",
+      storageBucket: "sales-report-app-cb6ca.appspot.com",
+      messagingSenderId: "244691395214",
+      appId: "1:244691395214:web:6b734d65e706a32f8a5fdf"
+    };
+  
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+  </script>
   <script>
     window.addEventListener('load', function(ev) {
       // Download main.dart.js

@@ -128,89 +128,92 @@ class TransactionView extends GetView<TransactionController> {
                 SizedBox(height: 25),
               ]),
             ),
-            Container(
-              margin: EdgeInsets.symmetric(horizontal: 22),
-              padding: EdgeInsets.symmetric(vertical: 24, horizontal: 20),
-              decoration: whiteboxDecor(),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  HeaderText(
-                    text: "Transaksi Terbaru",
-                    color: Colors.white,
-                  ),
-                  SizedBox(height: 7),
-                  StreamBuilder(
-                    stream: controller.stream3TxById(),
-                    builder: (context, snapshot) {
-                      if (snapshot.hasError) {
-                        return Center(child: Text('Something went wrong'));
-                      }
-
-                      if (snapshot.connectionState == ConnectionState.waiting) {
-                        return Center(child: Text("Loading"));
-                      }
-
-                      if (!snapshot.hasData) {
-                        return Center(child: Text("Loading..."));
-                      }
-
-                      List<DocumentSnapshot> documents = snapshot.data!.docs;
-
-                      return Column(
-                        children: documents.map((document) {
-                          Map<String, dynamic> data =
-                              document.data()! as Map<String, dynamic>;
-
-                          int totalPrice = data['price'];
-                          final formatCurrency = NumberFormat.currency(
-                              locale: 'id_ID', symbol: 'Rp ');
-                          String formattedAmount =
-                              formatCurrency.format(totalPrice);
-
-                          Timestamp timestamp = data['date'] as Timestamp;
-                          DateTime date = timestamp.toDate();
-                          String tanggal = DateFormat('d MMM ').format(date);
-
-                          return ListTile(
-                            leading: CircleAvatar(
-                              backgroundColor: Colors.amber.shade300,
-                              child: Icon(
-                                Icons.person,
-                                color: Colors.white,
+            Center(
+              child: Container(
+                width: 500,
+                margin: EdgeInsets.symmetric(horizontal: 22),
+                padding: EdgeInsets.symmetric(vertical: 24, horizontal: 20),
+                decoration: whiteboxDecor(),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    HeaderText(
+                      text: "Transaksi Terbaru",
+                      color: Colors.white,
+                    ),
+                    SizedBox(height: 7),
+                    StreamBuilder(
+                      stream: controller.stream3TxById(),
+                      builder: (context, snapshot) {
+                        if (snapshot.hasError) {
+                          return Center(child: Text('Something went wrong'));
+                        }
+            
+                        if (snapshot.connectionState == ConnectionState.waiting) {
+                          return Center(child: Text("Loading"));
+                        }
+            
+                        if (!snapshot.hasData) {
+                          return Center(child: Text("Loading..."));
+                        }
+            
+                        List<DocumentSnapshot> documents = snapshot.data!.docs;
+            
+                        return Column(
+                          children: documents.map((document) {
+                            Map<String, dynamic> data =
+                                document.data()! as Map<String, dynamic>;
+            
+                            int totalPrice = data['price'];
+                            final formatCurrency = NumberFormat.currency(
+                                locale: 'id_ID', symbol: 'Rp ');
+                            String formattedAmount =
+                                formatCurrency.format(totalPrice);
+            
+                            Timestamp timestamp = data['date'] as Timestamp;
+                            DateTime date = timestamp.toDate();
+                            String tanggal = DateFormat('d MMM ').format(date);
+            
+                            return ListTile(
+                              leading: CircleAvatar(
+                                backgroundColor: Colors.amber.shade300,
+                                child: Icon(
+                                  Icons.person,
+                                  color: Colors.white,
+                                ),
                               ),
-                            ),
-                            trailing: Text(
-                              formattedAmount,
-                              style:
-                                  TextStyle(fontSize: 14, color: Colors.white),
-                            ),
-                            title: Text(
-                              '${data['weight']} kg',
-                              style: TextStyle(color: Colors.white),
-                            ),
-                            subtitle: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(data['carNumber'],
-                                    style: TextStyle(color: Colors.white)),
-                                Text(tanggal,
-                                    style: TextStyle(color: Colors.white)),
-                              ],
-                            ),
-                          );
-                        }).toList(),
-                      );
-                    },
-                  ),
-                  SizedBox(height: 10),
-                  Divider(color: Colors.grey.shade300),
-                  SizedBox(height: 10),
-                  StringButton(
-                      backgroundColor: AppColor.putihBtn,
-                      pressed: () => Get.toNamed(Routes.TXLIST),
-                      text: "Daftar Transaksi"),
-                ],
+                              trailing: Text(
+                                formattedAmount,
+                                style:
+                                    TextStyle(fontSize: 14, color: Colors.white),
+                              ),
+                              title: Text(
+                                '${data['weight']} kg',
+                                style: TextStyle(color: Colors.white),
+                              ),
+                              subtitle: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(data['carNumber'],
+                                      style: TextStyle(color: Colors.white)),
+                                  Text(tanggal,
+                                      style: TextStyle(color: Colors.white)),
+                                ],
+                              ),
+                            );
+                          }).toList(),
+                        );
+                      },
+                    ),
+                    SizedBox(height: 10),
+                    Divider(color: Colors.grey.shade300),
+                    SizedBox(height: 10),
+                    StringButton(
+                        backgroundColor: AppColor.putihBtn,
+                        pressed: () => Get.toNamed(Routes.TXLIST),
+                        text: "Daftar Transaksi"),
+                  ],
+                ),
               ),
             ),
             SizedBox(height: 50),
