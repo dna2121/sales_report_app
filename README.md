@@ -2,7 +2,8 @@
 ![admin](https://github.com/dna2121/sales_report_app/assets/80125535/ca22660d-f430-4db0-bf41-faeea4478df1)
 
 
-![user](https://github.com/dna2121/sales_report_app/assets/80125535/d3c4335f-5876-4408-b8ad-687b6f39a38e)
+![user](https://github.com/dna2121/sales_report_app/assets/80125535/0876c63f-d642-47b5-9043-1ed9e4093402)
+
 
 # 
 Flutter 3.13.6
