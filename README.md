@@ -1,16 +1,10 @@
-# sales_report_app
+# Application of Sales Report - Flutter
+• Admin
+![admin](https://github.com/dna2121/sales_report_app/assets/80125535/ca22660d-f430-4db0-bf41-faeea4478df1)
 
-A new Flutter project.
+• User
+![user](https://github.com/dna2121/sales_report_app/assets/80125535/d3c4335f-5876-4408-b8ad-687b6f39a38e)
 
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+# 
+Flutter 3.13.6
+Tools • Dart 3.1.3 • DevTools 2.25.0
