@@ -10,12 +10,17 @@ import 'app/routes/app_pages.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
-      name: 'sales report app',
-      options: FirebaseOptions(
-          apiKey: "AIzaSyBP6R-El-rAwuhMs3KHkdefrhgn6XxZA-k",
-          appId: "1:244691395214:web:6b734d65e706a32f8a5fdf",
-          messagingSenderId: "244691395214",
-          projectId: "sales-report-app-cb6ca"));
+    // name: 'sales report app',
+    options: FirebaseOptions(
+        apiKey: "AIzaSyBP6R-El-rAwuhMs3KHkdefrhgn6XxZA-k",
+        authDomain: "sales-report-app-cb6ca.firebaseapp.com",
+        databaseURL:
+            "https://sales-report-app-cb6ca-default-rtdb.asia-southeast1.firebasedatabase.app",
+        projectId: "sales-report-app-cb6ca",
+        storageBucket: "sales-report-app-cb6ca.appspot.com",
+        messagingSenderId: "244691395214",
+        appId: "1:244691395214:web:5e09df401176e4fb8a5fdf"),
+  );
 
   runApp(SalesReport());
 }
@@ -29,6 +34,7 @@ class SalesReport extends StatelessWidget {
       title: "Application",
       initialRoute: AppPages.INITIAL,
       getPages: AppPages.routes,
+      initialBinding: AppBinding(),
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         useMaterial3: true,
@@ -72,7 +78,6 @@ class SalesReport extends StatelessWidget {
         drawerTheme: DrawerThemeData(backgroundColor: Colors.grey.shade200),
         dialogBackgroundColor: Colors.white,
       ),
-      initialBinding: AppBinding(),
     );
   }
 }
