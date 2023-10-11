@@ -1,4 +1,7 @@
 # Application of Sales Report - Flutter
+# Web
+https://sales-report-app-cb6ca.web.app/
+
 ![admin](https://github.com/dna2121/sales_report_app/assets/80125535/ca22660d-f430-4db0-bf41-faeea4478df1)
 
 
