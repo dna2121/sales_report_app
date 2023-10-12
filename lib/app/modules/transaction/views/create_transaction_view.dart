@@ -241,7 +241,12 @@ class CreateTransactionView extends GetView<AdminTransactionController> {
                                                 controller.selectedCarnum,
                                             // validator: controller.validator,
                                             onChanged: (value) async {
-                                              controller.selectedCarnum = value;
+                                              if (value!.isEmpty) {
+                                                controller.selectedCarnum = "";
+                                              } else {
+                                                controller.selectedCarnum =
+                                                    value;
+                                              }
                                             },
                                           ),
                                         );

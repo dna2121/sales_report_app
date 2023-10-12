@@ -211,9 +211,6 @@ class AdminTransactionController extends GetxController {
 
       String? userID = await getUserIdFromName(selectedName.toString());
 
-      var cn = selectedCarnum.toString();
-      bool isBlank = true;
-
       if (userID != null) {
         await txRepo.addTx(
           Transactions(
@@ -223,8 +220,7 @@ class AdminTransactionController extends GetxController {
               price: harga,
               weight: berat,
               date: tanggal,
-              // ignore: dead_code
-              carNumber: isBlank ? "" : cn),
+              carNumber: selectedCarnum.toString()),
         );
         Get.defaultDialog(
           title: 'Berhasil',
