@@ -12,10 +12,6 @@ class SupplierView extends GetView<SupplierController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Daftar Petani'),
-        centerTitle: true,
-      ),
       body: Column(
         children: [
           Padding(

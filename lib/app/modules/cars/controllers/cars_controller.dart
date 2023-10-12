@@ -194,4 +194,10 @@ class CarsController extends GetxController {
         .where("carNumber", isLessThanOrEqualTo: "${keyword}\uf8ff")
         .snapshots();
   }
+
+  Stream<DocumentSnapshot<Object?>> getRole() {
+    return userRepo.userCollection
+        .doc('${AuthController.instance.firebaseAuth.currentUser!.uid}')
+        .snapshots();
+  }
 }
