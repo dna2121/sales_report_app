@@ -15,29 +15,6 @@ class TrxView extends GetView<AdminTxController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
-      drawer: Drawer(
-        child: ListView(
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(17.0),
-              child: Text(
-                'Halaman Admin',
-                style: TextStyle(fontSize: 20),
-              ),
-            ),
-            Divider(),
-            ListTile(
-                title: const Text('Halaman User'),
-                leading: Icon(Icons.keyboard_backspace_outlined),
-                onTap: () => Get.offAllNamed(Routes.HOME)),
-            ListTile(
-                title:
-                    const Text('Log out', style: TextStyle(color: Colors.red)),
-                onTap: () => controller.signOut()),
-          ],
-        ),
-      ),
       floatingActionButton: FloatingActionButton(
         backgroundColor: Color.fromRGBO(102, 85, 184, 1),
         child: Icon(Icons.add),

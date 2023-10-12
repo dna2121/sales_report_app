@@ -26,10 +26,10 @@ class AdminTxController extends GetxController {
   Stream<List<String>>? carNumberStream;
 
   void onClose() {
-    priceC.dispose();
-    weightC.dispose();
-    nameC.dispose();
-    dateC.dispose();
+    // priceC.dispose();
+    // weightC.dispose();
+    // nameC.dispose();
+    // dateC.dispose();
     super.onClose();
   }
 
@@ -96,6 +96,18 @@ class AdminTxController extends GetxController {
     Get.defaultDialog(
       title: 'Gagal',
       middleText: "Tidak boleh kosong!",
+      onConfirm: () {
+        Get.back(); //close dialog
+      },
+      textConfirm: 'Okay',
+    );
+    return null;
+  }
+
+  String? get textEmptyUpdate {
+    Get.defaultDialog(
+      title: 'Gagal',
+      middleText: "Lengkapi data transaksi!",
       onConfirm: () {
         Get.back(); //close dialog
       },
@@ -203,6 +215,9 @@ class AdminTxController extends GetxController {
 
       String? userID = await getUserIdFromName(selectedName.toString());
 
+      var cn = selectedCarnum.toString();
+      bool isBlank = true;
+
       if (userID != null) {
         await txRepo.addTx(
           Transactions(
@@ -212,7 +227,8 @@ class AdminTxController extends GetxController {
               price: harga,
               weight: berat,
               date: tanggal,
-              carNumber: selectedCarnum.toString()),
+              // ignore: dead_code
+              carNumber: isBlank ? "" : cn),
         );
         Get.defaultDialog(
           title: 'Berhasil',
@@ -252,18 +268,17 @@ class AdminTxController extends GetxController {
     }
   }
 
-  void showCustomDialog()async  {
-  await Get.defaultDialog(
-    title: "Dialog Title",
-    content: Text("Dialog Content"),
-    confirm: ElevatedButton(
-      onPressed: () {
-        // Handle the confirm button action here
-        Get.back(); // Close the dialog
-      },
-      child: Text("Confirm"),
-    ),
-  );
-}
-
+  void showCustomDialog() async {
+    await Get.defaultDialog(
+      title: "Dialog Title",
+      content: Text("Dialog Content"),
+      confirm: ElevatedButton(
+        onPressed: () {
+          // Handle the confirm button action here
+          Get.back(); // Close the dialog
+        },
+        child: Text("Confirm"),
+      ),
+    );
+  }
 }

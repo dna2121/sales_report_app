@@ -195,12 +195,12 @@ class UpdateTxView extends GetView<AdminTxController> {
                 StringButton(
                     color: Colors.white,
                     pressed: () {
-                      controller.nameC.text.isEmpty &&
-                              controller.priceC.text.isEmpty &&
-                              controller.dateC.text.isEmpty &&
-                              controller.weightC.text.isEmpty &&
+                      controller.selectedName!.isEmpty ||
+                              controller.priceC.text.isEmpty ||
+                              controller.dateC.text.isEmpty ||
+                              controller.weightC.text.isEmpty ||
                               controller.carC.text.isEmpty
-                          ? controller.textEmpty
+                          ? controller.textEmptyUpdate
                           : controller.updateTxDoc();
                     },
                     text: "Simpan"),

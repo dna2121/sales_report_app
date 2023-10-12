@@ -178,6 +178,12 @@ class NewTxView extends GetView<AdminTxController> {
                                                 DropDownDecoratorProps(
                                               dropdownSearchDecoration:
                                                   InputDecoration(
+                                                      hintText:
+                                                          "Tidak wajib diisi",
+                                                      hintStyle: TextStyle(
+                                                          fontSize: 13,
+                                                          fontStyle:
+                                                              FontStyle.italic),
                                                       border: InputBorder.none,
                                                       contentPadding:
                                                           EdgeInsets.all(11)),
@@ -197,6 +203,12 @@ class NewTxView extends GetView<AdminTxController> {
                                                 DropDownDecoratorProps(
                                               dropdownSearchDecoration:
                                                   InputDecoration(
+                                                      hintText:
+                                                          "Tidak wajib diisi",
+                                                      hintStyle: TextStyle(
+                                                          fontSize: 13,
+                                                          fontStyle:
+                                                              FontStyle.italic),
                                                       border: InputBorder.none,
                                                       contentPadding:
                                                           EdgeInsets.all(11)),
