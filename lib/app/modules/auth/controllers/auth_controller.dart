@@ -95,8 +95,8 @@ class AuthController extends GetxController {
           address: address));
 
       Get.showSnackbar(const GetSnackBar(
-        title: 'Success',
-        message: 'Sign up success',
+        title: 'Berhasil terdaftar',
+        message: 'Menuju ke halaman akun terdaftar',
         duration: Duration(seconds: 2),
       ));
     } catch (e) {

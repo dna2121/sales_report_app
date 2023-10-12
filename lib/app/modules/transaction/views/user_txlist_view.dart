@@ -7,10 +7,10 @@ import 'package:intl/intl.dart';
 import 'package:sales_report_app/app/routes/app_pages.dart';
 
 import '../../../../utils/widget.dart';
-import '../controllers/transaction_controller.dart';
+import '../controllers/user_transaction_controller.dart';
 
-class TxlistView extends GetView<TransactionController> {
-  const TxlistView({Key? key}) : super(key: key);
+class UserTxlistView extends GetView<UserTransactionController> {
+  const UserTxlistView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(

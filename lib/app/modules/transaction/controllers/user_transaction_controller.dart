@@ -7,7 +7,7 @@ import 'package:sales_report_app/app/data/repositories/user_repositories.dart';
 import '../../../data/repositories/transactions_repositories.dart';
 import '../../auth/controllers/auth_controller.dart';
 
-class TransactionController extends GetxController {
+class UserTransactionController extends GetxController {
   final txRepo = TransactionRepository.instance;
   final userRepo = UserRepository.instance;
   final AuthController authController = Get.find();

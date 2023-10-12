@@ -4,13 +4,13 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
-import 'package:sales_report_app/app/modules/admin/controllers/admintx_controller.dart';
+import 'package:sales_report_app/app/modules/transaction/controllers/admin_transaction_controller.dart';
 
 import '../../../../utils/color.dart';
 import '../../../../utils/widget.dart';
 
-class UpdateTxView extends GetView<AdminTxController> {
-  const UpdateTxView({Key? key}) : super(key: key);
+class UpdateTransactionView extends GetView<AdminTransactionController> {
+  const UpdateTransactionView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     final String documentId = Get.arguments;

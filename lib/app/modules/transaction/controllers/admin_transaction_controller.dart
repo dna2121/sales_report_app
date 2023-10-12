@@ -7,7 +7,7 @@ import 'package:sales_report_app/app/data/repositories/transactions_repositories
 import '../../../data/models/transactions.dart';
 import '../../auth/controllers/auth_controller.dart';
 
-class AdminTxController extends GetxController {
+class AdminTransactionController extends GetxController {
   final txRepo = TransactionRepository.instance;
   final AuthController authController = Get.find();
   final trxFormKey = GlobalKey<FormState>();
@@ -39,10 +39,6 @@ class AdminTxController extends GetxController {
 
   Stream<QuerySnapshot<Object?>> streamTx() {
     return txRepo.txCollection.snapshots();
-  }
-
-  Stream<DocumentSnapshot<Object?>> getDetailTx() {
-    return txRepo.txCollection.doc(documentId).snapshots();
   }
 
   Stream<List<String>> streamName() {

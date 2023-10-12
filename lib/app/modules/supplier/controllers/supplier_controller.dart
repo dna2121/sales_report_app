@@ -14,10 +14,10 @@ class SupplierController extends GetxController {
 
   @override
   void onClose() {
-    emailC.dispose();
-    nameC.dispose();
-    phoneC.dispose();
-    addressC.dispose();
+    // emailC.dispose();
+    // nameC.dispose();
+    // phoneC.dispose();
+    // addressC.dispose();
     super.onClose();
   }
 

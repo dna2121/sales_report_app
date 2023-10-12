@@ -4,14 +4,14 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:grouped_list/grouped_list.dart';
 import 'package:intl/intl.dart';
-import 'package:sales_report_app/app/modules/admin/controllers/admintx_controller.dart';
+import 'package:sales_report_app/app/modules/transaction/controllers/admin_transaction_controller.dart';
 
 import '../../../../utils/color.dart';
 import '../../../../utils/widget.dart';
 import '../../../routes/app_pages.dart';
 
-class TrxView extends GetView<AdminTxController> {
-  const TrxView({Key? key}) : super(key: key);
+class AdminTransactionView extends GetView<AdminTransactionController> {
+  const AdminTransactionView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,7 +25,7 @@ class TrxView extends GetView<AdminTxController> {
           controller.selectedName = null;
           controller.selectedCarnum = null;
 
-          Get.toNamed(Routes.NEWTX);
+          Get.toNamed(Routes.CREATETRANSACTION);
         },
       ),
       body: StreamBuilder(
@@ -139,7 +139,7 @@ class TrxView extends GetView<AdminTxController> {
                               fontSize: 14,
                               color: Color.fromRGBO(85, 184, 179, 1)),
                         ),
-                        onTap: () => Get.toNamed(Routes.ADMDETAILTX,
+                        onTap: () => Get.toNamed(Routes.DETAILTX,
                             arguments: element['transactionID']),
                         onLongPress: () {
                           Get.bottomSheet(
@@ -149,7 +149,8 @@ class TrxView extends GetView<AdminTxController> {
                               children: [
                                 EditButton(
                                   text: "Ubah",
-                                  Pressed: () => Get.toNamed(Routes.UPDATETX,
+                                  Pressed: () => Get.toNamed(
+                                      Routes.UPDATETRANSACTION,
                                       arguments: element['transactionID']),
                                 ),
                                 DeleteButton(

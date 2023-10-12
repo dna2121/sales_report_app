@@ -1,18 +1,9 @@
 import 'package:get/get.dart';
-import 'package:sales_report_app/app/modules/admin/views/admin_detailtx_view.dart';
-import 'package:sales_report_app/app/modules/admin/views/trx_view.dart';
-import 'package:sales_report_app/app/modules/admin/views/update_supplier_view.dart';
-import 'package:sales_report_app/app/modules/admin/views/update_tx_view.dart';
-import 'package:sales_report_app/app/modules/auth/views/forgot_password_view.dart';
-import 'package:sales_report_app/app/modules/profile/views/update_profile_view.dart';
-import 'package:sales_report_app/app/modules/transaction/views/detail_tx_view.dart';
-import 'package:sales_report_app/app/modules/transaction/views/txlist_view.dart';
+import 'package:sales_report_app/app/modules/home/views/transaction_view.dart';
 
-import '../modules/admin/bindings/admin_binding.dart';
-import '../modules/admin/views/admin_view.dart';
-import '../modules/admin/views/new_tx_view.dart';
+import '../modules/supplier/views/update_supplier_view.dart';
 import '../modules/auth/bindings/auth_binding.dart';
-import '../modules/auth/views/auth_view.dart';
+import '../modules/auth/views/forgot_password_view.dart';
 import '../modules/auth/views/signin_view.dart';
 import '../modules/auth/views/signup_view.dart';
 import '../modules/cars/bindings/cars_binding.dart';
@@ -22,10 +13,18 @@ import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
 import '../modules/profile/bindings/profile_binding.dart';
 import '../modules/profile/views/profile_view.dart';
+import '../modules/profile/views/update_profile_view.dart';
 import '../modules/splash/bindings/splash_binding.dart';
 import '../modules/splash/views/splash_view.dart';
+import '../modules/supplier/bindings/supplier_binding.dart';
+import '../modules/supplier/views/supplier_view.dart';
 import '../modules/transaction/bindings/transaction_binding.dart';
-import '../modules/transaction/views/transaction_view.dart';
+import '../modules/transaction/views/admin_transaction_view.dart';
+import '../modules/transaction/views/create_transaction_view.dart';
+import '../modules/transaction/views/detail_tx_view.dart';
+import '../modules/transaction/views/update_transaction_view.dart';
+import '../modules/transaction/views/user_transaction_view.dart';
+import '../modules/transaction/views/user_txlist_view.dart';
 
 part 'app_routes.dart';
 
@@ -37,13 +36,8 @@ class AppPages {
   static final routes = [
     GetPage(
       name: _Paths.HOME,
-      page: () => const HomeView(),
+      page: () => HomeView(),
       binding: HomeBinding(),
-    ),
-    GetPage(
-      name: _Paths.AUTH,
-      page: () => const AuthView(),
-      binding: AuthBinding(),
     ),
     GetPage(
       name: _Paths.SIGNIN,
@@ -81,8 +75,13 @@ class AppPages {
       binding: TransactionBinding(),
     ),
     GetPage(
-      name: _Paths.TXLIST,
-      page: () => TxlistView(),
+      name: _Paths.USERTRANSACTION,
+      page: () => UserTransactionView(),
+      binding: TransactionBinding(),
+    ),
+    GetPage(
+      name: _Paths.USERTXLIST,
+      page: () => UserTxlistView(),
       binding: TransactionBinding(),
     ),
     GetPage(
@@ -91,34 +90,19 @@ class AppPages {
       binding: TransactionBinding(),
     ),
     GetPage(
-      name: _Paths.ADMIN,
-      page: () => const AdminView(),
-      binding: AdminBinding(),
+      name: _Paths.CREATETRANSACTION,
+      page: () => const CreateTransactionView(),
+      binding: TransactionBinding(),
     ),
     GetPage(
-      name: _Paths.UPDATESUPPLIER,
-      page: () => const UpdateSupplierView(),
-      binding: AdminBinding(),
+      name: _Paths.UPDATETRANSACTION,
+      page: () => const UpdateTransactionView(),
+      binding: TransactionBinding(),
     ),
     GetPage(
-      name: _Paths.NEWTX,
-      page: () => const NewTxView(),
-      binding: AdminBinding(),
-    ),
-    GetPage(
-      name: _Paths.ADMDETAILTX,
-      page: () => const AdminDetailtxView(),
-      binding: AdminBinding(),
-    ),
-    GetPage(
-      name: _Paths.UPDATETX,
-      page: () => const UpdateTxView(),
-      binding: AdminBinding(),
-    ),
-    GetPage(
-      name: _Paths.TRX,
-      page: () => const TrxView(),
-      binding: AdminBinding(),
+      name: _Paths.ADMINTRANSACTION,
+      page: () => const AdminTransactionView(),
+      binding: TransactionBinding(),
     ),
     GetPage(
       name: _Paths.PROFILE,
@@ -129,6 +113,16 @@ class AppPages {
       name: _Paths.UPDATEPROFILE,
       page: () => const UpdateProfileView(),
       binding: ProfileBinding(),
+    ),
+    GetPage(
+      name: _Paths.SUPPLIER,
+      page: () => SupplierView(),
+      binding: SupplierBinding(),
+    ),
+    GetPage(
+      name: _Paths.UPDATESUPPLIER,
+      page: () => const UpdateSupplierView(),
+      binding: TransactionBinding(),
     ),
   ];
 }

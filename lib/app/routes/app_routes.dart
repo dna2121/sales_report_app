@@ -4,45 +4,55 @@ part of 'app_pages.dart';
 abstract class Routes {
   Routes._();
   static const HOME = _Paths.HOME;
-  static const AUTH = _Paths.AUTH;
   static const SIGNIN = _Paths.SIGNIN;
   static const SPLASH = _Paths.SPLASH;
   static const SIGNUP = _Paths.SIGNUP;
+  static const FORGOTPASSWORD = _Paths.FORGOTPASSWORD;
+
+  static const TRANSACTION = _Paths.TRANSACTION;
+
   static const CARS = _Paths.CARS;
   static const CARSEDIT = _Paths.CARSEDIT;
-  static const TRANSACTION = _Paths.TRANSACTION;
-  static const TXLIST = _Paths.TXLIST;
+
+  static const USERTRANSACTION = _Paths.USERTRANSACTION;
+  static const USERTXLIST = _Paths.USERTXLIST;
   static const DETAILTX = _Paths.DETAILTX;
-  static const ADMIN = _Paths.ADMIN;
-  static const TRX = _Paths.TRX;
-  static const NEWTX = _Paths.NEWTX;
-  static const ADMDETAILTX = _Paths.ADMDETAILTX;
-  static const UPDATETX = _Paths.UPDATETX;
+
+  static const ADMINTRANSACTION = _Paths.ADMINTRANSACTION;
+  static const CREATETRANSACTION = _Paths.CREATETRANSACTION;
+  static const UPDATETRANSACTION = _Paths.UPDATETRANSACTION;
+
   static const PROFILE = _Paths.PROFILE;
   static const UPDATEPROFILE = _Paths.UPDATEPROFILE;
+
+  static const SUPPLIER = _Paths.SUPPLIER;
   static const UPDATESUPPLIER = _Paths.UPDATESUPPLIER;
-  static const FORGOTPASSWORD = _Paths.FORGOTPASSWORD;
 }
 
 abstract class _Paths {
   _Paths._();
   static const HOME = '/home';
-  static const AUTH = '/auth';
   static const SIGNIN = '/signin';
   static const SPLASH = '/splash';
   static const SIGNUP = '/signup';
   static const FORGOTPASSWORD = '/forgot-password';
+
+  static const TRANSACTION = '/transaction';
+
   static const CARS = '/cars';
   static const CARSEDIT = '/cars-edit';
-  static const TRANSACTION = '/transaction';
-  static const TXLIST = '/txlist';
+
+  static const USERTRANSACTION = '/user-transaction';
+  static const USERTXLIST = '/user-txlist';
   static const DETAILTX = '/detail-tx';
-  static const ADMIN = '/admin';
-  static const TRX = '/trx';
-  static const NEWTX = '/new-tx';
-  static const ADMDETAILTX = '/admin-detailtx';
-  static const UPDATETX = '/update-tx';
+
+  static const ADMINTRANSACTION = '/admin-transaction';
+  static const CREATETRANSACTION = '/create-transaction';
+  static const UPDATETRANSACTION = '/update-transaction';
+
   static const PROFILE = '/profile';
   static const UPDATEPROFILE = '/update-profile';
+
+  static const SUPPLIER = '/supplier';
   static const UPDATESUPPLIER = '/update-supplier';
 }
